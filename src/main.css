@@ -2,6 +2,10 @@ h1 {
     text-align: center;
 }
 
+label {
+    font-weight: bold;
+}
+
 .container-main {
     display: flex;
     flex-direction: row;
