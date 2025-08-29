@@ -10,6 +10,11 @@
     flex-direction: column;
 }
 
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
 .container-input {
     border: 1px solid cornflowerblue;
 }
