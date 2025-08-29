@@ -1,0 +1,31 @@
+.container-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-input {
+    border: 1px solid cornflowerblue;
+}
+
+.container-output {
+    border: 1px solid cornflowerblue;
+}
+
+textarea.input {
+    width: 20rem;
+    height: 30rem;
+    margin: 1rem;
+}
+
+textarea.output {
+    width: 20rem;
+    height: 30rem;
+    margin: 1rem;
+}
