@@ -13,16 +13,19 @@
 
     <div class="container-main">
 
-        <div class="container-input flex-column">
-            <div class="flex-row">
+        <div class="container-input">
+            <div class="container-header-input">
                 <label for="textarea-input">Input</label>
-                <button id="btn-merge">Merge</button>
+                <button id="btn-merge">Merge --&gt;</button>
             </div>
             <textarea class="input" id="textarea-input"></textarea>
         </div>
 
-        <div class="container-output flex-column">
-            <label for="textarea-output">Output</label>
+        <div class="container-output">
+            <div class="container-header-output">
+                <label for="textarea-output">Output</label>
+                <button id="btn-copy">Copy</button>
+            </div>
             <textarea class="output" id="textarea-output" disabled></textarea>
         </div>
 
