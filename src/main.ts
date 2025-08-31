@@ -1,5 +1,3 @@
-// TODO: Event handler for merge button.
-// TODO: Event handler for copy button.
 // TODO: Controller class.
 // TODO: Class for parsing input into groups.
 // TODO: Class for merging input.
@@ -8,4 +6,19 @@
 // TODO: Help documentation with example. (In web.)
 // TODO: Styling.
 
-console.log("Hello, ReleaseNotesMerger!");
+initialize();
+
+function initialize() {
+    document.getElementById('btn-merge')?.addEventListener('click', eventHandler_MergeButton);
+    document.getElementById('btn-copy')?.addEventListener('click', eventHandler_CopyButton);
+}
+
+function eventHandler_MergeButton() {
+    // TODO: Implement merge functionality.
+    console.log('Merge button clicked.');
+}
+
+function eventHandler_CopyButton() {
+    // TODO: Implement copy to clipboard functionality.
+    console.log('Copy button clicked.');
+}
