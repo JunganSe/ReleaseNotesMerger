@@ -6,19 +6,11 @@
 // TODO: Help documentation with example. (In web.)
 // TODO: Styling.
 
+import { EventHandlers } from "./events";
+
 initialize();
 
 function initialize() {
-    document.getElementById('btn-merge')?.addEventListener('click', eventHandler_MergeButton);
-    document.getElementById('btn-copy')?.addEventListener('click', eventHandler_CopyButton);
-}
-
-function eventHandler_MergeButton() {
-    // TODO: Implement merge functionality.
-    console.log('Merge button clicked.');
-}
-
-function eventHandler_CopyButton() {
-    // TODO: Implement copy to clipboard functionality.
-    console.log('Copy button clicked.');
+    document.getElementById('btn-merge')?.addEventListener('click', EventHandlers.click_MergeButton);
+    document.getElementById('btn-copy')?.addEventListener('click', EventHandlers.click_CopyButton);
 }
