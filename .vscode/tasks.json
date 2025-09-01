@@ -2,11 +2,16 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Vite: dev",
+            "label": "Vite: dev (Chrome)",
             "type": "shell",
             "command": "npm run dev",
             "group": "build",
-            "problemMatcher": []
+            "problemMatcher": [],
+            "options": {
+                "env": {
+                    "BROWSER": "chrome"
+                }
+            }
         },
         {
             "label": "Vite: build",
@@ -16,17 +21,22 @@
             "problemMatcher": []
         },
         {
-            "label": "Vite: preview",
+            "label": "Vite: preview (Chrome)",
             "type": "shell",
             "command": "npm run preview",
             "group": "none",
-            "problemMatcher": []
+            "problemMatcher": [],
+            "options": {
+                "env": {
+                    "BROWSER": "chrome"
+                }
+            }
         },
         {
-            "label": "Vite: build + preview",
+            "label": "Vite: build + preview (Chrome)",
             "dependsOn": [
                 "Vite: build",
-                "Vite: preview"
+                "Vite: preview (Chrome)"
             ],
             "dependsOrder": "sequence",
             "group": "build"
