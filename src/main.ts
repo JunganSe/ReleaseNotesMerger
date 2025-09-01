@@ -6,7 +6,7 @@
 // TODO: Help documentation with example. (In web.)
 // TODO: Styling.
 
-import { EventHandlers } from "./events.js";
+import { EventHandlers } from "./events";
 
 initialize();
 

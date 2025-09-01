@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/JunganSe/ReleaseNotesMerger/issues"
   },
-  "homepage": "https://github.com/JunganSe/ReleaseNotesMerger#readme"
+  "homepage": "https://github.com/JunganSe/ReleaseNotesMerger#readme",
+  "devDependencies": {
+    "vite": "^7.1.4"
+  }
 }
