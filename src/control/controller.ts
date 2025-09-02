@@ -11,11 +11,11 @@ export class Controller {
 
     private initializeParser(): void {
         const parserOptions: ParserOptions = {
-            headingOrder: [],
-            date: undefined,
-            ignoreCase: false,
-            trimWhitespace: false,
-            forgiveMisspelledHeadings: false
+            headingOrder: ['Nya funktioner', 'Uppdateringar', 'Bugfixar'], // TODO: Get headingOrder from user input.
+            date: new Date(), // TODO: Get date from user input.
+            ignoreCase: false, // TODO: Get ignoreCase from user input.
+            trimWhitespace: false, // TODO: Get trimWhitespace from user input.
+            forgiveMisspelledHeadings: false // TODO: Get forgiveMisspelledHeadings from user input.
         };
         this.parser = new Parser(parserOptions);
     }
@@ -27,11 +27,18 @@ export class Controller {
 
     private click_MergeButton(): void {
         // TODO: Implement merge functionality.
+        // - Set parser options
+        // - Get input text
+        // - Parse input text into chunks
+        // - Merge chunks
+        // - Output merged text
         console.log('Merge button clicked.');
     }
 
     private click_CopyButton() {
         // TODO: Implement copy to clipboard functionality.
+        // - Get output text
+        // - Copy to clipboard
         console.log('Copy button clicked.');
     }
 }
