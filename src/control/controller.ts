@@ -11,19 +11,7 @@ export class Controller {
     }
 
     initialize(): void {
-        this.initializeParser();
         this.setButtonEvents();
-    }
-
-    private initializeParser(): void {
-        const parserOptions: ParserOptions = {
-            headingOrder: ['Nya funktioner', 'Uppdateringar', 'Bugfixar'], // TODO: Get headingOrder from user input.
-            date: new Date(), // TODO: Get date from user input.
-            ignoreCase: false, // TODO: Get ignoreCase from user input.
-            trimWhitespace: false, // TODO: Get trimWhitespace from user input.
-            forgiveMisspelledHeadings: false // TODO: Get forgiveMisspelledHeadings from user input.
-        };
-        this.parser = new Parser(parserOptions);
     }
 
     private setButtonEvents(): void {
@@ -39,6 +27,16 @@ export class Controller {
         // - Merge chunks
         // - Output merged text
         console.log('Merge button clicked.');
+    }
+
+    private getParserOptions(): ParserOptions {
+        return {
+            headingOrder: ['Nya funktioner', 'Uppdateringar', 'Bugfixar'], // TODO: Get headingOrder from user input.
+            date: new Date(), // TODO: Get date from user input.
+            ignoreCase: false, // TODO: Get ignoreCase from user input.
+            trimWhitespace: false, // TODO: Get trimWhitespace from user input.
+            forgiveMisspelledHeadings: false // TODO: Get forgiveMisspelledHeadings from user input.
+        };
     }
 
     private click_CopyButton() {
