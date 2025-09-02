@@ -1,0 +1,34 @@
+## 2025-08-26
+Uppdateringar
+- Rensat bort referensen LabTestHistoryId från databas för att den inte används längre. #389
+- Lagt till dirty tracking och varning om man försöker lämna osparade ändringar vid redigering av körrecept (popup för specifik ytvikt). #404
+
+## 2025-08-11
+Uppdateringar
+- Aktuell version av körrecept visas nu när man visar ett labtests körrecept, istället för den senaste verisonen. #406
+  - Körreceptets version som visas är den som var aktuell vid labtestets tidpunkt.
+- Rensning av oanvända tabeller i databasen. #543
+
+Bugfixar
+- Åtgärdat att körrecept för fel PM ibland visades när man visade ett labtests körrecept. #406
+
+## 2025-08-05
+Bugfixar
+- Åtgärdat bristande behörighetskontroll vid uppdatering av labtest. Gäller vanlig redigering och redigering av låsta värden. #551
+
+## 2025-08-04
+
+Nya funktioner
+- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+Uppdateringar
+- Förbättrat utseende och funktion vid redigering av labtests importerade värden. #379
+  - Samma utseende som för labtest detaljer med tooltip, färgindikeringar, och varning för ogiltigt värde.
+  - Ändrade värden markeras nu som i labtest detaljer, och en bekräftelse krävs när man försöker lämna osparade ändringar.
+
+## 2025-08-01
+Uppdateringar
+- Lagt till möjlighet att skriva ut rapporter. Även uppdaterat så att utskrifter ser okej ut på alla sidor, men inte alla tabeller än. #431
+
+Nya funktioner
+- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
