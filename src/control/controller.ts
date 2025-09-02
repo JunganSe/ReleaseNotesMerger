@@ -12,7 +12,7 @@ export class Controller {
     private initializeParser(): void {
         const parserOptions: ParserOptions = {
             headingOrder: [],
-            newDate: undefined,
+            date: undefined,
             ignoreCase: false,
             trimWhitespace: false,
             forgiveMisspelledHeadings: false

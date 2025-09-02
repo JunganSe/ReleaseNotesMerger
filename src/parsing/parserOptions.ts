@@ -1,6 +1,6 @@
 export interface ParserOptions {
     headingOrder: string[];
-    newDate: Date | undefined;
+    date: Date | undefined;
     ignoreCase: boolean;
     trimWhitespace: boolean;
     forgiveMisspelledHeadings: boolean;
