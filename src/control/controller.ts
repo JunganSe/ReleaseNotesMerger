@@ -1,8 +1,14 @@
+import { HtmlReader } from "../io/HtmlReader";
 import { Parser } from "../parsing/parser";
 import { ParserOptions } from "../parsing/parserOptions";
 
 export class Controller {
     private parser: Parser | undefined;
+    private htmlReader: HtmlReader;
+
+    constructor() {
+        this.htmlReader = new HtmlReader();
+    }
 
     initialize(): void {
         this.initializeParser();
