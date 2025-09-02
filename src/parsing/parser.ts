@@ -1,9 +1,19 @@
+import { ParserOptions } from "./parserOptions";
 import { textChunk } from "./textChunk";
 
-// TODO: Parser setup. (preferred heading order, new date to use, etc.)
-// TODO: Options for parsing and merging. (ignore case, ignore whitespace, forgive misspelled headings, etc.)
+// TODO: Implement options.headingOrder
+// TODO: Implement options.newDate
+// TODO: Implement options.ignoreCase
+// TODO: Implement options.trimWhitespace
+// TODO: Implement options.forgiveMisspelledHeadings
 
 export class Parser {
+    private options: ParserOptions;
+
+    constructor(options: ParserOptions) {
+        this.options = options;
+    }
+
     chunkifyText(input: string): textChunk[] {
         // TODO: Implement parsing logic.
         throw new Error("Method not implemented.");
