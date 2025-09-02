@@ -1,6 +1,23 @@
+import { Parser } from "../parsing/parser";
+import { ParserOptions } from "../parsing/parserOptions";
+
 export class Controller {
+    private parser: Parser | undefined;
+
     initialize(): void {
+        this.initializeParser();
         this.setButtonEvents();
+    }
+
+    private initializeParser(): void {
+        const parserOptions: ParserOptions = {
+            headingOrder: [],
+            newDate: undefined,
+            ignoreCase: false,
+            trimWhitespace: false,
+            forgiveMisspelledHeadings: false
+        };
+        this.parser = new Parser(parserOptions);
     }
 
     private setButtonEvents(): void {
