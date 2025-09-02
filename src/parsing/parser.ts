@@ -1,5 +1,8 @@
 import { textChunk } from "./textChunk";
 
+// TODO: Parser setup. (preferred heading order, new date to use, etc.)
+// TODO: Options for parsing and merging. (ignore case, ignore whitespace, forgive misspelled headings, etc.)
+
 export class Parser {
     chunkifyText(input: string): textChunk[] {
         // TODO: Implement parsing logic.
