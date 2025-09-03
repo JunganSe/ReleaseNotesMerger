@@ -1,4 +1,4 @@
-import { HtmlReader } from "../io/HtmlReader";
+import { HtmlReader } from "../io/htmlReader";
 import { Parser } from "../parsing/parser";
 import { ParserOptions } from "../parsing/parserOptions";
 
