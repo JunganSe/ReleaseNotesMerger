@@ -18,9 +18,4 @@ export class Parser {
         // TODO: Implement parsing logic.
         throw new Error("Method not implemented.");
     }
-
-    mergeChunks(inputChunks: textChunk[]): textChunk[] {
-        // TODO: Implement parsing logic.
-        throw new Error("Method not implemented.");
-    }
 }

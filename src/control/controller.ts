@@ -1,6 +1,6 @@
 import { HtmlReader } from "../io/htmlReader";
-import { Parser } from "../parsing/parser";
-import { ParserOptions } from "../parsing/parserOptions";
+import { Parser } from "../textProcessing/parser";
+import { ParserOptions } from "../textProcessing/parserOptions";
 
 export class Controller {
     private parser: Parser | undefined;
