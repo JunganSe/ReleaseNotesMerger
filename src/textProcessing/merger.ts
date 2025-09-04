@@ -12,4 +12,9 @@ export class Merger {
         // TODO: Implement merging logic.
         throw new Error("Method not implemented.");
     }
+
+    stringifyChunks(chunks: textChunk[]): string {
+        // TODO: Implement stringifying logic.
+        throw new Error("Method not implemented.");
+    }
 }
