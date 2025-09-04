@@ -1,14 +1,16 @@
 import { HtmlReader } from "../io/htmlReader";
-import { MergerOptions } from "../textProcessing/mergerOptions";
+import { HtmlWriter } from "../io/htmlWriter";
 import { Parser } from "../textProcessing/parser";
-import { ParserOptions } from "../textProcessing/parserOptions";
 
 export class Controller {
-    private parser: Parser | undefined;
+    private parser: Parser;
     private htmlReader: HtmlReader;
+    private htmlWriter: HtmlWriter;
 
     constructor() {
+        this.parser = new Parser();
         this.htmlReader = new HtmlReader();
+        this.htmlWriter = new HtmlWriter();
     }
 
     initialize(): void {

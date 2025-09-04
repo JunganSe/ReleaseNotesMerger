@@ -10,8 +10,16 @@ import { textChunk } from "./textChunk";
 export class Parser {
     private options: ParserOptions;
 
-    constructor(options: ParserOptions) {
-        this.options = options;
+    constructor() {
+        this.options = this.getDefaultOptions();
+    }
+
+    private getDefaultOptions(): ParserOptions {
+        return {
+            ignoreCase: false,
+            trimWhitespace: false,
+            forgiveMisspelledHeadings: false
+        };
     }
 
     chunkifyText(input: string): textChunk[] {
