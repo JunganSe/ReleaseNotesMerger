@@ -17,8 +17,9 @@ export class HtmlReader {
 
     getMergerOptions(): MergerOptions {
         return {
-            headingOrder: ['Nya funktioner', 'Uppdateringar', 'Bugfixar'], // TODO: Get headingOrder from user input.
-            date: new Date(), // TODO: Get date from user input.
+            date: null, // TODO: Get date from user input.
+            headingOrder: [], // TODO: Get headingOrder from user input.
+            indentSize: null // TODO: Get indentSize from user input.
         };
     }
 }

@@ -1,5 +1,5 @@
-export interface MergerOptions {
-    date?: Date;
-    headingOrder: string[];
-    indentSize?: number;
+export class MergerOptions {
+    date: Date | null = null;
+    headingOrder: string[] = [];
+    indentSize: number | null = null;
 }
