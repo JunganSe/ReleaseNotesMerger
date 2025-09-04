@@ -1,8 +1,6 @@
 import { ParserOptions } from "./parserOptions";
 import { textChunk } from "./textChunk";
 
-// TODO: Implement options.headingOrder
-// TODO: Implement options.newDate
 // TODO: Implement options.ignoreCase
 // TODO: Implement options.trimWhitespace
 // TODO: Implement options.forgiveMisspelledHeadings

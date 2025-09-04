@@ -1,6 +1,9 @@
 import { MergerOptions } from "./mergerOptions";
 import { textChunk } from "./textChunk";
 
+// TODO: Implement options.headingOrder
+// TODO: Implement options.date
+
 export class Merger {
     options: MergerOptions;
 
