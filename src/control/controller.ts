@@ -30,21 +30,6 @@ export class Controller {
         console.log('Merge button clicked.');
     }
 
-    private getParserOptions(): ParserOptions {
-        return {
-            ignoreCase: false, // TODO: Get ignoreCase from user input.
-            trimWhitespace: false, // TODO: Get trimWhitespace from user input.
-            forgiveMisspelledHeadings: false // TODO: Get forgiveMisspelledHeadings from user input.
-        };
-    }
-
-    private getMergerOptions(): MergerOptions {
-        return {
-            headingOrder: ['Nya funktioner', 'Uppdateringar', 'Bugfixar'], // TODO: Get headingOrder from user input.
-            date: new Date(), // TODO: Get date from user input.
-        };
-    }
-
     private click_CopyButton() {
         // TODO: Implement copy to clipboard functionality.
         // - Get output text
