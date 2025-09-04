@@ -8,7 +8,7 @@ import { textChunk } from "./textChunk";
 // TODO: Implement options.forgiveMisspelledHeadings
 
 export class Parser {
-    private options: ParserOptions;
+    options: ParserOptions;
 
     constructor() {
         this.options = this.getDefaultOptions();
