@@ -3,6 +3,7 @@ import { textChunk } from "./textChunk";
 
 // TODO: Implement options.headingOrder
 // TODO: Implement options.date
+// TODO: Implement options.indentSize
 
 export class Merger {
     options: MergerOptions;
@@ -13,8 +14,9 @@ export class Merger {
 
     private getDefaultOptions(): MergerOptions {
         return {
+            date: undefined,
             headingOrder: [],
-            date: undefined
+            indentSize: 4,
         }
     }
 

@@ -1,4 +1,5 @@
 export interface MergerOptions {
+    date?: Date;
     headingOrder: string[];
-    date: Date | undefined;
+    indentSize?: number;
 }
