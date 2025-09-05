@@ -6,7 +6,11 @@ import { textChunk } from "./textChunk";
 // TODO: Implement options.indentSize
 
 export class Merger {
-    options: MergerOptions = new MergerOptions();
+    private options: MergerOptions;
+
+    constructor(options: MergerOptions) {
+        this.options = options;
+    }
 
     mergeChunks(inputChunks: textChunk[]): textChunk[] {
         // TODO: Implement merging logic.
