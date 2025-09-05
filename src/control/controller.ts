@@ -4,14 +4,6 @@ import { Merger } from "../textProcessing/merger";
 import { Parser } from "../textProcessing/parser";
 
 export class Controller {
-    private htmlReader: HtmlReader;
-    private htmlWriter: HtmlWriter;
-
-    constructor() {
-        this.htmlReader = new HtmlReader();
-        this.htmlWriter = new HtmlWriter();
-    }
-
     initialize(): void {
         this.setButtonEvents();
     }
@@ -22,18 +14,20 @@ export class Controller {
     }
 
     private click_MergeButton = (): void => {
-        const inputText = this.htmlReader.getInputText();
+        const htmlReader = new HtmlReader();
+        const inputText = htmlReader.getInputText();
 
-        const parserOptions = this.htmlReader.getParserOptions();
+        const parserOptions = htmlReader.getParserOptions();
         const parser = new Parser(parserOptions);
         const inputChunks = parser.chunkifyText(inputText);
 
-        const mergerOptions = this.htmlReader.getMergerOptions();
+        const mergerOptions = htmlReader.getMergerOptions();
         const merger = new Merger(mergerOptions);
         const mergedChunks = merger.mergeChunks(inputChunks);
         const outputText = merger.stringifyChunks(mergedChunks);
-        
-        this.htmlWriter.writeOutputText(outputText);
+
+        const htmlWriter = new HtmlWriter();
+        htmlWriter.writeOutputText(outputText);
     }
 
     private click_CopyButton = (): void => {
