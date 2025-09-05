@@ -1,10 +1,11 @@
 import { MergerOptions } from "../textProcessing/mergerOptions";
 import { ParserOptions } from "../textProcessing/parserOptions";
+import { HtmlElementId } from "./constants";
 
 export class HtmlReader {
     getInputText(): string {
-        // TODO: Implement reading of textarea.
-        throw new Error("Method not implemented.");
+        const textarea = document.getElementById(HtmlElementId.inputTextarea) as HTMLTextAreaElement;
+        return textarea?.value || "";
     }
 
     getParserOptions(): ParserOptions {
