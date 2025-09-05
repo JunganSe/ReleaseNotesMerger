@@ -6,13 +6,11 @@ import { Parser } from "../textProcessing/parser";
 export class Controller {
     private htmlReader: HtmlReader;
     private htmlWriter: HtmlWriter;
-    private parser: Parser;
     private merger: Merger;
 
     constructor() {
         this.htmlReader = new HtmlReader();
         this.htmlWriter = new HtmlWriter();
-        this.parser = new Parser();
         this.merger = new Merger();
     }
 
@@ -28,8 +26,9 @@ export class Controller {
     private click_MergeButton = (): void => {
         const inputText = this.htmlReader.getInputText();
 
-        this.parser.options = this.htmlReader.getParserOptions();
-        const inputChunks = this.parser.chunkifyText(inputText);
+        const parserOptions = this.htmlReader.getParserOptions();
+        const parser = new Parser(parserOptions);
+        const inputChunks = parser.chunkifyText(inputText);
 
         this.merger.options = this.htmlReader.getMergerOptions();
         const mergedChunks = this.merger.mergeChunks(inputChunks);

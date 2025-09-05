@@ -6,7 +6,11 @@ import { textChunk } from "./textChunk";
 // TODO: Implement options.forgiveMisspelledHeadings
 
 export class Parser {
-    options: ParserOptions = new ParserOptions();
+    private options: ParserOptions;
+
+    constructor(options: ParserOptions) {
+        this.options = options;
+    }
 
     chunkifyText(input: string): textChunk[] {
         // TODO: Implement parsing logic.
