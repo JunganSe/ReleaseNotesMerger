@@ -6,12 +6,10 @@ import { Parser } from "../textProcessing/parser";
 export class Controller {
     private htmlReader: HtmlReader;
     private htmlWriter: HtmlWriter;
-    private merger: Merger;
 
     constructor() {
         this.htmlReader = new HtmlReader();
         this.htmlWriter = new HtmlWriter();
-        this.merger = new Merger();
     }
 
     initialize(): void {
@@ -30,10 +28,11 @@ export class Controller {
         const parser = new Parser(parserOptions);
         const inputChunks = parser.chunkifyText(inputText);
 
-        this.merger.options = this.htmlReader.getMergerOptions();
-        const mergedChunks = this.merger.mergeChunks(inputChunks);
-
-        const outputText = this.merger.stringifyChunks(mergedChunks);
+        const mergerOptions = this.htmlReader.getMergerOptions();
+        const merger = new Merger(mergerOptions);
+        const mergedChunks = merger.mergeChunks(inputChunks);
+        const outputText = merger.stringifyChunks(mergedChunks);
+        
         this.htmlWriter.writeOutputText(outputText);
     }
 
