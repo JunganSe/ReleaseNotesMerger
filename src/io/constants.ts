@@ -1,6 +1,6 @@
-export class HtmlElementId {
-    static readonly inputTextarea = "textarea-input";
-    static readonly outputTextarea = "textarea-output";
-    static readonly mergeButton = "btn-merge";
-    static readonly copyButton = "btn-copy";
+export enum HtmlElementId {
+    inputTextarea = "textarea-input",
+    outputTextarea = "textarea-output",
+    mergeButton = "btn-merge",
+    copyButton = "btn-copy",
 }
