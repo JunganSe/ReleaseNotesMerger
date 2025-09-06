@@ -27,8 +27,8 @@ export class HtmlReader {
 
 
     private readInput_Checkbox(id: string): boolean {
-        const element = document.getElementById(id);
-        return (element instanceof HTMLInputElement)
+        const element = this.getInputElement(id, 'checkbox');
+        return (element)
             ? !!element.checked
             : false;
     }
@@ -67,5 +67,13 @@ export class HtmlReader {
         return (!isNaN(parsedValue))
             ? parsedValue
             : null;
+    }
+
+    private getInputElement(id: string, type?: string): HTMLInputElement | null {
+        const element = document.getElementById(id);
+        if (!(element instanceof HTMLInputElement)
+            || (type && element.type !== type))
+            return null;
+        return element;
     }
 }
