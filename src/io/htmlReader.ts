@@ -23,4 +23,11 @@ export class HtmlReader {
             indentSize: null // TODO: Get indentSize from user input.
         };
     }
+
+    private getCheckboxValue(id: string): boolean {
+        const element = document.getElementById(id);
+        return (element instanceof HTMLInputElement)
+            ? !!element.checked
+            : false;
+    }
 }
