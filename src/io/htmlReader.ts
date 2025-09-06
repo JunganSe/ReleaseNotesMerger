@@ -52,10 +52,8 @@ export class HtmlReader {
     }
 
     private readInput_Number(id: string): number | null {
-        const element = document.getElementById(id);
-        if (!(element instanceof HTMLInputElement)
-            || element.type !== "number"
-            || !element.value)
+        const element = this.getInputElement(id, "number");
+        if (!element || !element.value)
             return null;
 
         const parsedValue = Number(element.value.trim());
