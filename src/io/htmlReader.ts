@@ -18,7 +18,7 @@ export class HtmlReader {
 
     getMergerOptions(): MergerOptions {
         return {
-            date: null, // TODO: Get date from user input.
+            date: this.getDateValue(HtmlElementId.outputDate),
             headingOrder: [], // TODO: Get headingOrder from user input.
             indentSize: null // TODO: Get indentSize from user input.
         };
