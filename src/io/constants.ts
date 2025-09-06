@@ -1,14 +1,14 @@
 export enum HtmlElementId {
-    inputTextarea = "textarea-input",
-    ignoreCase = "checkbox-ignore-case",
-    trimWhitespace = "checkbox-trim-whitespace",
-    forgiveMisspelledHeadings = "checkbox-forgive-misspelled-headings",
+    inputTextarea = 'textarea-input',
+    ignoreCase = 'checkbox-ignore-case',
+    trimWhitespace = 'checkbox-trim-whitespace',
+    forgiveMisspelledHeadings = 'checkbox-forgive-misspelled-headings',
     
-    outputDate = "input-output-date",
-    outputheadingOrder = "input-heading-order",
-    outputindentSize = "input-output-indent-size",
-    outputTextarea = "textarea-output",
+    outputDate = 'input-output-date',
+    outputheadingOrder = 'input-heading-order',
+    outputindentSize = 'input-output-indent-size',
+    outputTextarea = 'textarea-output',
 
-    mergeButton = "btn-merge",
-    copyButton = "btn-copy",
+    mergeButton = 'btn-merge',
+    copyButton = 'btn-copy',
 }

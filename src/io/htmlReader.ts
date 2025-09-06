@@ -5,7 +5,7 @@ import { HtmlElementId } from "./constants";
 export class HtmlReader {
     getInputText(): string {
         const textarea = document.getElementById(HtmlElementId.inputTextarea) as HTMLTextAreaElement;
-        return textarea?.value || "";
+        return textarea?.value || '';
     }
 
     getParserOptions(): ParserOptions {
@@ -34,7 +34,7 @@ export class HtmlReader {
     }
 
     private readInput_Date(id: string): Date | null {
-        const element = this.getInputElement(id, "date");
+        const element = this.getInputElement(id, 'date');
         if (!element || !element.value)
             return null;
 
@@ -45,14 +45,14 @@ export class HtmlReader {
     }
 
     private readInput_String(id: string): string | null {
-        const element = this.getInputElement(id, "text");
+        const element = this.getInputElement(id, 'text');
         return (element && element.value)
             ? element.value
             : null;
     }
 
     private readInput_Number(id: string): number | null {
-        const element = this.getInputElement(id, "number");
+        const element = this.getInputElement(id, 'number');
         if (!element || !element.value)
             return null;
 
