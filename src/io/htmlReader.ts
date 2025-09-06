@@ -46,9 +46,12 @@ export class HtmlReader {
 
     private getStringValue(id: string): string | null {
         const element = document.getElementById(id);
-        return (element instanceof HTMLInputElement && element.value)
-            ? element.value
-            : null;
+        if (!(element instanceof HTMLInputElement) 
+            || element.type !== "text" 
+            || !element.value)
+            return null;
+
+        return (element as HTMLInputElement).value
     }
 
     private getNumberValue(id: string): number | null {
