@@ -45,13 +45,10 @@ export class HtmlReader {
     }
 
     private readInput_String(id: string): string | null {
-        const element = document.getElementById(id);
-        if (!(element instanceof HTMLInputElement)
-            || element.type !== "text"
-            || !element.value)
-            return null;
-
-        return (element as HTMLInputElement).value
+        const element = this.getInputElement(id, "text");
+        return (element && element.value)
+            ? element.value
+            : null;
     }
 
     private readInput_Number(id: string): number | null {
