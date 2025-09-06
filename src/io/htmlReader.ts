@@ -43,4 +43,11 @@ export class HtmlReader {
             ? date
             : null;
     }
+
+    private getStringValue(id: string): string | null {
+        const element = document.getElementById(id);
+        return (element instanceof HTMLInputElement && element.value)
+            ? element.value
+            : null;
+    }
 }
