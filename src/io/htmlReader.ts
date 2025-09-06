@@ -50,4 +50,17 @@ export class HtmlReader {
             ? element.value
             : null;
     }
+
+    private getNumberValue(id: string): number | null {
+        const element = document.getElementById(id);
+        if (!(element instanceof HTMLInputElement)
+            || element.type !== "number"
+            || !element.value)
+            return null;
+
+        const parsedValue = Number(element.value.trim());
+        return (!isNaN(parsedValue))
+            ? parsedValue
+            : null;
+    }
 }
