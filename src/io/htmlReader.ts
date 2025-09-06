@@ -34,10 +34,8 @@ export class HtmlReader {
     }
 
     private readInput_Date(id: string): Date | null {
-        const element = document.getElementById(id);
-        if (!(element instanceof HTMLInputElement)
-            || element.type !== "date"
-            || !element.value)
+        const element = this.getInputElement(id, "date");
+        if (!element || !element.value)
             return null;
 
         const date = new Date(element.value);
