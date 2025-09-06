@@ -14,19 +14,19 @@ export class Controller {
     }
 
     private click_MergeButton = (): void => {
+        // Initialize workers
         const htmlReader = new HtmlReader();
-        const inputText = htmlReader.getInputText();
-
         const parserOptions = htmlReader.getParserOptions();
         const parser = new Parser(parserOptions);
-        const inputChunks = parser.chunkifyText(inputText);
-
         const mergerOptions = htmlReader.getMergerOptions();
         const merger = new Merger(mergerOptions);
+        const htmlWriter = new HtmlWriter();
+
+        // Process text
+        const inputText = htmlReader.getInputText();
+        const inputChunks = parser.chunkifyText(inputText);
         const mergedChunks = merger.mergeChunks(inputChunks);
         const outputText = merger.stringifyChunks(mergedChunks);
-
-        const htmlWriter = new HtmlWriter();
         htmlWriter.writeOutputText(outputText);
     }
 
