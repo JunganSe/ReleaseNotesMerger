@@ -10,28 +10,28 @@ export class HtmlReader {
 
     getParserOptions(): ParserOptions {
         return {
-            ignoreCase: this.getCheckboxValue(HtmlElementId.ignoreCase),
-            trimWhitespace: this.getCheckboxValue(HtmlElementId.trimWhitespace),
-            forgiveMisspelledHeadings: this.getCheckboxValue(HtmlElementId.forgiveMisspelledHeadings),
+            ignoreCase: this.readInput_Checkbox(HtmlElementId.ignoreCase),
+            trimWhitespace: this.readInput_Checkbox(HtmlElementId.trimWhitespace),
+            forgiveMisspelledHeadings: this.readInput_Checkbox(HtmlElementId.forgiveMisspelledHeadings),
         };
     }
 
     getMergerOptions(): MergerOptions {
         return {
-            date: this.getDateValue(HtmlElementId.outputDate),
+            date: this.readInput_Date(HtmlElementId.outputDate),
             headingOrder: [], // TODO: Get headingOrder from user input.
             indentSize: null // TODO: Get indentSize from user input.
         };
     }
 
-    private getCheckboxValue(id: string): boolean {
+    private readInput_Checkbox(id: string): boolean {
         const element = document.getElementById(id);
         return (element instanceof HTMLInputElement)
             ? !!element.checked
             : false;
     }
 
-    private getDateValue(id: string): Date | null {
+    private readInput_Date(id: string): Date | null {
         const element = document.getElementById(id);
         if (!(element instanceof HTMLInputElement)
             || element.type !== "date"
@@ -44,7 +44,7 @@ export class HtmlReader {
             : null;
     }
 
-    private getStringValue(id: string): string | null {
+    private readInput_String(id: string): string | null {
         const element = document.getElementById(id);
         if (!(element instanceof HTMLInputElement) 
             || element.type !== "text" 
@@ -54,7 +54,7 @@ export class HtmlReader {
         return (element as HTMLInputElement).value
     }
 
-    private getNumberValue(id: string): number | null {
+    private readInput_Number(id: string): number | null {
         const element = document.getElementById(id);
         if (!(element instanceof HTMLInputElement)
             || element.type !== "number"
