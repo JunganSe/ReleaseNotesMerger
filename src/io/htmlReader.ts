@@ -10,9 +10,9 @@ export class HtmlReader {
 
     getParserOptions(): ParserOptions {
         return {
-            ignoreCase: false, // TODO: Get ignoreCase from user input.
-            trimWhitespace: false, // TODO: Get trimWhitespace from user input.
-            forgiveMisspelledHeadings: false // TODO: Get forgiveMisspelledHeadings from user input.
+            ignoreCase: this.getCheckboxValue(HtmlElementId.ignoreCase),
+            trimWhitespace: this.getCheckboxValue(HtmlElementId.trimWhitespace),
+            forgiveMisspelledHeadings: this.getCheckboxValue(HtmlElementId.forgiveMisspelledHeadings),
         };
     }
 
