@@ -1,6 +1,5 @@
-// TODO: Class for merging input.
-// TODO: Date input with default to today.
-// TODO: Class for copying output to clipboard.
+// TODO: Date input defaults to today.
+// TODO: Unit tests.
 // TODO: Help documentation with example. (In web.)
 // TODO: Styling.
 
