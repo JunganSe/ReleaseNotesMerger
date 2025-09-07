@@ -10,9 +10,9 @@ export class HtmlReader {
 
     getParserOptions(): ParserOptions {
         return {
-            ignoreCase: this.readInput_Checkbox(HtmlElementId.ignoreCase),
-            trimWhitespace: this.readInput_Checkbox(HtmlElementId.trimWhitespace),
-            forgiveMisspelledHeadings: this.readInput_Checkbox(HtmlElementId.forgiveMisspelledHeadings),
+            ignoreCase: this.readInput_Checkbox(HtmlElementId.ignoreCase) ?? false,
+            trimWhitespace: this.readInput_Checkbox(HtmlElementId.trimWhitespace) ?? false,
+            forgiveMisspelledHeadings: this.readInput_Checkbox(HtmlElementId.forgiveMisspelledHeadings) ?? false,
         };
     }
 
@@ -26,11 +26,11 @@ export class HtmlReader {
 
 
 
-    private readInput_Checkbox(id: string): boolean {
+    private readInput_Checkbox(id: string): boolean | null {
         const element = this.getInputElement(id, 'checkbox');
         return (element)
-            ? !!element.checked
-            : false;
+            ? element.checked
+            : null;
     }
 
     private readInput_Date(id: string): Date | null {
