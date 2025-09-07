@@ -60,6 +60,7 @@ export class HtmlReader {
             : null;
     }
 
+    /** Gets an input element, optionally of a specific type. */
     private getInputElement(id: string, type?: string): HTMLInputElement | null {
         const element = document.getElementById(id);
         if (!(element instanceof HTMLInputElement)
