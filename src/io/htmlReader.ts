@@ -46,9 +46,7 @@ export class HtmlReader {
 
     private readInput_String(id: string): string | null {
         const element = this.getInputElement(id, 'text');
-        return (element && element.value)
-            ? element.value
-            : null;
+        return element?.value ?? null;
     }
 
     private readInput_Number(id: string): number | null {
