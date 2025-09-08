@@ -4,8 +4,10 @@ import { HtmlElementId } from "./constants";
 
 export class HtmlReader {
     getInputText(): string {
-        const textarea = document.getElementById(HtmlElementId.inputTextarea) as HTMLTextAreaElement;
-        return textarea?.value || '';
+        const textarea = document.getElementById(HtmlElementId.inputTextarea);
+        return (textarea instanceof HTMLTextAreaElement)
+            ? textarea.value
+            : '';
     }
 
     getParserOptions(): ParserOptions {
