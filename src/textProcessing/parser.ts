@@ -1,13 +1,13 @@
-import { textChunk } from "./textChunk";
+import { TextChunk } from "./textChunk";
 
 export class Parser {
-    chunkifyText(input: string): textChunk[] {
+    chunkifyText(input: string): TextChunk[] {
         const inputChunks = input.split(/\r?\n\r?\n/); // Split on double line breaks. (Empty lines)
-        const chunks: textChunk[] = inputChunks.map(this.parseChunk);
+        const chunks: TextChunk[] = inputChunks.map(this.parseChunk);
         return chunks.filter(chunk => chunk.content.length > 0);
     }
 
-    private parseChunk(inputChunk: string): textChunk {
+    private parseChunk(inputChunk: string): TextChunk {
         const lines = inputChunk
             .split(/\r?\n/) // Split on line breaks.
             .filter(line => !line.startsWith('#'));

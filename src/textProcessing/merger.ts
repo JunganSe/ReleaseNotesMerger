@@ -1,5 +1,5 @@
 import { MergerOptions } from "./mergerOptions";
-import { textChunk } from "./textChunk";
+import { TextChunk } from "./textChunk";
 
 // TODO: Implement options.headingOrder
 // TODO: Implement options.date
@@ -12,12 +12,12 @@ export class Merger {
         this.options = options;
     }
 
-    mergeChunks(inputChunks: textChunk[]): textChunk[] {
+    mergeChunks(inputChunks: TextChunk[]): TextChunk[] {
         // TODO: Implement merging logic.
         throw new Error("Method not implemented.");
     }
 
-    stringifyChunks(chunks: textChunk[]): string {
+    stringifyChunks(chunks: TextChunk[]): string {
         // TODO: Implement stringifying logic.
         throw new Error("Method not implemented.");
     }
