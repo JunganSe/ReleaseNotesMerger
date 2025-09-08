@@ -14,6 +14,9 @@ export class Parser {
 
     chunkifyText(input: string): textChunk[] {
         // TODO: Implement parsing logic.
+        // - Divide into chunks based on empty lines.
+        // - Find headings in each chunk. Should be the first line.
+        // - Store everything else as content, one string per line.
         throw new Error("Method not implemented.");
     }
 }
