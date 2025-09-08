@@ -1,7 +1,6 @@
 export enum HtmlElementId {
     inputTextarea = 'textarea-input',
     ignoreCase = 'checkbox-ignore-case',
-    trimWhitespace = 'checkbox-trim-whitespace',
     forgiveMisspelledHeadings = 'checkbox-forgive-misspelled-headings',
     
     outputDate = 'input-output-date',

@@ -11,7 +11,6 @@ export class HtmlReader {
     getParserOptions(): ParserOptions {
         return {
             ignoreCase: this.readInput_Checkbox(HtmlElementId.ignoreCase) ?? false,
-            trimWhitespace: this.readInput_Checkbox(HtmlElementId.trimWhitespace) ?? false,
             forgiveMisspelledHeadings: this.readInput_Checkbox(HtmlElementId.forgiveMisspelledHeadings) ?? false,
         };
     }
