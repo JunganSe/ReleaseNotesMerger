@@ -1,4 +1,4 @@
-export class textChunk {
-    heading: string | undefined;
-    lines: string[] = [];
+export interface textChunk {
+    heading: string | null;
+    content: string[];
 }
