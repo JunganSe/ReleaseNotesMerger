@@ -2,6 +2,7 @@ import { TextChunk } from "./textChunk";
 
 export class Parser {
     chunkifyText(input: string): TextChunk[] {
+        // TODO: Treat whitespace-only lines as empty lines (containing only a line break).
         const inputChunks = input.split(/\r?\n\r?\n/); // Split on double line breaks. (Empty lines)
         const chunks: TextChunk[] = inputChunks.map(this.parseTextChunk);
         return chunks.filter(chunk => chunk.content.length > 0);
