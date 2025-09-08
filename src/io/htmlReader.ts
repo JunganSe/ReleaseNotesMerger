@@ -13,7 +13,7 @@ export class HtmlReader {
             headingOrder: this.readInput_String(HtmlElementId.outputheadingOrder)?.split(',') ?? [],
             indentSize: this.readInput_Number(HtmlElementId.outputindentSize),
             ignoreHeadingCase: this.readInput_Checkbox(HtmlElementId.ignoreCase) ?? false,
-            forgiveMisspelledHeadings: this.readInput_Checkbox(HtmlElementId.forgiveMisspelledHeadings) ?? false,
+            allowMisspelledHeadings: this.readInput_Checkbox(HtmlElementId.allowMisspelledHeadings) ?? false,
         };
     }
 

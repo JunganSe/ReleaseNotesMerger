@@ -1,7 +1,7 @@
 export enum HtmlElementId {
     inputTextarea = 'textarea-input',
     ignoreCase = 'checkbox-ignore-case',
-    forgiveMisspelledHeadings = 'checkbox-forgive-misspelled-headings',
+    allowMisspelledHeadings = 'checkbox-allow-misspelled-headings',
     
     outputDate = 'input-output-date',
     outputheadingOrder = 'input-heading-order',
