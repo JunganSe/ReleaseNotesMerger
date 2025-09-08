@@ -5,7 +5,7 @@ export enum HtmlElementId {
     
     outputDate = 'input-output-date',
     outputheadingOrder = 'input-heading-order',
-    outputindentSize = 'input-output-indent-size',
+    outputIndentSize = 'input-output-indent-size',
     outputTextarea = 'textarea-output',
 
     mergeButton = 'btn-merge',
