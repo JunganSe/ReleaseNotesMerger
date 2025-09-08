@@ -4,10 +4,8 @@ import { HtmlElementId } from "./constants";
 
 export class HtmlReader {
     getInputText(): string {
-        const textarea = document.getElementById(HtmlElementId.inputTextarea);
-        return (textarea instanceof HTMLTextAreaElement)
-            ? textarea.value
-            : '';
+        const textarea = this.getTextarea(HtmlElementId.inputTextarea);
+        return textarea?.value ?? '';
     }
 
     getParserOptions(): ParserOptions {
@@ -69,5 +67,12 @@ export class HtmlReader {
             || (type && element.type !== type))
             return null;
         return element;
+    }
+
+    private getTextarea(id: string): HTMLTextAreaElement | null {
+        const element = document.getElementById(id);
+        return (element instanceof HTMLTextAreaElement)
+            ? element
+            : null;
     }
 }
