@@ -16,8 +16,7 @@ export class Controller {
     private click_MergeButton = (): void => {
         // Initialize workers
         const htmlReader = new HtmlReader();
-        const parserOptions = htmlReader.getParserOptions();
-        const parser = new Parser(parserOptions);
+        const parser = new Parser();
         const mergerOptions = htmlReader.getMergerOptions();
         const merger = new Merger(mergerOptions);
         const htmlWriter = new HtmlWriter();

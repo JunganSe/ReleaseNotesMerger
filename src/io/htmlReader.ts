@@ -1,5 +1,4 @@
 import { MergerOptions } from "../textProcessing/mergerOptions";
-import { ParserOptions } from "../textProcessing/parserOptions";
 import { HtmlElementId } from "./constants";
 
 export class HtmlReader {
@@ -8,18 +7,13 @@ export class HtmlReader {
         return textarea?.value ?? '';
     }
 
-    getParserOptions(): ParserOptions {
-        return {
-            ignoreCase: this.readInput_Checkbox(HtmlElementId.ignoreCase) ?? false,
-            forgiveMisspelledHeadings: this.readInput_Checkbox(HtmlElementId.forgiveMisspelledHeadings) ?? false,
-        };
-    }
-
     getMergerOptions(): MergerOptions {
         return {
             date: this.readInput_Date(HtmlElementId.outputDate),
             headingOrder: this.readInput_String(HtmlElementId.outputheadingOrder)?.split(',') ?? [],
             indentSize: this.readInput_Number(HtmlElementId.outputindentSize),
+            ignoreHeadingCase: this.readInput_Checkbox(HtmlElementId.ignoreCase) ?? false,
+            forgiveMisspelledHeadings: this.readInput_Checkbox(HtmlElementId.forgiveMisspelledHeadings) ?? false,
         };
     }
 

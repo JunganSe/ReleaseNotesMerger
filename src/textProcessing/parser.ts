@@ -1,16 +1,6 @@
-import { ParserOptions } from "./parserOptions";
 import { textChunk } from "./textChunk";
 
-// TODO: Implement options.ignoreCase
-// TODO: Implement options.forgiveMisspelledHeadings
-
 export class Parser {
-    private options: ParserOptions;
-
-    constructor(options: ParserOptions) {
-        this.options = options;
-    }
-
     chunkifyText(input: string): textChunk[] {
         const inputChunks = input.split(/\r?\n\r?\n/); // Splits on double line breaks. (Empty lines)
         const chunks: textChunk[] = inputChunks.map(inputChunk => {
