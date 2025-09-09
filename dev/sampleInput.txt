@@ -8,7 +8,7 @@ Uppdateringar
 - Aktuell version av körrecept visas nu när man visar ett labtests körrecept, istället för den senaste verisonen. #406
   - Körreceptets version som visas är den som var aktuell vid labtestets tidpunkt.
 - Rensning av oanvända tabeller i databasen. #543
-
+    
 Bugfixar
 - Åtgärdat att körrecept för fel PM ibland visades när man visade ett labtests körrecept. #406
 
