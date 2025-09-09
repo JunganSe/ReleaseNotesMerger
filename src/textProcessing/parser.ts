@@ -2,13 +2,13 @@ import { TextChunk } from "./textChunk";
 
 export class Parser {
     chunkifyText(input: string): TextChunk[] {
-        // TODO: Handle when there are multiple empty lines between paragraphs.
         const lines: string[] = input.split(/\r?\n/) // Split on line breaks.;
         const paragraphs = lines
             .map(line => line.trimEnd())
             .filter(line => !line.startsWith('#'))
             .join('\n')
-            .split(/\n\n/); // Split on double line breaks. (Empty lines)
+            .split(/\n\n/) // Split on double line breaks. (Empty lines)
+            .map(paragraph => paragraph.replace(/^\n+/, '')); // Remove leading newlines. (Happens when there are multiple empty lines between paragraphs.)
         const chunks: TextChunk[] = paragraphs.map(this.parseTextChunk);
         return chunks.filter(chunk => chunk.content.length > 0);
     }
