@@ -30,5 +30,7 @@ Uppdateringar
 Uppdateringar
 - Lagt till möjlighet att skriva ut rapporter. Även uppdaterat så att utskrifter ser okej ut på alla sidor, men inte alla tabeller än. #431
 
+Skräprad...
+
 Nya funktioner
 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
