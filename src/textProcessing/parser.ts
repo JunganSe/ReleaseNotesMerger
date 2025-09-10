@@ -18,9 +18,7 @@ export class Parser {
         if (!input?.trim())
             return { heading: null, content: [] };
 
-        const lines = input
-            .split(/\r?\n/) // Split on line breaks.
-            .filter(line => !line.startsWith('#'));
+        const lines = input.split(/\r?\n/); // Split on line breaks.
 
         if (lines.length === 0)
             return { heading: null, content: [] };
