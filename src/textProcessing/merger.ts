@@ -1,10 +1,6 @@
 import { MergerOptions } from "./mergerOptions";
 import { TextChunk } from "./textChunk";
 
-// TODO: Implement options.headingOrder
-// TODO: Implement options.date
-// TODO: Implement options.indentSize
-
 export class Merger {
     private options: MergerOptions;
 
@@ -14,11 +10,16 @@ export class Merger {
 
     mergeChunks(inputChunks: TextChunk[]): TextChunk[] {
         // TODO: Implement merging logic.
+        // TODO: Implement options.headingOrder
+        // TODO: Implement options.indentSize
+        // TODO: Implement options.ignoreHeadingCase
+        // TODO: Implement options.allowMisspelledHeadings
         throw new Error("Method not implemented.");
     }
 
     stringifyChunks(chunks: TextChunk[]): string {
         // TODO: Implement stringifying logic.
+        // TODO: Implement options.date
         throw new Error("Method not implemented.");
     }
 }
