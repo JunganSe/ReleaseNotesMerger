@@ -10,7 +10,10 @@ export class HtmlReader {
     getMergerOptions(): MergerOptions {
         return {
             date: this.readInput_Date(HtmlElementId.outputDate),
-            headingOrder: this.readInput_String(HtmlElementId.outputheadingOrder)?.split(',') ?? [],
+            headingOrder: this.readInput_String(HtmlElementId.outputheadingOrder)
+                ?.split(',')
+                .map(str => str.trim())
+                ?? [],
             indentSize: this.readInput_Number(HtmlElementId.outputIndentSize),
             ignoreHeadingCase: this.readInput_Checkbox(HtmlElementId.ignoreCase) ?? false,
             allowMisspelledHeadings: this.readInput_Checkbox(HtmlElementId.allowMisspelledHeadings) ?? false,
