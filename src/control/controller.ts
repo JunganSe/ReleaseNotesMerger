@@ -1,3 +1,4 @@
+import { HtmlElementId } from "../io/constants";
 import { HtmlReader } from "../io/htmlReader";
 import { HtmlWriter } from "../io/htmlWriter";
 import { Merger } from "../textProcessing/merger";
@@ -5,7 +6,14 @@ import { Parser } from "../textProcessing/parser";
 
 export class Controller {
     initialize(): void {
+        this.setDateInputToToday();
         this.setButtonEvents();
+    }
+
+    private setDateInputToToday(): void {
+        const dateInput = document.getElementById(HtmlElementId.outputDate) as HTMLInputElement;
+        if (dateInput)
+            dateInput.value = new Date().toISOString().split('T')[0];
     }
 
     private setButtonEvents(): void {
