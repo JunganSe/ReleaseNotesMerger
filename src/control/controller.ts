@@ -6,14 +6,10 @@ import { Parser } from "../textProcessing/parser";
 
 export class Controller {
     initialize(): void {
-        this.setDateInputToToday();
-        this.setButtonEvents();
-    }
+        const htmlWriter = new HtmlWriter();
 
-    private setDateInputToToday(): void {
-        const dateInput = document.getElementById(HtmlElementId.outputDate) as HTMLInputElement;
-        if (dateInput)
-            dateInput.value = new Date().toISOString().split('T')[0];
+        htmlWriter.setDateInputToToday();
+        this.setButtonEvents();
     }
 
     private setButtonEvents(): void {
