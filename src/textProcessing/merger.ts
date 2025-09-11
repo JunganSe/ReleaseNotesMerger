@@ -10,10 +10,7 @@ export class Merger {
 
     mergeChunks(inputChunks: TextChunk[]): TextChunk[] {
         // TODO: Implement merging logic.
-        // TODO: Implement options.headingOrder
         // TODO: Implement options.indentSize
-        // TODO: Implement options.ignoreHeadingCase
-        // TODO: Implement options.allowMisspelledHeadings
         throw new Error("Method not implemented.");
 
         // x Get all headings into an array
@@ -21,6 +18,12 @@ export class Merger {
         // - Append inputContent to the correct outputChunk based on heading
         // - Return outputChunks
         const uniqueHeadings = this.getUniqueHeadings(inputChunks);
+        // TODO: If options.ignoreHeadingCase is true, remove duplicates that differ only by case. (Prefer Capitalized versions.)
+        // TODO: If options.allowMisspelledHeadings is true, group similar headings together.
+        //       (e.g. "Feature", "Features", "Feautres" -> "Features")
+        //       If options.headingOrder contains a similar heading, use that.
+        // TODO: Order uniqueHeadings according to options.headingOrder
+        
     }
 
     private getUniqueHeadings(chunks: TextChunk[]): string[] {
