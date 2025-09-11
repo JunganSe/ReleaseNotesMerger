@@ -11,9 +11,9 @@ export class Merger {
     mergeChunks(inputChunks: TextChunk[]): TextChunk[] {
         const uniqueHeadings = this.getUniqueHeadings(inputChunks);
         const outputChunks: TextChunk[] = uniqueHeadings.map(heading => ({ heading, content: [] }));
-        inputChunks.forEach(inputChunk => this.addContentToMatchingChunk(inputChunk, outputChunks));
+        inputChunks.forEach(inputChunk => this.addContentToMatchingOutputChunk(inputChunk, outputChunks));
 
-        // TODO: If options.ignoreHeadingCase is true, remove duplicates that differ only by case. (Prefer Capitalized versions.)
+        // TODO: If options.ignoreHeadingCase is true, remove duplicates that differ only by case and move the content to the one being kept. (Prefer Capitalized versions.)
         // TODO: If options.allowMisspelledHeadings is true, group similar headings together.
         //       (e.g. "Feature", "Features", "Feautres" -> "Features")
         //       If options.headingOrder contains a similar heading, use that.
@@ -30,7 +30,7 @@ export class Merger {
         return [...new Set(headings)];
     }
 
-    private addContentToMatchingChunk(inputChunk: TextChunk, outputChunks: TextChunk[]): void {
+    private addContentToMatchingOutputChunk(inputChunk: TextChunk, outputChunks: TextChunk[]): void {
         const outputChunk = outputChunks.find(chunk => chunk.heading === inputChunk.heading);
         outputChunk?.content.push(...inputChunk.content);
     }
