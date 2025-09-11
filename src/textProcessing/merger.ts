@@ -25,9 +25,8 @@ export class Merger {
         
         const outputChunks: TextChunk[] = uniqueHeadings.map(heading => ({ heading, content: [] }));
 
-        for (const inputChunk of inputChunks) {
-            this.addContentToMatchingChunk(inputChunk, outputChunks);
-        }
+        inputChunks.forEach(inputChunk =>
+            this.addContentToMatchingChunk(inputChunk, outputChunks));
 
         return outputChunks;
     }
