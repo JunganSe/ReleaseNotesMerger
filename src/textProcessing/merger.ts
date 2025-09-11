@@ -11,7 +11,6 @@ export class Merger {
     mergeChunks(inputChunks: TextChunk[]): TextChunk[] {
         // TODO: Implement merging logic.
         // TODO: Implement options.indentSize
-        throw new Error("Method not implemented.");
 
         // x Get all headings into an array
         // - Create an outputChunk for each heading
@@ -24,6 +23,13 @@ export class Merger {
         //       If options.headingOrder contains a similar heading, use that.
         // TODO: Order uniqueHeadings according to options.headingOrder
         
+        const outputChunks: TextChunk[] = uniqueHeadings.map(heading => ({ heading, content: [] }));
+
+        for (const inputChunk of inputChunks) {
+            this.addContentToMatchingChunk(inputChunk, outputChunks);
+        }
+
+        return outputChunks;
     }
 
     private getUniqueHeadings(chunks: TextChunk[]): string[] {
@@ -31,6 +37,11 @@ export class Merger {
             .map(chunk => chunk.heading)
             .filter(heading => heading != null);
         return [...new Set(headings)];
+    }
+
+    private addContentToMatchingChunk(inputChunk: TextChunk, outputChunks: TextChunk[]): void {
+        const outputChunk = outputChunks.find(chunk => chunk.heading === inputChunk.heading);
+        outputChunk?.content.push(...inputChunk.content);
     }
 
     stringifyChunks(chunks: TextChunk[]): string {
