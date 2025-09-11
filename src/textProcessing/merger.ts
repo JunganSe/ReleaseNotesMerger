@@ -15,6 +15,19 @@ export class Merger {
         // TODO: Implement options.ignoreHeadingCase
         // TODO: Implement options.allowMisspelledHeadings
         throw new Error("Method not implemented.");
+
+        // x Get all headings into an array
+        // - Create an outputChunk for each heading
+        // - Append inputContent to the correct outputChunk based on heading
+        // - Return outputChunks
+        const uniqueHeadings = this.getUniqueHeadings(inputChunks);
+    }
+
+    private getUniqueHeadings(chunks: TextChunk[]): string[] {
+        const headings = chunks
+            .map(chunk => chunk.heading)
+            .filter(heading => heading != null);
+        return [...new Set(headings)];
     }
 
     stringifyChunks(chunks: TextChunk[]): string {
