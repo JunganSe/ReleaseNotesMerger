@@ -3,20 +3,20 @@ import { HtmlElementId } from "./constants";
 
 export class HtmlReader {
     getInputText(): string {
-        const textarea = this.getTextarea(HtmlElementId.inputTextarea);
+        const textarea = this.getTextarea(HtmlElementId.InputTextarea);
         return textarea?.value ?? '';
     }
 
     getMergerOptions(): MergerOptions {
         return {
-            date: this.readInput_Date(HtmlElementId.outputDate),
-            headingOrder: this.readInput_String(HtmlElementId.outputheadingOrder)
+            date: this.readInput_Date(HtmlElementId.OutputDate),
+            headingOrder: this.readInput_String(HtmlElementId.OutputHeadingOrder)
                 ?.split(',')
                 .map(str => str.trim())
                 ?? [],
-            indentSize: this.readInput_Number(HtmlElementId.outputIndentSize),
-            ignoreHeadingCase: this.readInput_Checkbox(HtmlElementId.ignoreCase) ?? false,
-            allowMisspelledHeadings: this.readInput_Checkbox(HtmlElementId.allowMisspelledHeadings) ?? false,
+            indentSize: this.readInput_Number(HtmlElementId.OutputIndentSize),
+            ignoreHeadingCase: this.readInput_Checkbox(HtmlElementId.IgnoreCase) ?? false,
+            allowMisspelledHeadings: this.readInput_Checkbox(HtmlElementId.AllowMisspelledHeadings) ?? false,
         };
     }
 

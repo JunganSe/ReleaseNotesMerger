@@ -13,8 +13,8 @@ export class Controller {
     }
 
     private setButtonEvents(): void {
-        document.getElementById(HtmlElementId.mergeButton)?.addEventListener('click', this.click_MergeButton);
-        document.getElementById(HtmlElementId.copyButton)?.addEventListener('click', this.click_CopyButton);
+        document.getElementById(HtmlElementId.MergeButton)?.addEventListener('click', this.click_MergeButton);
+        document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.click_CopyButton);
     }
 
     private click_MergeButton = (): void => {

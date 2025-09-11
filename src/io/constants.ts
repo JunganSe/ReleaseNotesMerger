@@ -1,13 +1,13 @@
 export enum HtmlElementId {
-    inputTextarea = 'input-text',
-    ignoreCase = 'ignore-case',
-    allowMisspelledHeadings = 'checkbox-allow-misspelled-headings',
+    InputTextarea = 'input-text',
+    IgnoreCase = 'ignore-case',
+    AllowMisspelledHeadings = 'checkbox-allow-misspelled-headings',
     
-    outputDate = 'output-date',
-    outputheadingOrder = 'heading-order',
-    outputIndentSize = 'indent-size',
-    outputTextarea = 'output-text',
+    OutputDate = 'output-date',
+    OutputHeadingOrder = 'heading-order',
+    OutputIndentSize = 'indent-size',
+    OutputTextarea = 'output-text',
 
-    mergeButton = 'btn-merge',
-    copyButton = 'btn-copy',
+    MergeButton = 'btn-merge',
+    CopyButton = 'btn-copy',
 }
