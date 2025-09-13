@@ -37,9 +37,9 @@ export class Merger {
 
     stringifyChunks(chunks: TextChunk[]): string {
         const outputLines: string[] = [];
-        
+
         if (this.options.date) {
-            const date = this.options.date.toISOString().split('T')[0]
+            const date = this.options.date.toISOString().split('T')[0];
             outputLines.push(date);
             outputLines.push('');
         }
@@ -52,17 +52,18 @@ export class Merger {
     }
 
     private stringifyChunk(chunk: TextChunk): string[] {
-        const outputLines: string[] = [];
-
         const heading = chunk.heading?.trim();
         const content = chunk.content?.filter(line => !!line?.trim()) ?? [];
 
+        if (!heading && !content.length)
+            return [];
+
+        const outputLines: string[] = [];
         if (heading)
             outputLines.push(heading);
         if (content.length)
             outputLines.push(...content);
-        if (heading || content.length)
-            outputLines.push('');
+        outputLines.push('');
 
         return outputLines;
     }
