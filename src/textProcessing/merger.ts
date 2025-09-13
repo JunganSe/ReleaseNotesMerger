@@ -45,16 +45,25 @@ export class Merger {
         }
 
         chunks.forEach(chunk => {
-            const heading = chunk.heading?.trim();
-            const content = chunk.content?.filter(line => !!line?.trim()) ?? [];
-
-            if (heading)
-                outputLines.push(heading);
-            if (content.length)
-                outputLines.push(...content);
-            if (heading || content.length)
-                outputLines.push('');
+            const chunkLines = this.stringifyChunk(chunk);
+            outputLines.push(...chunkLines);
         });
         return outputLines.join('\n').trim();
+    }
+
+    private stringifyChunk(chunk: TextChunk): string[] {
+        const outputLines: string[] = [];
+
+        const heading = chunk.heading?.trim();
+        const content = chunk.content?.filter(line => !!line?.trim()) ?? [];
+
+        if (heading)
+            outputLines.push(heading);
+        if (content.length)
+            outputLines.push(...content);
+        if (heading || content.length)
+            outputLines.push('');
+
+        return outputLines;
     }
 }
