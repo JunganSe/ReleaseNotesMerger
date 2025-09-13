@@ -11,9 +11,7 @@ export class HtmlReader {
         return {
             date: this.readInput_Date(HtmlElementId.OutputDate),
             headingOrder: this.readInput_String(HtmlElementId.OutputHeadingOrder)
-                ?.split(',')
-                .map(str => str.trim())
-                ?? [],
+                ?.split(',').map(str => str.trim()) ?? [],
             indentSize: this.readInput_Number(HtmlElementId.OutputIndentSize),
             ignoreHeadingCase: this.readInput_Checkbox(HtmlElementId.IgnoreCase) ?? false,
             allowMisspelledHeadings: this.readInput_Checkbox(HtmlElementId.AllowMisspelledHeadings) ?? false,
