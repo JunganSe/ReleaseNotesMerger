@@ -45,13 +45,15 @@ export class Merger {
         }
 
         chunks.forEach(chunk => {
-            const hasHeading = !!chunk.heading?.trim();
-            const hasContent = chunk.content?.some(line => !!line?.trim());
-            if (hasHeading)
-                outputLines.push(chunk.heading!);
-            if (hasContent)
-                outputLines.push(...chunk.content.filter(line => !!line?.trim()));
-            outputLines.push('');
+            const heading = chunk.heading?.trim();
+            const content = chunk.content?.filter(line => !!line?.trim()) ?? [];
+
+            if (heading)
+                outputLines.push(heading);
+            if (content.length)
+                outputLines.push(...content);
+            if (heading || content.length)
+                outputLines.push('');
         });
         return outputLines.join('\n').trim();
     }
