@@ -36,13 +36,17 @@ export class Merger {
     }
 
     stringifyChunks(chunks: TextChunk[]): string {
-        // TODO: Implement options.date
-
         const outputLines: string[] = [];
+        
+        if (this.options.date) {
+            outputLines.push(this.options.date.toISOString().split('T')[0]);
+            outputLines.push('');
+        }
+
         chunks.forEach(chunk => {
             outputLines.push(chunk.heading ?? '');
             outputLines.push(...chunk.content);
-            outputLines.push(''); // Add an empty line between chunks.
+            outputLines.push('');
         });
         return outputLines.join('\n').trim();
     }
