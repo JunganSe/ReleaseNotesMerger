@@ -39,13 +39,18 @@ export class Merger {
         const outputLines: string[] = [];
         
         if (this.options.date) {
-            outputLines.push(this.options.date.toISOString().split('T')[0]);
+            const date = this.options.date.toISOString().split('T')[0]
+            outputLines.push(date);
             outputLines.push('');
         }
 
         chunks.forEach(chunk => {
-            outputLines.push(chunk.heading ?? '');
-            outputLines.push(...chunk.content);
+            const hasHeading = !!chunk.heading?.trim();
+            const hasContent = chunk.content?.some(line => !!line?.trim());
+            if (hasHeading)
+                outputLines.push(chunk.heading!);
+            if (hasContent)
+                outputLines.push(...chunk.content.filter(line => !!line?.trim()));
             outputLines.push('');
         });
         return outputLines.join('\n').trim();
