@@ -36,8 +36,14 @@ export class Merger {
     }
 
     stringifyChunks(chunks: TextChunk[]): string {
-        // TODO: Implement stringifying logic.
         // TODO: Implement options.date
-        throw new Error("Method not implemented.");
+
+        const outputLines: string[] = [];
+        chunks.forEach(chunk => {
+            outputLines.push(chunk.heading ?? '');
+            outputLines.push(...chunk.content);
+            outputLines.push(''); // Add an empty line between chunks.
+        });
+        return outputLines.join('\n').trim();
     }
 }
