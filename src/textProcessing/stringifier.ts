@@ -2,10 +2,10 @@ import { StringifierOptions } from "./stringifierOptions";
 import { TextChunk } from "./textChunk";
 
 export class Stringifier {
-    private stringifierOptions: StringifierOptions;
+    private _options: StringifierOptions;
 
     constructor(options: StringifierOptions) {
-        this.stringifierOptions = options;
+        this._options = options;
     }
 
     stringifyChunks(chunks: TextChunk[]): string {

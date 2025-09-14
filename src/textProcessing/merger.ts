@@ -2,10 +2,10 @@ import { MergerOptions } from "./mergerOptions";
 import { TextChunk } from "./textChunk";
 
 export class Merger {
-    private options: MergerOptions;
+    private _options: MergerOptions;
 
     constructor(options: MergerOptions) {
-        this.options = options;
+        this._options = options;
     }
 
     mergeChunks(inputChunks: TextChunk[]): TextChunk[] {
