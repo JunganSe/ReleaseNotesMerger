@@ -1,4 +1,5 @@
 import { MergerOptions } from "../textProcessing/mergerOptions";
+import { StringifierOptions } from "../textProcessing/stringifierOptions";
 import { HtmlElementId } from "./constants";
 
 export class HtmlReader {
@@ -9,12 +10,17 @@ export class HtmlReader {
 
     getMergerOptions(): MergerOptions {
         return {
-            date: this.readInput_Date(HtmlElementId.OutputDate),
             headingOrder: this.readInput_String(HtmlElementId.OutputHeadingOrder)
                 ?.split(',').map(str => str.trim()) ?? [],
             indentSize: this.readInput_Number(HtmlElementId.OutputIndentSize),
             ignoreHeadingCase: this.readInput_Checkbox(HtmlElementId.IgnoreCase) ?? false,
             allowMisspelledHeadings: this.readInput_Checkbox(HtmlElementId.AllowMisspelledHeadings) ?? false,
+        };
+    }
+
+    getStringifierOptions(): StringifierOptions {
+        return {
+            date: this.readInput_Date(HtmlElementId.OutputDate),
         };
     }
 

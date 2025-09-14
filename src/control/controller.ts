@@ -24,7 +24,8 @@ export class Controller {
         const parser = new Parser();
         const mergerOptions = htmlReader.getMergerOptions();
         const merger = new Merger(mergerOptions);
-        const stringifier = new Stringifier();
+        const stringifierOptions = htmlReader.getStringifierOptions();
+        const stringifier = new Stringifier(stringifierOptions);
         const htmlWriter = new HtmlWriter();
 
         // Process text
