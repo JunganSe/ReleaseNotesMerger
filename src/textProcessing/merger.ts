@@ -34,6 +34,4 @@ export class Merger {
         const outputChunk = outputChunks.find(chunk => chunk.heading === inputChunk.heading);
         outputChunk?.content.push(...inputChunk.content);
     }
-
-
 }
