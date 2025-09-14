@@ -3,6 +3,7 @@ import { HtmlReader } from "../io/htmlReader";
 import { HtmlWriter } from "../io/htmlWriter";
 import { Merger } from "../textProcessing/merger";
 import { Parser } from "../textProcessing/parser";
+import { Stringifier } from "../textProcessing/stringifier";
 
 export class Controller {
     initialize(): void {
@@ -23,13 +24,14 @@ export class Controller {
         const parser = new Parser();
         const mergerOptions = htmlReader.getMergerOptions();
         const merger = new Merger(mergerOptions);
+        const stringifier = new Stringifier();
         const htmlWriter = new HtmlWriter();
 
         // Process text
         const inputText = htmlReader.getInputText();
         const inputChunks = parser.chunkifyText(inputText);
         const mergedChunks = merger.mergeChunks(inputChunks);
-        const outputText = merger.stringifyChunks(mergedChunks);
+        const outputText = stringifier.stringifyChunks(mergedChunks);
         htmlWriter.writeOutputText(outputText);
     }
 
