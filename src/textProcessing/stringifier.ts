@@ -8,8 +8,10 @@ export class Stringifier {
         this._options = options;
     }
 
-    getStringifiedOutput(): string {
-        
+    getStringifiedOutput(chunks: TextChunk[]): string {
+        // TODO: get the date. If options.date is null, use today's date.
+        // TODO: Get the stringified chunks.
+        // TODO: Combine and return the final output.
     }
 
     private getDateString(): string {
