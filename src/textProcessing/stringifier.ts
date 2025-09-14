@@ -8,12 +8,22 @@ export class Stringifier {
         this._options = options;
     }
 
+    getStringifiedOutput(): string {
+        
+    }
+
+    private getDateString(): string {
+        return this._options.date?.toISOString().split('T')[0] ?? '';
+    }
+
     stringifyChunks(chunks: TextChunk[]): string {
         const outputLines: string[] = [];
+
         chunks.forEach(chunk => {
             const chunkLines = this.stringifyChunk(chunk);
             outputLines.push(...chunkLines);
         });
+
         return outputLines.join('\n');
     }
 
@@ -21,8 +31,7 @@ export class Stringifier {
         const heading = chunk.heading?.trim();
         const content = chunk.content?.filter(line => !!line?.trim()) ?? [];
 
-        if (!heading && !content.length)
-            return [];
+        if (!heading && !content.length) return [];
 
         const outputLines: string[] = [];
         if (heading)
