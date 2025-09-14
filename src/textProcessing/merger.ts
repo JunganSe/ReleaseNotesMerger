@@ -48,7 +48,7 @@ export class Merger {
             const chunkLines = this.stringifyChunk(chunk);
             outputLines.push(...chunkLines);
         });
-        return outputLines.join('\n').trim();
+        return outputLines.join('\n');
     }
 
     private stringifyChunk(chunk: TextChunk): string[] {
