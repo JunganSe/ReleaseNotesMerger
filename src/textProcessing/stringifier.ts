@@ -1,6 +1,13 @@
+import { StringifierOptions } from "./stringifierOptions";
 import { TextChunk } from "./textChunk";
 
 export class Stringifier {
+    private stringifierOptions: StringifierOptions;
+
+    constructor(options: StringifierOptions) {
+        this.stringifierOptions = options;
+    }
+
     stringifyChunks(chunks: TextChunk[]): string {
         const outputLines: string[] = [];
         chunks.forEach(chunk => {
