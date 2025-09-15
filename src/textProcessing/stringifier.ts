@@ -11,15 +11,13 @@ export class Stringifier {
     getStringifiedOutput(chunks: TextChunk[]): string {
         const dateString = this.getDateString();
         const chunksString = this.stringifyChunks(chunks);
-        return [dateString, chunksString].join('\n\n');
+        return [dateString, chunksString].join('\n\n').trim();
     }
 
     private getDateString(): string | null {
-        // TODO: Use option for date prefix (e.g. "## ")
+        const prefix = this._options.datePrefix;
         const date = this._options.date?.toISOString().split('T')[0];
-        return (date)
-            ? `## ${date}`
-            : null;
+        return [prefix, date].join(' ').trim() || null;
     }
 
     private stringifyChunks(chunks: TextChunk[]): string {
