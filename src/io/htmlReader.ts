@@ -8,6 +8,11 @@ export class HtmlReader {
         return textarea?.value ?? '';
     }
 
+    getOutputText(): string | null {
+        const textarea = this.getTextarea(HtmlElementId.OutputTextarea);
+        return textarea?.value ?? null;
+    }
+
     getMergerOptions(): MergerOptions {
         return {
             headingOrder: this.readInput_String(HtmlElementId.OutputHeadingOrder)
