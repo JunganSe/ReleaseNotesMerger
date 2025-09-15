@@ -1,3 +1,4 @@
+import { ClipboardHandler } from "../io/clipboardHandler";
 import { HtmlElementId } from "../io/constants";
 import { HtmlReader } from "../io/htmlReader";
 import { HtmlWriter } from "../io/htmlWriter";
@@ -38,9 +39,10 @@ export class Controller {
 
     private click_CopyButton = (): void => {
         const htmlReader = new HtmlReader();
-        const clipboardHandler = new ClipboardHandler(); // TODO: Create and implement ClipboardHandler.
+        const clipboardHandler = new ClipboardHandler();
 
         const outputText = htmlReader.getOutputText();
-        clipboardHandler.copyToClipboard(outputText);
+        if (outputText)
+            clipboardHandler.copyToClipboard(outputText);
     }
 }
