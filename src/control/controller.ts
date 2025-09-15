@@ -37,9 +37,10 @@ export class Controller {
     }
 
     private click_CopyButton = (): void => {
-        // TODO: Implement copy to clipboard functionality.
-        // - Get output text
-        // - Copy to clipboard
-        console.log('Copy button clicked.');
+        const htmlReader = new HtmlReader();
+        const clipboardHandler = new ClipboardHandler(); // TODO: Create and implement ClipboardHandler.
+
+        const outputText = htmlReader.getOutputText();
+        clipboardHandler.copyToClipboard(outputText);
     }
 }
