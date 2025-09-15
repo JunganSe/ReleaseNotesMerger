@@ -35,7 +35,8 @@ export class Stringifier {
         const heading = chunk.heading?.trim();
         const content = chunk.content?.filter(line => !!line?.trim()) ?? [];
 
-        if (!heading && !content.length) return [];
+        if (!heading && !content.length)
+            return [];
 
         const outputLines: string[] = [];
         if (heading)
