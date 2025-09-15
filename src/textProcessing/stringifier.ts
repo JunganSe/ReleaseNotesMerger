@@ -14,8 +14,12 @@ export class Stringifier {
         // TODO: Combine and return the final output.
     }
 
-    private getDateString(): string {
-        return this._options.date?.toISOString().split('T')[0] ?? '';
+    private getDateString(): string | null {
+        // TODO: Use option for date prefix (e.g. "## ")
+        const date = this._options.date?.toISOString().split('T')[0];
+        return (date)
+            ? `## ${date}`
+            : null;
     }
 
     stringifyChunks(chunks: TextChunk[]): string {
