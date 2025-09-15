@@ -9,9 +9,9 @@ export class Stringifier {
     }
 
     getStringifiedOutput(chunks: TextChunk[]): string {
-        // TODO: get the date. If options.date is null, use today's date.
-        // TODO: Get the stringified chunks.
-        // TODO: Combine and return the final output.
+        const dateString = this.getDateString();
+        const chunksString = this.stringifyChunks(chunks);
+        return [dateString, chunksString].join('\n\n');
     }
 
     private getDateString(): string | null {
@@ -22,7 +22,7 @@ export class Stringifier {
             : null;
     }
 
-    stringifyChunks(chunks: TextChunk[]): string {
+    private stringifyChunks(chunks: TextChunk[]): string {
         const outputLines: string[] = [];
 
         chunks.forEach(chunk => {

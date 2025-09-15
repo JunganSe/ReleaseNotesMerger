@@ -32,7 +32,7 @@ export class Controller {
         const inputText = htmlReader.getInputText();
         const inputChunks = parser.chunkifyText(inputText);
         const mergedChunks = merger.mergeChunks(inputChunks);
-        const outputText = stringifier.stringifyChunks(mergedChunks);
+        const outputText = stringifier.getStringifiedOutput(mergedChunks);
         htmlWriter.writeOutputText(outputText);
     }
 
