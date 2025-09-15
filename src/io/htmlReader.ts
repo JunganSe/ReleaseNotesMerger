@@ -20,7 +20,7 @@ export class HtmlReader {
 
     getStringifierOptions(): StringifierOptions {
         return {
-            datePrefix: null, // TODO: Implement reading date prefix from input.
+            datePrefix: this.readInput_String(HtmlElementId.DatePrefix),
             date: this.readInput_Date(HtmlElementId.OutputDate),
         };
     }

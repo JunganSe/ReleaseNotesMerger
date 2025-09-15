@@ -3,6 +3,7 @@ export enum HtmlElementId {
     IgnoreCase = 'ignore-case',
     AllowMisspelledHeadings = 'allow-misspelled-headings',
     
+    DatePrefix = 'date-prefix',
     OutputDate = 'output-date',
     OutputHeadingOrder = 'heading-order',
     OutputIndentSize = 'indent-size',
