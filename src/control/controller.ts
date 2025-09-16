@@ -47,8 +47,9 @@ export class Controller {
 
         clipboardHandler.copyToClipboard(outputText).then((isSuccess) => {
             if (isSuccess) {
-                // TODO: Indicate success with the checkmark icon.
-                console.log("Copied to clipboard!");
+                const copyOkElement = document.querySelector('.copy-ok');
+                copyOkElement?.classList.remove('hidden');
+                console.log('Copied output text to clipboard.');
             }
         });
     }

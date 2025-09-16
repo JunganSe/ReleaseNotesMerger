@@ -35,6 +35,6 @@ textarea.output {
     resize: none;
 }
 
-.copy-ok {
+.hidden {
     visibility: hidden;
 }
