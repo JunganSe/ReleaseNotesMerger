@@ -1,6 +1,10 @@
 export class ClipboardHandler {
-    copyToClipboard(text: string): void {
-        // TODO: Implement copyToClipboard.
-        throw new Error('Method not implemented.')
+    async copyToClipboard(text: string): Promise<void> {
+        try {
+            await navigator.clipboard.writeText(text);
+            // TODO: Indicate success at the button.
+        } catch (err) {
+            console.error('Failed to copy text to clipboard.', err);
+        }
     }
 }
