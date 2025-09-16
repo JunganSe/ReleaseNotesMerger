@@ -55,15 +55,15 @@ export class Controller {
 
         clipboardHandler.copyToClipboard(outputText).then((isSuccess) => {
             if (isSuccess) {
-                const copyOkElement = document.querySelector('.copy-ok');
-                copyOkElement?.classList.remove('hidden');
+                const htmlWriter = new HtmlWriter();
+                htmlWriter.setCopyOkIconVisibility(true);
                 console.log('Copied output text to clipboard.');
             }
         });
     }
 
     private change_OutputText = (): void => {
-        const copyOkElement = document.querySelector('.copy-ok');
-        copyOkElement?.classList.add('hidden');
+        const htmlWriter = new HtmlWriter();
+        htmlWriter.setCopyOkIconVisibility(false);
     }
 }
