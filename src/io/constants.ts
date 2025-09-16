@@ -11,4 +11,5 @@ export enum HtmlElementId {
 
     MergeButton = 'btn-merge',
     CopyButton = 'btn-copy',
+    CopyOkIcon = 'copy-ok'
 }

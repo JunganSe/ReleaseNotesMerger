@@ -14,7 +14,7 @@ export class HtmlWriter {
     }
 
     setCopyOkIconVisibility(show: boolean): void {
-        const copyOkElement = document.querySelector('.copy-ok');
+        const copyOkElement = document.getElementById(HtmlElementId.CopyOkIcon);
         if (show)
             copyOkElement?.classList.remove('hidden');
         else
