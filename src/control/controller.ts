@@ -42,7 +42,14 @@ export class Controller {
         const clipboardHandler = new ClipboardHandler();
 
         const outputText = htmlReader.getOutputText();
-        if (outputText)
-            clipboardHandler.copyToClipboard(outputText);
+        if (!outputText)
+            return;
+
+        clipboardHandler.copyToClipboard(outputText).then((isSuccess) => {
+            if (isSuccess) {
+                // TODO: Indicate success with the checkmark icon.
+                console.log("Copied to clipboard!");
+            }
+        });
     }
 }

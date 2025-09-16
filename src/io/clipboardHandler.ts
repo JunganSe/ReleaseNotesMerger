@@ -1,10 +1,11 @@
 export class ClipboardHandler {
-    async copyToClipboard(text: string): Promise<void> {
+    async copyToClipboard(text: string): Promise<boolean> {
         try {
             await navigator.clipboard.writeText(text);
-            // TODO: Indicate success at the button.
-        } catch (err) {
-            console.error('Failed to copy text to clipboard.', err);
+            return true;
+        } catch (error) {
+            console.error('Failed to copy text to clipboard.', error);
+            return false;
         }
     }
 }
