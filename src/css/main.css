@@ -34,3 +34,7 @@ textarea.output {
     height: 50rem;
     resize: none;
 }
+
+.copy-ok {
+    visibility: hidden;
+}
