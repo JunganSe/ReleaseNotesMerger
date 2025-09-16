@@ -17,6 +17,7 @@ export class Controller {
     private setButtonEvents(): void {
         document.getElementById(HtmlElementId.MergeButton)?.addEventListener('click', this.click_MergeButton);
         document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.click_CopyButton);
+        document.getElementById(HtmlElementId.OutputTextarea)?.addEventListener('change', this.change_OutputText);
     }
 
     private click_MergeButton = (): void => {
@@ -35,6 +36,13 @@ export class Controller {
         const mergedChunks = merger.mergeChunks(inputChunks);
         const outputText = stringifier.getStringifiedOutput(mergedChunks);
         htmlWriter.writeOutputText(outputText);
+
+        // TODO: Improve event triggering.
+        const element = document.getElementById(HtmlElementId.OutputTextarea);
+        if (element) {
+            const event = new Event("change", { bubbles: true });
+            element.dispatchEvent(event);
+        }
     }
 
     private click_CopyButton = (): void => {
@@ -52,5 +60,10 @@ export class Controller {
                 console.log('Copied output text to clipboard.');
             }
         });
+    }
+
+    private change_OutputText = (): void => {
+        const copyOkElement = document.querySelector('.copy-ok');
+        copyOkElement?.classList.add('hidden');
     }
 }
