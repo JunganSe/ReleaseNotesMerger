@@ -20,7 +20,6 @@ export class Controller {
 
     private click_MergeButton = (): void => {
         // Initialize workers
-        const parser = new Parser();
         const mergerOptions = HtmlReader.getMergerOptions();
         const merger = new Merger(mergerOptions);
         const stringifierOptions = HtmlReader.getStringifierOptions();
@@ -28,7 +27,7 @@ export class Controller {
 
         // Process text
         const inputText = HtmlReader.getInputText();
-        const inputChunks = parser.chunkifyText(inputText);
+        const inputChunks = Parser.chunkifyText(inputText);
         const mergedChunks = merger.mergeChunks(inputChunks);
         const outputText = stringifier.getStringifiedOutput(mergedChunks);
         HtmlWriter.writeOutputText(outputText);
