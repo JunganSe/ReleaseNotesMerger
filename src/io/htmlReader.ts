@@ -3,17 +3,19 @@ import { StringifierOptions } from "../textProcessing/stringifierOptions";
 import { HtmlElementId } from "./constants";
 
 export class HtmlReader {
-    getInputText(): string {
+    private constructor() { }
+
+    static getInputText(): string {
         const textarea = this.getTextarea(HtmlElementId.InputTextarea);
         return textarea?.value ?? '';
     }
 
-    getOutputText(): string | null {
+    static getOutputText(): string | null {
         const textarea = this.getTextarea(HtmlElementId.OutputTextarea);
         return textarea?.value ?? null;
     }
 
-    getMergerOptions(): MergerOptions {
+    static getMergerOptions(): MergerOptions {
         return {
             headingOrder: this.readInput_String(HtmlElementId.OutputHeadingOrder)
                 ?.split(',').map(str => str.trim()) ?? [],
@@ -23,7 +25,7 @@ export class HtmlReader {
         };
     }
 
-    getStringifierOptions(): StringifierOptions {
+    static getStringifierOptions(): StringifierOptions {
         return {
             datePrefix: this.readInput_String(HtmlElementId.DatePrefix),
             date: this.readInput_Date(HtmlElementId.OutputDate),
@@ -32,14 +34,14 @@ export class HtmlReader {
 
 
 
-    private readInput_Checkbox(id: string): boolean | null {
+    private static readInput_Checkbox(id: string): boolean | null {
         const element = this.getInputElement(id, 'checkbox');
         return (element)
             ? element.checked
             : null;
     }
 
-    private readInput_Date(id: string): Date | null {
+    private static readInput_Date(id: string): Date | null {
         const element = this.getInputElement(id, 'date');
         if (!element || !element.value)
             return null;
@@ -50,12 +52,12 @@ export class HtmlReader {
             : null;
     }
 
-    private readInput_String(id: string): string | null {
+    private static readInput_String(id: string): string | null {
         const element = this.getInputElement(id, 'text');
         return element?.value ?? null;
     }
 
-    private readInput_Number(id: string): number | null {
+    private static readInput_Number(id: string): number | null {
         const element = this.getInputElement(id, 'number');
         if (!element || !element.value)
             return null;
@@ -67,7 +69,7 @@ export class HtmlReader {
     }
 
     /** Gets an input element, optionally of a specific type. */
-    private getInputElement(id: string, type?: string): HTMLInputElement | null {
+    private static getInputElement(id: string, type?: string): HTMLInputElement | null {
         const element = document.getElementById(id);
         if (!(element instanceof HTMLInputElement)
             || (type && element.type !== type))
@@ -75,7 +77,7 @@ export class HtmlReader {
         return element;
     }
 
-    private getTextarea(id: string): HTMLTextAreaElement | null {
+    private static getTextarea(id: string): HTMLTextAreaElement | null {
         const element = document.getElementById(id);
         return (element instanceof HTMLTextAreaElement)
             ? element
