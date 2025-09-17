@@ -17,7 +17,9 @@ export class Merger {
         // TODO: If options.allowMisspelledHeadings is true, group similar headings together.
         //       (e.g. "Feature", "Features", "Feautres" -> "Features")
         //       If options.headingOrder contains a similar heading, use that.
-        // TODO: Order uniqueHeadings according to options.headingOrder
+        // TODO: Order uniqueHeadings according to options.headingOrder.
+        //       How to handle chunks without heading? Should they take the heading from the chunk before?
+        //       What if it's the first one?
         // TODO: Implement options.indentSize
 
         return outputChunks;
