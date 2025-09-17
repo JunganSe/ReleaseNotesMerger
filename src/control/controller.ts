@@ -9,16 +9,16 @@ import { Stringifier } from "../textProcessing/stringifier";
 export class Controller {
     initialize(): void {
         HtmlWriter.setDateInputToToday();
-        this.setButtonEvents();
+        this.setEvents();
     }
 
-    private setButtonEvents(): void {
-        document.getElementById(HtmlElementId.MergeButton)?.addEventListener('click', this.click_MergeButton);
-        document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.click_CopyButton);
-        document.getElementById(HtmlElementId.OutputTextarea)?.addEventListener('change', this.change_OutputText);
+    private setEvents(): void {
+        document.getElementById(HtmlElementId.MergeButton)?.addEventListener('click', this.onClick_MergeButton);
+        document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.onClick_CopyButton);
+        document.getElementById(HtmlElementId.OutputTextarea)?.addEventListener('change', this.onChange_OutputText);
     }
 
-    private click_MergeButton = (): void => {
+    private onClick_MergeButton = (): void => {
         // Initialize workers
         const mergerOptions = HtmlReader.getMergerOptions();
         const merger = new Merger(mergerOptions);
@@ -32,10 +32,10 @@ export class Controller {
         const outputText = stringifier.getStringifiedOutput(mergedChunks);
         HtmlWriter.writeOutputText(outputText);
 
-        this.triggerEvent_OutputChanged();
+        this.triggerEvent_OutputText_Changed();
     }
 
-    private click_CopyButton = (): void => {
+    private onClick_CopyButton = (): void => {
         const outputText = HtmlReader.getOutputText();
         if (!outputText)
             return;
@@ -48,11 +48,11 @@ export class Controller {
         });
     }
 
-    private change_OutputText = (): void => {
+    private onChange_OutputText = (): void => {
         HtmlWriter.setCopyOkIconVisibility(false);
     }
 
-    private triggerEvent_OutputChanged(): void {
+    private triggerEvent_OutputText_Changed(): void {
         const element = document.getElementById(HtmlElementId.OutputTextarea);
         if (element) {
             const event = new Event('change', { bubbles: true });
