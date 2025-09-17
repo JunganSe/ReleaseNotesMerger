@@ -41,13 +41,11 @@ export class Controller {
     }
 
     private click_CopyButton = (): void => {
-        const clipboardHandler = new ClipboardHandler();
-
         const outputText = HtmlReader.getOutputText();
         if (!outputText)
             return;
 
-        clipboardHandler.copyToClipboard(outputText).then((isSuccess) => {
+        ClipboardHandler.copyToClipboard(outputText).then((isSuccess) => {
             if (isSuccess) {
                 HtmlWriter.setCopyOkIconVisibility(true);
                 console.log('Copied output text to clipboard.');

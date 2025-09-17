@@ -1,5 +1,7 @@
 export class ClipboardHandler {
-    async copyToClipboard(text: string): Promise<boolean> {
+    private constructor() { }
+
+    static async copyToClipboard(text: string): Promise<boolean> {
         try {
             await navigator.clipboard.writeText(text);
             return true;
