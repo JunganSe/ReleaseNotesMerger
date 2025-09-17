@@ -32,12 +32,7 @@ export class Controller {
         const outputText = stringifier.getStringifiedOutput(mergedChunks);
         HtmlWriter.writeOutputText(outputText);
 
-        // TODO: Improve event triggering.
-        const element = document.getElementById(HtmlElementId.OutputTextarea);
-        if (element) {
-            const event = new Event("change", { bubbles: true });
-            element.dispatchEvent(event);
-        }
+        this.triggerEvent_OutputChanged();
     }
 
     private click_CopyButton = (): void => {
@@ -55,5 +50,13 @@ export class Controller {
 
     private change_OutputText = (): void => {
         HtmlWriter.setCopyOkIconVisibility(false);
+    }
+
+    private triggerEvent_OutputChanged(): void {
+        const element = document.getElementById(HtmlElementId.OutputTextarea);
+        if (element) {
+            const event = new Event('change', { bubbles: true });
+            element.dispatchEvent(event);
+        }
     }
 }
