@@ -7,12 +7,12 @@ export class HtmlReader {
 
     static getInputText(): string {
         const textarea = this.getTextarea(HtmlElementId.InputTextarea);
-        return textarea?.value ?? '';
+        return textarea?.value?.trim() ?? '';
     }
 
     static getOutputText(): string | null {
         const textarea = this.getTextarea(HtmlElementId.OutputTextarea);
-        return textarea?.value ?? null;
+        return textarea?.value?.trim() ?? null;
     }
 
     static getMergerOptions(): MergerOptions {
