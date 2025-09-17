@@ -8,9 +8,7 @@ import { Stringifier } from "../textProcessing/stringifier";
 
 export class Controller {
     initialize(): void {
-        const htmlWriter = new HtmlWriter();
-
-        htmlWriter.setDateInputToToday();
+        HtmlWriter.setDateInputToToday();
         this.setButtonEvents();
     }
 
@@ -27,14 +25,13 @@ export class Controller {
         const merger = new Merger(mergerOptions);
         const stringifierOptions = HtmlReader.getStringifierOptions();
         const stringifier = new Stringifier(stringifierOptions);
-        const htmlWriter = new HtmlWriter();
 
         // Process text
         const inputText = HtmlReader.getInputText();
         const inputChunks = parser.chunkifyText(inputText);
         const mergedChunks = merger.mergeChunks(inputChunks);
         const outputText = stringifier.getStringifiedOutput(mergedChunks);
-        htmlWriter.writeOutputText(outputText);
+        HtmlWriter.writeOutputText(outputText);
 
         // TODO: Improve event triggering.
         const element = document.getElementById(HtmlElementId.OutputTextarea);
@@ -53,15 +50,13 @@ export class Controller {
 
         clipboardHandler.copyToClipboard(outputText).then((isSuccess) => {
             if (isSuccess) {
-                const htmlWriter = new HtmlWriter();
-                htmlWriter.setCopyOkIconVisibility(true);
+                HtmlWriter.setCopyOkIconVisibility(true);
                 console.log('Copied output text to clipboard.');
             }
         });
     }
 
     private change_OutputText = (): void => {
-        const htmlWriter = new HtmlWriter();
-        htmlWriter.setCopyOkIconVisibility(false);
+        HtmlWriter.setCopyOkIconVisibility(false);
     }
 }
