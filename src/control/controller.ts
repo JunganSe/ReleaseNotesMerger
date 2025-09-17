@@ -40,12 +40,13 @@ export class Controller {
         if (!outputText)
             return;
 
-        ClipboardHandler.copyToClipboard(outputText).then((isSuccess) => {
-            if (isSuccess) {
-                HtmlWriter.setCopyOkIconVisibility(true);
-                console.log('Copied output text to clipboard.');
-            }
-        });
+        ClipboardHandler.copyToClipboard(outputText)
+            .then((isSuccess) => {
+                if (isSuccess) {
+                    HtmlWriter.setCopyOkIconVisibility(true);
+                    console.log('Copied output text to clipboard.');
+                }
+            });
     }
 
     private onChange_OutputText = (): void => {
