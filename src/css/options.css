@@ -1,3 +1,9 @@
+.container-options {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
 .options-table {
     border: 1px solid silver;
 }
