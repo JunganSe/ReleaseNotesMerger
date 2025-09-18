@@ -1,0 +1,20 @@
+.container-input,
+.container-output {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.container-header-input,
+.container-header-output {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+textarea.input,
+textarea.output {
+    width: 30rem;
+    height: 50rem;
+    resize: none;
+}
