@@ -13,8 +13,24 @@
 <body>
     <h1>Release notes merger</h1>
 
-    <div class="container-main">
+    <div class="container-options">
+        <table class="options-table">
+            <tr>
+                <th>Output date</th>
+                <td><input type="date" id="output-date"></td>
+            </tr>
+            <tr>
+                <th>Heading order</th>
+                <td><input type="text" id="heading-order"></td>
+            </tr>
+            <tr>
+                <th>Ignore heading case</th>
+                <td><input type="checkbox" id="ignore-heading-case"></td>
+            </tr>
+        </table>
+    </div>
 
+    <div class="container-main">
         <div class="container-input">
             <div class="container-header-input">
                 <label for="input-text">Input</label>
@@ -26,7 +42,6 @@
         <div class="container-output">
             <div class="container-header-output">
                 <label for="output-text">Output</label>
-                <input type="date" id="output-date">
                 <div>
                     <button id="btn-copy">Copy</button>
                     <span id="copy-ok" class="hidden"><i class="fa-solid fa-check"></i></span>
@@ -34,7 +49,6 @@
             </div>
             <textarea class="output" id="output-text" disabled></textarea>
         </div>
-
     </div>
 
     <script type="module" src="/src/main.ts"></script>
