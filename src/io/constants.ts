@@ -2,7 +2,7 @@ export enum HtmlElementId {
     InputTextarea = 'input-text',
     OutputTextarea = 'output-text',
 
-    DatePrefix = 'date-prefix',
+    DatePrefix = 'output-date-prefix',
     OutputDate = 'output-date',
     OutputHeadingOrder = 'heading-order',
     IgnoreHeadingCase = 'ignore-heading-case',
