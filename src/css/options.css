@@ -1,3 +1,7 @@
 .options-table {
     border: 1px solid silver;
 }
+
+.options-table th {
+    text-align: right;
+}
