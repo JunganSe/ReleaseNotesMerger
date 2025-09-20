@@ -7,6 +7,9 @@ import { Parser } from "../textProcessing/parser";
 import { Stringifier } from "../textProcessing/stringifier";
 
 // TODO: Trigger merge button on ctrl+enter keypress in input textarea.
+// TODO: Save all options in localstorage and load them on startup.
+// TODO: Checkbox to save options in localstorage.
+// TODO: Button to reset options to default values?
 
 export class Controller {
     initialize(): void {
