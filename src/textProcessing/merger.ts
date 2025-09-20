@@ -1,6 +1,7 @@
 import { MergerOptions } from "./mergerOptions";
 import { Comparers } from "./comparers";
 import { TextChunk } from "./textChunk";
+import { SortBy } from "./sorting";
 
 export class Merger {
     private _options: MergerOptions;
@@ -13,7 +14,7 @@ export class Merger {
         const uniqueHeadings = this.getUniqueHeadings(inputChunks);
 
         if (this._options.headingOrder.length)
-            uniqueHeadings.sort((a, b) => Comparers.compareByPreferredOrder(a, b, this._options.headingOrder));
+            SortBy.preferredOrder(uniqueHeadings, this._options.headingOrder);
 
         const outputChunks: TextChunk[] = uniqueHeadings.map(heading => ({ heading, content: [] }));
         inputChunks.forEach(inputChunk => this.addContentToMatchingOutputChunk(inputChunk, outputChunks));
