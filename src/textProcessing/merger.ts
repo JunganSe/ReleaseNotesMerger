@@ -1,7 +1,6 @@
 import { MergerOptions } from "./mergerOptions";
-import { CompareBy } from "./comparers";
-import { TextChunk } from "./textChunk";
 import { SortBy } from "./sorting";
+import { TextChunk } from "./textChunk";
 
 export class Merger {
     private _options: MergerOptions;
