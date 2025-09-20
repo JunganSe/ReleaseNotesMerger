@@ -1,5 +1,5 @@
-export class Comparers {
-    static compareByPreferredOrder(a: string, b: string, preferredOrder: string[]): number {
+export class CompareBy {
+    static preferredOrder(a: string, b: string, preferredOrder: string[]): number {
         const indexA = preferredOrder.indexOf(a);
         const indexB = preferredOrder.indexOf(b);
 

@@ -1,4 +1,4 @@
-import { Comparers } from "./comparers";
+import { CompareBy } from "./comparers";
 
 export class SortBy {
     /**
@@ -10,6 +10,6 @@ export class SortBy {
      * @returns The sorted array of strings, which is the same as the items parameter.
      */
     static preferredOrder(items: string[], preferredOrder: string[]): string[] {
-        return items.sort((a, b) => Comparers.compareByPreferredOrder(a, b, preferredOrder));
+        return items.sort((a, b) => CompareBy.preferredOrder(a, b, preferredOrder));
     }
 }

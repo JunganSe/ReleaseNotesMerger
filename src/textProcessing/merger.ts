@@ -1,5 +1,5 @@
 import { MergerOptions } from "./mergerOptions";
-import { Comparers } from "./comparers";
+import { CompareBy } from "./comparers";
 import { TextChunk } from "./textChunk";
 import { SortBy } from "./sorting";
 
