@@ -6,6 +6,8 @@ import { Merger } from "../textProcessing/merger";
 import { Parser } from "../textProcessing/parser";
 import { Stringifier } from "../textProcessing/stringifier";
 
+// TODO: Trigger merge button on ctrl+enter keypress in input textarea.
+
 export class Controller {
     initialize(): void {
         HtmlWriter.setDateInputToToday();
