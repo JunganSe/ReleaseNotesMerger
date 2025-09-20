@@ -1,4 +1,5 @@
 import { MergerOptions } from "./mergerOptions";
+import { SortingFunctions } from "./sortingFunctions";
 import { TextChunk } from "./textChunk";
 
 export class Merger {
@@ -10,6 +11,10 @@ export class Merger {
 
     mergeChunks(inputChunks: TextChunk[]): TextChunk[] {
         const uniqueHeadings = this.getUniqueHeadings(inputChunks);
+
+        if (this._options.headingOrder.length)
+            uniqueHeadings.sort((a, b) => SortingFunctions.SortByHeadingOrder(a, b, this._options.headingOrder));
+
         const outputChunks: TextChunk[] = uniqueHeadings.map(heading => ({ heading, content: [] }));
         inputChunks.forEach(inputChunk => this.addContentToMatchingOutputChunk(inputChunk, outputChunks));
 
@@ -17,9 +22,6 @@ export class Merger {
         // TODO: If options.allowMisspelledHeadings is true, group similar headings together.
         //       (e.g. "Feature", "Features", "Feautres" -> "Features")
         //       If options.headingOrder contains a similar heading, use that.
-        // TODO: Order uniqueHeadings according to options.headingOrder.
-        //       How to handle chunks without heading? Should they take the heading from the chunk before?
-        //       What if it's the first one?
         // TODO: Implement options.indentSize
 
         return outputChunks;
