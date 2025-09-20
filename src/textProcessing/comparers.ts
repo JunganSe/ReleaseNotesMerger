@@ -1,10 +1,10 @@
-export class SortingFunctions {
-    static SortByHeadingOrder(a: string, b: string, headingOrder: string[]): number {
-        const indexA = headingOrder.indexOf(a);
-        const indexB = headingOrder.indexOf(b);
+export class Comparers {
+    static compareByPreferredOrder(a: string, b: string, preferredOrder: string[]): number {
+        const indexA = preferredOrder.indexOf(a);
+        const indexB = preferredOrder.indexOf(b);
 
         if (indexA === -1 && indexB === -1)
-            return 0; // Neither heading found, maintain their relative order.
+            return 0; // Neither string found, maintain their relative order.
         else if (indexA === -1)
             return 1; // a not found, b found, b comes first.
         else if (indexB === -1)
