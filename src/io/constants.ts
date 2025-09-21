@@ -7,7 +7,6 @@ export enum HtmlElementId {
     OutputHeadingOrder = 'heading-order',
     IgnoreHeadingCase = 'ignore-heading-case',
     AllowMisspelledHeadings = 'allow-misspelled-headings',
-    OutputIndentSize = 'indent-size',
 
     MergeButton = 'btn-merge',
     CopyButton = 'btn-copy',
