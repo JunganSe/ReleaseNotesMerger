@@ -20,6 +20,9 @@ export class Merger {
 
         // Combine chunks with same heading but different casing, if ignoreHeadingCase is true.
         // Prefer versions in headingOrder, then prefer capitalized versions, then prefer the first one.
+        // TODO: Improve and refactor.
+        //       Handle cases where there are more than two chunks with same heading but different casing.
+        //       Optimize performance.
         outputChunks.forEach(chunk => {
             if (!this._options.ignoreHeadingCase || !chunk.heading || !chunk.content.length)
                 return;
@@ -52,11 +55,9 @@ export class Merger {
             goner.content = [];
         });
 
-        // TODO: If options.ignoreHeadingCase is true, remove duplicates that differ only by case and move the content to the one being kept. (Prefer Capitalized versions.)
         // TODO: If options.allowMisspelledHeadings is true, group similar headings together.
         //       (e.g. "Feature", "Features", "Feautres" -> "Features")
         //       If options.headingOrder contains a similar heading, use that.
-        // TODO: Implement options.indentSize
 
         return outputChunks;
     }
