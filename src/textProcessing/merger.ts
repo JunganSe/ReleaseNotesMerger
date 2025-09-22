@@ -59,7 +59,7 @@ export class Merger {
         //       (e.g. "Feature", "Features", "Feautres" -> "Features")
         //       If options.headingOrder contains a similar heading, use that.
 
-        return outputChunks;
+        return outputChunks.filter(chunk => chunk.heading && chunk.content.length > 0);
     }
 
     private getUniqueHeadings(chunks: TextChunk[]): string[] {
