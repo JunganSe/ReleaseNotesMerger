@@ -47,27 +47,21 @@ export class Merger {
 
     // Combine chunks with same heading but different casing, if ignoreHeadingCase is true.
     // Prefer versions in headingOrder, then prefer capitalized versions, then prefer the first one.
-    // TODO: Improve and refactor.
-    //       Handle cases where there are more than two chunks with same heading but different casing.
-    //       Optimize performance.
     private mergeChunksWithSameHeading_CaseInsensitive(chunk: TextChunk, chunks: TextChunk[]): void {
         if (!chunk.heading || !chunk.content.length)
             return;
 
-        const matchingChunks = this.getOtherChunksWithSameHeading_CaseInsensitive(chunk, chunks);
+        const matchingChunks = this.getChunksWithHeading_CaseInsensitive(chunks, chunk.heading);
         if (!matchingChunks.length)
             return;
 
-        const allMatchingChunks = [chunk, ...matchingChunks];
-
-        const firstChunkWithHeadingInPreferredList = allMatchingChunks.find(c =>
+        const firstChunkWithHeadingInPreferredList = matchingChunks.find(c =>
             this._options.headingOrder.some(h => h.toLowerCase() === c.heading?.toLowerCase()));
-
-        const firstChunkWithCapitalizedHeading = allMatchingChunks.find(c =>
+        const firstChunkWithCapitalizedHeading = matchingChunks.find(c =>
             c.heading && c.heading[0] === c.heading[0].toUpperCase());
 
         let keeper = firstChunkWithHeadingInPreferredList ?? firstChunkWithCapitalizedHeading ?? chunk;
-        const goners = allMatchingChunks.filter(c => c !== keeper);
+        const goners = matchingChunks.filter(c => c !== keeper);
 
         // Move contents from goners to keeper, and clear goners' content.
         goners.forEach(goner => {
@@ -76,9 +70,7 @@ export class Merger {
         });
     }
 
-    private getOtherChunksWithSameHeading_CaseInsensitive(chunk: TextChunk, chunks: TextChunk[]): TextChunk[] {
-        return chunks.filter(c =>
-            c !== chunk
-            && c.heading?.toLowerCase() === chunk.heading?.toLowerCase());
+    private getChunksWithHeading_CaseInsensitive(chunks: TextChunk[], heading: string): TextChunk[] {
+        return chunks.filter(c => c.heading?.toLowerCase() === heading.toLowerCase());
     }
 }
