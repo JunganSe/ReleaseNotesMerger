@@ -51,33 +51,41 @@ export class Merger {
             if (!chunk.heading || !chunk.content.length)
                 return;
 
-            const matchingChunk = outputChunks.find(c => c !== chunk && c.heading?.toLowerCase() === chunk.heading?.toLowerCase());
-            if (!matchingChunk)
+            const matchingChunks = this.getOtherChunksWithSameHeading_CaseInsensitive(chunk, chunks);
+            if (!matchingChunks.length)
                 return;
 
-            const isChunkCapitalized = (chunk.heading && chunk.heading[0] === chunk.heading[0].toUpperCase());
-            const isMatchingChunkCapitalized = (matchingChunk.heading && matchingChunk.heading[0] === matchingChunk.heading[0].toUpperCase());
-            const isChunkInHeadingOrder = this._options.headingOrder.length > 0
-                && this._options.headingOrder.some(h => h.toLowerCase() === chunk.heading?.toLowerCase());
-            const isMatchingChunkInHeadingOrder = this._options.headingOrder.length > 0
-                && this._options.headingOrder.some(h => h.toLowerCase() === matchingChunk.heading?.toLowerCase());
+            // const matchingChunk = outputChunks.find(c => c !== chunk && c.heading?.toLowerCase() === chunk.heading?.toLowerCase());
+            
+            // const isChunkCapitalized = (chunk.heading && chunk.heading[0] === chunk.heading[0].toUpperCase());
+            // const isMatchingChunkCapitalized = (matchingChunk.heading && matchingChunk.heading[0] === matchingChunk.heading[0].toUpperCase());
+            // const isChunkInHeadingOrder = this._options.headingOrder.length > 0
+            //     && this._options.headingOrder.some(h => h.toLowerCase() === chunk.heading?.toLowerCase());
+            // const isMatchingChunkInHeadingOrder = this._options.headingOrder.length > 0
+            //     && this._options.headingOrder.some(h => h.toLowerCase() === matchingChunk.heading?.toLowerCase());
 
-            const keeper = (isChunkInHeadingOrder)
-                ? chunk
-                : (isMatchingChunkInHeadingOrder)
-                    ? matchingChunk
-                    : (isChunkCapitalized)
-                        ? chunk
-                        : (isMatchingChunkCapitalized)
-                            ? matchingChunk
-                            : chunk;
-            const goner = (keeper === chunk)
-                ? matchingChunk
-                : chunk;
+            // const keeper = (isChunkInHeadingOrder)
+            //     ? chunk
+            //     : (isMatchingChunkInHeadingOrder)
+            //         ? matchingChunk
+            //         : (isChunkCapitalized)
+            //             ? chunk
+            //             : (isMatchingChunkCapitalized)
+            //                 ? matchingChunk
+            //                 : chunk;
+            // const goner = (keeper === chunk)
+            //     ? matchingChunk
+            //     : chunk;
 
-            keeper.content.push(...goner.content);
-            goner.content = [];
+            // keeper.content.push(...goner.content);
+            // goner.content = [];
         });
         return outputChunks;
+    }
+
+    private getOtherChunksWithSameHeading_CaseInsensitive(chunk: TextChunk, chunks: TextChunk[]): TextChunk[] {
+        return chunks.filter(c =>
+            c !== chunk
+            && c.heading?.toLowerCase() === chunk.heading?.toLowerCase());
     }
 }
