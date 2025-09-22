@@ -58,30 +58,34 @@ export class Merger {
         if (!matchingChunks.length)
             return;
 
-        // const matchingChunk = outputChunks.find(c => c !== chunk && c.heading?.toLowerCase() === chunk.heading?.toLowerCase());
+        const firstChunkWithHeadingInPreferredList = [chunk, ...matchingChunks].find(c =>
+            this._options.headingOrder.some(h => h.toLowerCase() === c.heading?.toLowerCase()));
 
-        // const isChunkCapitalized = (chunk.heading && chunk.heading[0] === chunk.heading[0].toUpperCase());
-        // const isMatchingChunkCapitalized = (matchingChunk.heading && matchingChunk.heading[0] === matchingChunk.heading[0].toUpperCase());
-        // const isChunkInHeadingOrder = this._options.headingOrder.length > 0
-        //     && this._options.headingOrder.some(h => h.toLowerCase() === chunk.heading?.toLowerCase());
-        // const isMatchingChunkInHeadingOrder = this._options.headingOrder.length > 0
-        //     && this._options.headingOrder.some(h => h.toLowerCase() === matchingChunk.heading?.toLowerCase());
+        const firstChunkWithCapitalizedHeading = [chunk, ...matchingChunks].find(c =>
+            c.heading && c.heading[0] === c.heading[0].toUpperCase());
 
-        // const keeper = (isChunkInHeadingOrder)
-        //     ? chunk
-        //     : (isMatchingChunkInHeadingOrder)
-        //         ? matchingChunk
-        //         : (isChunkCapitalized)
-        //             ? chunk
-        //             : (isMatchingChunkCapitalized)
-        //                 ? matchingChunk
-        //                 : chunk;
-        // const goner = (keeper === chunk)
-        //     ? matchingChunk
-        //     : chunk;
+        let keeper: TextChunk | null = null;
+        let goners: TextChunk[] = [];
 
-        // keeper.content.push(...goner.content);
-        // goner.content = [];
+        if (firstChunkWithHeadingInPreferredList) {
+            // TODO: Merge all matching chunks content into the preferred chunk, and clear the others.
+            return;
+        }
+        else if (firstChunkWithCapitalizedHeading) {
+            // TODO: Merge all matching chunks content into the preferred chunk, and clear the others.
+            return;
+        }
+        else {
+            // Fallback: merge into the first chunk.
+            keeper = chunk;
+            goners = matchingChunks;
+        }
+
+        // Move contents from goners to keeper, and clear goners' content.
+        goners.forEach(goner => {
+            keeper.content.push(...goner.content);
+            goner.content = [];
+        });
     }
 
     private getOtherChunksWithSameHeading_CaseInsensitive(chunk: TextChunk, chunks: TextChunk[]): TextChunk[] {
