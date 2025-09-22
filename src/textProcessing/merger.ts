@@ -58,28 +58,16 @@ export class Merger {
         if (!matchingChunks.length)
             return;
 
-        const firstChunkWithHeadingInPreferredList = [chunk, ...matchingChunks].find(c =>
+        const allMatchingChunks = [chunk, ...matchingChunks];
+
+        const firstChunkWithHeadingInPreferredList = allMatchingChunks.find(c =>
             this._options.headingOrder.some(h => h.toLowerCase() === c.heading?.toLowerCase()));
 
-        const firstChunkWithCapitalizedHeading = [chunk, ...matchingChunks].find(c =>
+        const firstChunkWithCapitalizedHeading = allMatchingChunks.find(c =>
             c.heading && c.heading[0] === c.heading[0].toUpperCase());
 
-        let keeper: TextChunk | null = null;
-        let goners: TextChunk[] = [];
-
-        if (firstChunkWithHeadingInPreferredList) {
-            // TODO: Merge all matching chunks content into the preferred chunk, and clear the others.
-            return;
-        }
-        else if (firstChunkWithCapitalizedHeading) {
-            // TODO: Merge all matching chunks content into the preferred chunk, and clear the others.
-            return;
-        }
-        else {
-            // Fallback: merge into the first chunk.
-            keeper = chunk;
-            goners = matchingChunks;
-        }
+        let keeper = firstChunkWithHeadingInPreferredList ?? firstChunkWithCapitalizedHeading ?? chunk;
+        const goners = allMatchingChunks.filter(c => c !== keeper);
 
         // Move contents from goners to keeper, and clear goners' content.
         goners.forEach(goner => {
