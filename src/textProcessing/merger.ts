@@ -69,6 +69,7 @@ export class Merger {
         // Move contents from goners to keeper, and clear goners' content.
         goners.forEach(goner => {
             keeper.content.push(...goner.content);
+            goner.heading = null;
             goner.content = [];
         });
     }
