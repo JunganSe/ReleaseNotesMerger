@@ -58,12 +58,11 @@ export class Merger {
         if (!matchingChunks.length)
             return;
 
-        const firstChunkWithHeadingInPreferredList = matchingChunks.find(c =>
-            this._options.headingOrder.some(h => h.toLowerCase() === c.heading?.toLowerCase()));
+        const preferredChunk = this.getFirstChunkWithMatchingHeading_CaseInsensitive(matchingChunks, this._options.headingOrder);
         const firstChunkWithCapitalizedHeading = matchingChunks.find(c =>
             c.heading && c.heading[0] === c.heading[0].toUpperCase());
 
-        let keeper = firstChunkWithHeadingInPreferredList ?? firstChunkWithCapitalizedHeading ?? chunk;
+        let keeper = preferredChunk ?? firstChunkWithCapitalizedHeading ?? chunk;
         const goners = matchingChunks.filter(c => c !== keeper);
 
         // Move contents from goners to keeper, and clear goners' content.
@@ -76,5 +75,9 @@ export class Merger {
 
     private getChunksWithHeading_CaseInsensitive(chunks: TextChunk[], heading: string): TextChunk[] {
         return chunks.filter(c => c.heading?.toLowerCase() === heading.toLowerCase());
+    }
+
+    private getFirstChunkWithMatchingHeading_CaseInsensitive(chunks: TextChunk[], headings: string[]): TextChunk | undefined {
+        return chunks.find(c => headings.some(h => h.toLowerCase() === c.heading?.toLowerCase()));
     }
 }
