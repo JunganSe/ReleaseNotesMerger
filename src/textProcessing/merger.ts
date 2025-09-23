@@ -47,7 +47,7 @@ export class Merger {
 
     /** Combines chunks with the same heading while ignoring casing.
      * Prefers versions found in headingOrder, then capitalized versions.
-     * Mutates the provided chunks array.
+     * Mutates the chunks in the provided array.
     */
     // TODO: Check functionality and maybe refactor more.
     private mergeChunksWithSameHeading_CaseInsensitive(chunk: TextChunk, chunks: TextChunk[]): void {
@@ -61,15 +61,10 @@ export class Merger {
         const preferredChunk = this.getFirstChunkWithMatchingHeading_CaseInsensitive(matchingChunks, this._options.headingOrder);
         const firstChunkWithCapitalizedHeading = this.getFirstChunkWithCapitalizedHeading(matchingChunks);
 
-        let keeper = preferredChunk ?? firstChunkWithCapitalizedHeading ?? chunk;
+        const keeper = preferredChunk ?? firstChunkWithCapitalizedHeading ?? chunk;
         const goners = matchingChunks.filter(c => c !== keeper);
 
-        // Move contents from goners to keeper, and clear goners' content.
-        goners.forEach(goner => {
-            keeper.content.push(...goner.content);
-            goner.heading = null;
-            goner.content = [];
-        });
+        this.moveContentToKeeper(keeper, goners);
     }
 
     private getChunksWithMatchingHeading_CaseInsensitive(chunks: TextChunk[], heading: string): TextChunk[] {
@@ -82,5 +77,14 @@ export class Merger {
 
     private getFirstChunkWithCapitalizedHeading(chunks: TextChunk[]): TextChunk | undefined {
         return chunks.find(c => c.heading && c.heading[0] === c.heading[0].toUpperCase());
+    }
+
+    private moveContentToKeeper(keeper: TextChunk, goners: TextChunk[]): void {
+        const gonersContent = goners.flatMap(goner => goner.content);
+        keeper.content.push(...gonersContent);
+        goners.forEach(goner => {
+            goner.heading = null;
+            goner.content = [];
+        });
     }
 }
