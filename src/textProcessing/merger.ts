@@ -45,8 +45,11 @@ export class Merger {
         chunks.forEach(chunk => this.mergeChunksWithSameHeading_CaseInsensitive(chunk, chunks));
     }
 
-    // Combine chunks with same heading but different casing, if ignoreHeadingCase is true.
-    // Prefer versions in headingOrder, then prefer capitalized versions, then prefer the first one.
+    /** Combines chunks with the same heading while ignoring casing.
+     * Prefers versions found in headingOrder, then capitalized versions.
+     * Mutates the provided chunks array.
+    */
+    // TODO: Check functionality and maybe refactor more.
     private mergeChunksWithSameHeading_CaseInsensitive(chunk: TextChunk, chunks: TextChunk[]): void {
         if (!chunk.heading || !chunk.content.length)
             return;
