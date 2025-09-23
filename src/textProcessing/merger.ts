@@ -55,7 +55,7 @@ export class Merger {
             return;
 
         const matchingChunks = this.getChunksWithMatchingHeading_CaseInsensitive(chunks, chunk.heading);
-        if (!matchingChunks.length)
+        if (matchingChunks.length <= 1)
             return;
 
         const preferredChunk = this.getFirstChunkWithMatchingHeading_CaseInsensitive(matchingChunks, this._options.headingOrder);
