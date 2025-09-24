@@ -3,7 +3,7 @@ import { TextChunk } from "./textChunk";
 export class Parser {
     private constructor() { }
 
-    static chunkifyText(input: string): TextChunk[] {
+    static parseTextChunks(input: string): TextChunk[] {
         const lines: string[] = input.split(/\r?\n/) // Split on line breaks.;
         const paragraphs = lines
             .filter(line => !line.startsWith('#'))

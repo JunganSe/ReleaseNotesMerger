@@ -35,7 +35,7 @@ export class Controller {
 
         // Process text
         const inputText = HtmlReader.getInputText();
-        const inputChunks = Parser.chunkifyText(inputText);
+        const inputChunks = Parser.parseTextChunks(inputText);
         const mergedChunks = merger.mergeChunks(inputChunks);
         const outputText = stringifier.getStringifiedOutput(mergedChunks);
         HtmlWriter.writeOutputText(outputText);
