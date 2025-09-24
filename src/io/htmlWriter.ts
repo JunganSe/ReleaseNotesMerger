@@ -1,4 +1,4 @@
-import { HtmlElementId } from "./constants";
+import { HtmlElementId } from "./htmlElementIds";
 
 export class HtmlWriter {
     private constructor() { }

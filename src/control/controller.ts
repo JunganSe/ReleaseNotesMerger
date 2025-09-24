@@ -1,5 +1,5 @@
 import { ClipboardHandler } from "../io/clipboardHandler";
-import { HtmlElementId } from "../io/constants";
+import { HtmlElementId } from "../io/htmlElementIds";
 import { HtmlReader } from "../io/htmlReader";
 import { HtmlWriter } from "../io/htmlWriter";
 import { Merger } from "../textProcessing/merger";

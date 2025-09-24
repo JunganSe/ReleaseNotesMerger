@@ -1,6 +1,6 @@
 import { MergerOptions } from "../textProcessing/mergerOptions";
 import { StringifierOptions } from "../textProcessing/stringifierOptions";
-import { HtmlElementId } from "./constants";
+import { HtmlElementId } from "./htmlElementIds";
 
 export class HtmlReader {
     private constructor() { }
