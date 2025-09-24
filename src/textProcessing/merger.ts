@@ -1,3 +1,4 @@
+import { HeadingBasedChunkMerger } from "./headingBasedChunkMerger";
 import { MergerOptions } from "./mergerOptions";
 import { SortBy } from "./sorting";
 import { TextChunk } from "./textChunk";
@@ -19,7 +20,7 @@ export class Merger {
         inputChunks.forEach(inputChunk => this.addContentToMatchingOutputChunk(inputChunk, outputChunks));
 
         if (this._options.ignoreHeadingCase)
-            this.mergeAllChunksWithSameHeading_CaseInsensitive(outputChunks);
+            HeadingBasedChunkMerger.mergeAllChunksWithSameHeading_CaseInsensitive(outputChunks, this._options.headingOrder);
 
         // TODO: If options.allowMisspelledHeadings is true, group similar headings together.
         //       (e.g. "Feature", "Features", "Feautres" -> "Features")
@@ -38,53 +39,5 @@ export class Merger {
     private addContentToMatchingOutputChunk(inputChunk: TextChunk, outputChunks: TextChunk[]): void {
         const outputChunk = outputChunks.find(chunk => chunk.heading === inputChunk.heading);
         outputChunk?.content.push(...inputChunk.content);
-    }
-
-    // Mutates the provided chunks array.
-    private mergeAllChunksWithSameHeading_CaseInsensitive(chunks: TextChunk[]): void {
-        chunks.forEach(chunk => this.mergeChunksWithSameHeading_CaseInsensitive(chunk, chunks));
-    }
-
-    /** Combines chunks with the same heading while ignoring casing.
-     * Prefers versions found in headingOrder, then capitalized versions.
-     * Mutates the chunks in the provided array.
-    */
-    // TODO: Check functionality and maybe refactor more.
-    private mergeChunksWithSameHeading_CaseInsensitive(chunk: TextChunk, chunks: TextChunk[]): void {
-        if (!chunk.heading || !chunk.content.length)
-            return;
-
-        const matchingChunks = this.getChunksWithMatchingHeading_CaseInsensitive(chunks, chunk.heading);
-        if (matchingChunks.length <= 1)
-            return;
-
-        const preferredChunk = this.getFirstChunkWithMatchingHeading_CaseInsensitive(matchingChunks, this._options.headingOrder);
-        const firstChunkWithCapitalizedHeading = this.getFirstChunkWithCapitalizedHeading(matchingChunks);
-
-        const keeper = preferredChunk ?? firstChunkWithCapitalizedHeading ?? chunk;
-        const goners = matchingChunks.filter(c => c !== keeper);
-
-        this.moveContentToKeeper(keeper, goners);
-    }
-
-    private getChunksWithMatchingHeading_CaseInsensitive(chunks: TextChunk[], heading: string): TextChunk[] {
-        return chunks.filter(c => c.heading?.toLowerCase() === heading.toLowerCase());
-    }
-
-    private getFirstChunkWithMatchingHeading_CaseInsensitive(chunks: TextChunk[], headings: string[]): TextChunk | undefined {
-        return chunks.find(c => headings.some(h => h.toLowerCase() === c.heading?.toLowerCase()));
-    }
-
-    private getFirstChunkWithCapitalizedHeading(chunks: TextChunk[]): TextChunk | undefined {
-        return chunks.find(c => c.heading && c.heading[0] === c.heading[0].toUpperCase());
-    }
-
-    private moveContentToKeeper(keeper: TextChunk, goners: TextChunk[]): void {
-        const gonersContent = goners.flatMap(goner => goner.content);
-        keeper.content.push(...gonersContent);
-        goners.forEach(goner => {
-            goner.heading = null;
-            goner.content = [];
-        });
     }
 }
