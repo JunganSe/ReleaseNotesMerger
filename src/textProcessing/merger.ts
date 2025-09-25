@@ -2,6 +2,7 @@ import { HeadingBasedChunkMerger } from "./headingBasedChunkMerger";
 import { MergerOptions } from "./mergerOptions";
 import { SortBy } from "./sorting";
 import { TextChunk } from "./textChunk";
+import { TextChunkHelper } from "./textChunkHelper";
 
 export class Merger {
     private _options: MergerOptions;
@@ -11,7 +12,7 @@ export class Merger {
     }
 
     mergeChunks(inputChunks: TextChunk[]): TextChunk[] {
-        const uniqueHeadings = this.getUniqueHeadings(inputChunks);
+        const uniqueHeadings = TextChunkHelper.getUniqueHeadings(inputChunks);
 
         if (this._options.headingOrder.length)
             SortBy.preferredOrder(uniqueHeadings, this._options.headingOrder);
@@ -27,13 +28,6 @@ export class Merger {
         //       If options.headingOrder contains a similar heading, use that.
 
         return outputChunks.filter(chunk => chunk.heading && chunk.content.length > 0);
-    }
-
-    private getUniqueHeadings(chunks: TextChunk[]): string[] {
-        const headings = chunks
-            .map(chunk => chunk.heading)
-            .filter(heading => heading != null);
-        return [...new Set(headings)];
     }
 
     private addContentToMatchingOutputChunk(inputChunk: TextChunk, outputChunks: TextChunk[]): void {
