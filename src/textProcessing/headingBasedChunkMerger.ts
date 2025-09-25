@@ -25,7 +25,7 @@ export class HeadingBasedChunkMerger {
         const firstChunkWithCapitalizedHeading = TextChunkHelper.getFirstChunkWithCapitalizedHeading(matchingChunks);
 
         const keeper = preferredChunk ?? firstChunkWithCapitalizedHeading ?? chunk;
-        const goners = matchingChunks.filter(c => c !== keeper);
+        const goners = matchingChunks.filter(chunk => chunk !== keeper);
 
         this.moveContentToKeeper(keeper, goners);
     }
