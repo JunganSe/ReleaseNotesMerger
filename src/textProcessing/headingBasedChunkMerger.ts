@@ -1,4 +1,5 @@
 import { TextChunk } from "./textChunk";
+import { TextChunkHelper } from "./textChunkHelper";
 
 export class HeadingBasedChunkMerger {
     /** Combines chunks with the same heading while ignoring casing.
@@ -16,29 +17,17 @@ export class HeadingBasedChunkMerger {
         if (!chunk.heading || !chunk.content.length)
             return;
 
-        const matchingChunks = this.getChunksWithMatchingHeading_CaseInsensitive(chunks, chunk.heading);
+        const matchingChunks = TextChunkHelper.getChunksWithMatchingHeading_CaseInsensitive(chunks, chunk.heading);
         if (matchingChunks.length <= 1)
             return;
 
-        const preferredChunk = this.getFirstChunkWithMatchingHeading_CaseInsensitive(matchingChunks, preferredHeadings);
-        const firstChunkWithCapitalizedHeading = this.getFirstChunkWithCapitalizedHeading(matchingChunks);
+        const preferredChunk = TextChunkHelper.getFirstChunkWithMatchingHeading_CaseInsensitive(matchingChunks, preferredHeadings);
+        const firstChunkWithCapitalizedHeading = TextChunkHelper.getFirstChunkWithCapitalizedHeading(matchingChunks);
 
         const keeper = preferredChunk ?? firstChunkWithCapitalizedHeading ?? chunk;
         const goners = matchingChunks.filter(c => c !== keeper);
 
         this.moveContentToKeeper(keeper, goners);
-    }
-
-    private static getChunksWithMatchingHeading_CaseInsensitive(chunks: TextChunk[], heading: string): TextChunk[] {
-        return chunks.filter(c => c.heading?.toLowerCase() === heading.toLowerCase());
-    }
-
-    private static getFirstChunkWithMatchingHeading_CaseInsensitive(chunks: TextChunk[], headings: string[]): TextChunk | undefined {
-        return chunks.find(c => headings.some(h => h.toLowerCase() === c.heading?.toLowerCase()));
-    }
-
-    private static getFirstChunkWithCapitalizedHeading(chunks: TextChunk[]): TextChunk | undefined {
-        return chunks.find(c => c.heading && c.heading[0] === c.heading[0].toUpperCase());
     }
 
     private static moveContentToKeeper(keeper: TextChunk, goners: TextChunk[]): void {
