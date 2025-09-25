@@ -1,8 +1,6 @@
 import { HtmlElementId } from "./htmlElementIds";
 
 export class HtmlWriter {
-    private constructor() { }
-
     static setDateInputToToday(): void {
         const dateInput = document.getElementById(HtmlElementId.OutputDate) as HTMLInputElement;
         if (dateInput)

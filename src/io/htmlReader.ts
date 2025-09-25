@@ -3,8 +3,6 @@ import { StringifierOptions } from "../textProcessing/stringifierOptions";
 import { HtmlElementId } from "./htmlElementIds";
 
 export class HtmlReader {
-    private constructor() { }
-
     static getInputText(): string {
         const textarea = this.getTextarea(HtmlElementId.InputTextarea);
         return textarea?.value?.trim() ?? '';
