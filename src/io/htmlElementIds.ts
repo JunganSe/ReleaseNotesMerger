@@ -4,7 +4,7 @@ export enum HtmlElementId {
 
     DatePrefix = 'output-date-prefix',
     OutputDate = 'output-date',
-    IgnoreLinesPrefix = 'ignore-lines-prefix',
+    IgnoreLinesPrefix = 'ignore-lines-prefixes',
     OutputHeadingOrder = 'heading-order',
     IgnoreHeadingCase = 'ignore-heading-case',
     AllowMisspelledHeadings = 'allow-misspelled-headings',
