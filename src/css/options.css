@@ -20,6 +20,10 @@
     
 }
 
+.options-table #ignore-lines-prefix {
+    width: 15rem;
+}
+
 .options-table #heading-order {
     width: 15rem;
 }
