@@ -29,12 +29,9 @@ export class Controller {
 
     private onClick_MergeButton = (): void => {
         // Initialize workers
-        const parserOptions = HtmlReader.getParserOptions();
-        const parser = new Parser(parserOptions);
-        const mergerOptions = HtmlReader.getMergerOptions();
-        const merger = new Merger(mergerOptions);
-        const stringifierOptions = HtmlReader.getStringifierOptions();
-        const stringifier = new Stringifier(stringifierOptions);
+        const parser = new Parser(HtmlReader.getParserOptions());
+        const merger = new Merger(HtmlReader.getMergerOptions());
+        const stringifier = new Stringifier(HtmlReader.getStringifierOptions());
 
         // Process text
         const inputText = HtmlReader.getInputText();
