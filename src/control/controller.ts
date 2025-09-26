@@ -49,7 +49,7 @@ export class Controller {
         if (!outputText)
             return;
 
-        ClipboardHandler.copyToClipboard(outputText)
+        ClipboardHandler.tryCopyToClipboard(outputText)
             .then((isSuccess) => {
                 if (isSuccess) {
                     HtmlWriter.setCopyOkIconVisibility(true);
