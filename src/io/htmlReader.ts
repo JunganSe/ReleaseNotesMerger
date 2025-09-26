@@ -1,4 +1,5 @@
 import { MergerOptions } from "../textProcessing/mergerOptions";
+import { ParserOptions } from "../textProcessing/parserOptions";
 import { StringifierOptions } from "../textProcessing/stringifierOptions";
 import { HtmlElementId } from "./htmlElementIds";
 
@@ -11,6 +12,13 @@ export class HtmlReader {
     static getOutputText(): string | null {
         const textarea = this.getTextarea(HtmlElementId.OutputTextarea);
         return textarea?.value?.trim() ?? null;
+    }
+
+    static getParserOptions(): ParserOptions {
+        return {
+            ignoreLinesPrefixes: this.readInput_String(HtmlElementId.IgnoreLinesPrefix)
+                ?.split(',').map(str => str.trim()) ?? [],
+        };
     }
 
     static getMergerOptions(): MergerOptions {
