@@ -9,6 +9,7 @@ export class Parser {
     }
 
     parseTextChunks(input: string): TextChunk[] {
+        // TODO: Implement ignoreLinesPrefixes from this._options
         const lines: string[] = input.split(/\r?\n/) // Split on line breaks.;
         const paragraphs = lines
             .filter(line => !line.startsWith('#'))
