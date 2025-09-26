@@ -39,6 +39,8 @@ export class HtmlReader {
 
 
 
+    // #region Support methods
+
     private static readInput_Checkbox(id: string): boolean | null {
         const element = this.getInputElement(id, 'checkbox');
         return (element)
@@ -88,4 +90,6 @@ export class HtmlReader {
             ? element
             : null;
     }
+
+    // #endregion Support methods
 }
