@@ -1,7 +1,14 @@
+import { ParserOptions } from "./parserOptions";
 import { TextChunk } from "./textChunk";
 
 export class Parser {
-    static parseTextChunks(input: string): TextChunk[] {
+    private _options: ParserOptions;
+
+    constructor(options: ParserOptions) {
+        this._options = options;
+    }
+
+    parseTextChunks(input: string): TextChunk[] {
         const lines: string[] = input.split(/\r?\n/) // Split on line breaks.;
         const paragraphs = lines
             .filter(line => !line.startsWith('#'))
@@ -14,7 +21,7 @@ export class Parser {
         return usableChunks;
     }
 
-    private static parseTextChunk(input: string): TextChunk {
+    private parseTextChunk(input: string): TextChunk {
         if (!input?.trim())
             return { heading: null, content: [] };
 
