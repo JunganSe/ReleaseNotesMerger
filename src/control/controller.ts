@@ -6,7 +6,6 @@ import { Merger } from "../textProcessing/merger";
 import { Parser } from "../textProcessing/parser";
 import { Stringifier } from "../textProcessing/stringifier";
 
-// TODO: Option to filter out lines starting with certain characters (e.g. '#', '-', '*', etc.)
 // TODO: Trigger merge button on ctrl+enter keypress in input textarea.
 // TODO: Save all options in localstorage and load them on startup.
 // TODO: Numeric input for indent multiplier. (Multiplies leading spaces by this number.)

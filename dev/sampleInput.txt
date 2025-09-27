@@ -1,36 +1,37 @@
 ## 2025-08-26
-Uppdateringar
-- Rensat bort referensen LabTestHistoryId från databas för att den inte används längre. #389
-- Lagt till dirty tracking och varning om man försöker lämna osparade ändringar vid redigering av körrecept (popup för specifik ytvikt). #404
+Updates
+- Did a thing to improve the stuff. #389
+- Updated the form for nonsense words to include not only spatials, but also doctorates and swimlanes. Four lines are required. #404
 
 ## 2025-08-11
-Uppdateringar
-- Aktuell version av körrecept visas nu när man visar ett labtests körrecept, istället för den senaste verisonen. #406
-  - Körreceptets version som visas är den som var aktuell vid labtestets tidpunkt.
-- Rensning av oanvända tabeller i databasen. #543
+Updates
+- Adjusted something that requires further explanation in a sub bullet. #406
+  - Explaining the point above in more detail, to test indented lines.
+- Things and stuff. Also stuff. #543
+- The line below is not empty, it has four spaces in it.
     
-Bugfixar
-- Åtgärdat att körrecept för fel PM ibland visades när man visade ett labtests körrecept. #406
+Bug fixes
+- Fixed that the dev was writing nonsense release notes. #406
 
 ## 2025-08-05
-Bugfixar
-- Åtgärdat bristande behörighetskontroll vid uppdatering av labtest. Gäller vanlig redigering och redigering av låsta värden. #551
+Bug fixes
+- Fixed another thing that needed fixing. #551
 
 ## 2025-08-04
 
-Nya funktioner
+New functionality
 - Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
-Uppdateringar
-- Förbättrat utseende och funktion vid redigering av labtests importerade värden. #379
-  - Samma utseende som för labtest detaljer med tooltip, färgindikeringar, och varning för ogiltigt värde.
-  - Ändrade värden markeras nu som i labtest detaljer, och en bekräftelse krävs när man försöker lämna osparade ändringar.
+Updates
+- Improved the looks of the most important page by imploding a star into six envelopes. #379
+  - Most of the colors are the same or similar, but red is now air.
+  - Columns are not transdimensional and will stack depthwise when screen width is below 300 parsecs.
 
 ## 2025-08-01
-Uppdateringar
-- Lagt till möjlighet att skriva ut rapporter. Även uppdaterat så att utskrifter ser okej ut på alla sidor, men inte alla tabeller än. #431
+Updates
+- Changed the images of ducks into corvians. #431
 
-Skräprad...
+Solitary junk line.
 
-Nya funktioner
+New functionality
 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
