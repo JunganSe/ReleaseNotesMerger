@@ -17,14 +17,14 @@ export class HtmlReader {
     static getParserOptions(): ParserOptions {
         return {
             ignoreLinesPrefixes: this.readInput_String(HtmlElementId.IgnoreLinesPrefix)
-                ?.split(',').map(str => str.trim()) ?? [],
+                ?.split(',').map(str => str.trim()).filter(str => str.length) ?? [],
         };
     }
 
     static getMergerOptions(): MergerOptions {
         return {
             headingOrder: this.readInput_String(HtmlElementId.OutputHeadingOrder)
-                ?.split(',').map(str => str.trim()) ?? [],
+                ?.split(',').map(str => str.trim()).filter(str => str.length) ?? [],
             ignoreHeadingCase: this.readInput_Checkbox(HtmlElementId.IgnoreHeadingCase) ?? false,
             allowMisspelledHeadings: this.readInput_Checkbox(HtmlElementId.AllowMisspelledHeadings) ?? false,
         };
