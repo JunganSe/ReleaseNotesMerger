@@ -10,7 +10,7 @@ export class Parser {
 
     parseTextChunks(input: string): TextChunk[] {
         const lines: string[] = input.split(/\r?\n/) // Split on line breaks.;
-        const filteredLines = this.getLinesNotStartingWithPrefixes(lines);
+        const filteredLines = this.getLinesNotStartingWithPrefixes_CaseInsentitive(lines);
         const paragraphs = filteredLines
             .map(line => line.trimEnd())
             .join('\n')
@@ -21,10 +21,10 @@ export class Parser {
         return usableChunks;
     }
 
-    private getLinesNotStartingWithPrefixes(lines: string[]): string[] {
-        const prefixes = this._options.ignoreLinesPrefixes;
-        return (prefixes?.length)
-            ? lines.filter(line => !prefixes.some(prefix => line.startsWith(prefix)))
+    private getLinesNotStartingWithPrefixes_CaseInsentitive(lines: string[]): string[] {
+        const prefixes = this._options.ignoreLinesPrefixes.map(prefix => prefix.toLowerCase());
+        return (prefixes.length)
+            ? lines.filter(line => !prefixes.some(prefix => line.toLowerCase().startsWith(prefix)))
             : lines;
     }
 
