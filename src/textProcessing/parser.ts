@@ -9,10 +9,9 @@ export class Parser {
     }
 
     parseTextChunks(input: string): TextChunk[] {
-        // TODO: Implement ignoreLinesPrefixes from this._options
         const lines: string[] = input.split(/\r?\n/) // Split on line breaks.;
-        const paragraphs = lines
-            .filter(line => !line.startsWith('#'))
+        const filteredLines = this.getLinesNotStartingWithPrefixes(lines);
+        const paragraphs = filteredLines
             .map(line => line.trimEnd())
             .join('\n')
             .split(/\n\n/) // Split on double line breaks. (Empty lines)
@@ -20,6 +19,13 @@ export class Parser {
         const chunks: TextChunk[] = paragraphs.map(this.parseTextChunk);
         const usableChunks = chunks.filter(chunk => chunk.content.length > 0);
         return usableChunks;
+    }
+
+    private getLinesNotStartingWithPrefixes(lines: string[]): string[] {
+        const prefixes = this._options.ignoreLinesPrefixes;
+        return (prefixes?.length)
+            ? lines.filter(line => !prefixes.some(prefix => line.startsWith(prefix)))
+            : lines;
     }
 
     private parseTextChunk(input: string): TextChunk {
