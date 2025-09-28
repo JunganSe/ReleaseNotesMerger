@@ -1,7 +1,7 @@
 import { MergerOptions } from "../textProcessing/mergerOptions";
 import { ParserOptions } from "../textProcessing/parserOptions";
 import { StringifierOptions } from "../textProcessing/stringifierOptions";
-import { HtmlElementId } from "./htmlElementIds";
+import { HtmlElementId } from "./htmlElementSelectors";
 
 export class HtmlReader {
     static getInputText(): string {

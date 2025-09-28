@@ -1,4 +1,4 @@
-import { HtmlElementId } from "./htmlElementIds";
+import { HtmlElementId } from "./htmlElementSelectors";
 
 export class HtmlWriter {
     static setDateInputToToday(): void {

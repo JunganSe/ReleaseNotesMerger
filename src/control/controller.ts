@@ -1,5 +1,5 @@
 import { ClipboardHandler } from "../io/clipboardHandler";
-import { HtmlElementClass, HtmlElementId } from "../io/htmlElementIds";
+import { HtmlElementClass, HtmlElementId } from "../io/htmlElementSelectors";
 import { HtmlReader } from "../io/htmlReader";
 import { HtmlWriter } from "../io/htmlWriter";
 import { Merger } from "../textProcessing/merger";
@@ -24,7 +24,7 @@ export class Controller {
         document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.onClick_CopyButton);
 
         document.getElementById(HtmlElementId.InputTextarea)?.addEventListener('keydown', this.triggerMergeOnCtrlEnter);
-        document.getElementsByClassName(HtmlElementClass.OptionsContainer)[0]?.querySelectorAll('input').forEach(input =>
+        document.querySelectorAll('input').forEach(input =>
             input.addEventListener('keydown', this.triggerMergeOnCtrlEnter));
 
         document.getElementById(HtmlElementId.OutputTextarea)?.addEventListener('change', this.onChange_OutputText);
