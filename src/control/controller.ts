@@ -1,12 +1,11 @@
 import { ClipboardHandler } from "../io/clipboardHandler";
-import { HtmlElementId } from "../io/htmlElementIds";
+import { HtmlElementClass, HtmlElementId } from "../io/htmlElementIds";
 import { HtmlReader } from "../io/htmlReader";
 import { HtmlWriter } from "../io/htmlWriter";
 import { Merger } from "../textProcessing/merger";
 import { Parser } from "../textProcessing/parser";
 import { Stringifier } from "../textProcessing/stringifier";
 
-// TODO: Trigger merge button on ctrl+enter keypress in input textarea.
 // TODO: Save all options in localstorage and load them on startup.
 // TODO: Numeric input for indent multiplier. (Multiplies leading spaces by this number.)
 // TODO: Checkbox to enable/disable copy-to-clipboard on merge.
@@ -23,6 +22,11 @@ export class Controller {
     private setEvents(): void {
         document.getElementById(HtmlElementId.MergeButton)?.addEventListener('click', this.onClick_MergeButton);
         document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.onClick_CopyButton);
+
+        document.getElementById(HtmlElementId.InputTextarea)?.addEventListener('keydown', this.triggerMergeOnCtrlEnter);
+        document.getElementsByClassName(HtmlElementClass.OptionsContainer)[0]?.querySelectorAll('input').forEach(input =>
+            input.addEventListener('keydown', this.triggerMergeOnCtrlEnter));
+
         document.getElementById(HtmlElementId.OutputTextarea)?.addEventListener('change', this.onChange_OutputText);
     }
 
@@ -54,6 +58,13 @@ export class Controller {
                     console.log('Copied output text to clipboard.');
                 }
             });
+    }
+
+    private triggerMergeOnCtrlEnter = (event: KeyboardEvent): void => {
+        if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
+            event.preventDefault();
+            this.onClick_MergeButton();
+        }
     }
 
     private onChange_OutputText = (): void => {

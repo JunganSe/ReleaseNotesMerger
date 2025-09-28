@@ -13,3 +13,7 @@ export enum HtmlElementId {
     CopyButton = 'btn_copy',
     CopyOkIcon = 'icon_copy-ok'
 }
+
+export enum HtmlElementClass {
+    OptionsContainer = 'container-options'
+}
