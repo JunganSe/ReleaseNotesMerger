@@ -9,7 +9,9 @@ export class SortBy {
      * @param preferredOrder The array defining the preferred order.
      * @returns The sorted array of strings, which is the same as the items parameter.
      */
-    static preferredOrder(items: string[], preferredOrder: string[]): string[] {
-        return items.sort((a, b) => CompareBy.preferredOrder(a, b, preferredOrder));
+    static preferredOrder_CaseInsensitive(items: string[], preferredOrder: string[]): string[] {
+        const lowerPreferredOrder = preferredOrder.map(item => item.toLowerCase());
+        return items.sort((a, b) =>
+            CompareBy.preferredOrder(a.toLowerCase(), b.toLowerCase(), lowerPreferredOrder));
     }
 }
