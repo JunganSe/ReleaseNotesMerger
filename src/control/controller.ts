@@ -24,7 +24,7 @@ export class Controller {
         document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.onClick_CopyButton);
 
         document.getElementById(HtmlElementId.InputTextarea)?.addEventListener('keydown', this.triggerMergeOnCtrlEnter);
-        document.querySelectorAll('input').forEach(input =>
+        document.querySelector(`.${HtmlElementClass.OptionsContainer}`)?.querySelectorAll('input').forEach(input =>
             input.addEventListener('keydown', this.triggerMergeOnCtrlEnter));
 
         document.getElementById(HtmlElementId.OutputTextarea)?.addEventListener('change', this.onChange_OutputText);
