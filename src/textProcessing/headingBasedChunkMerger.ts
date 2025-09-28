@@ -1,6 +1,11 @@
 import { TextChunk } from "./textChunk";
 import { TextChunkHelper } from "./textChunkHelper";
 
+// TODO: Redo this implementation so that:
+//       - The first of the matching chunks is always the keeper.
+//       - The keeper has its heading updated to the preferred heading, if applicable.
+//       - The order of content lines is maintained, regardless of which chunk is picked as the keeper.
+
 export class HeadingBasedChunkMerger {
     /** Combines chunks with the same heading while ignoring casing.
      * Prefers versions found in headingOrder, then capitalized versions.

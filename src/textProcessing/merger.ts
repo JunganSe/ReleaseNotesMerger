@@ -4,6 +4,8 @@ import { SortBy } from "./sorting";
 import { TextChunk } from "./textChunk";
 import { TextChunkHelper } from "./textChunkHelper";
 
+// TODO: Maintain the order of content lines when chunks are merged, regardless of which chunk is picked as the keeper.
+
 export class Merger {
     private _options: MergerOptions;
 
@@ -15,7 +17,7 @@ export class Merger {
         const uniqueHeadings = TextChunkHelper.getUniqueHeadings(inputChunks);
 
         if (this._options.headingOrder.length)
-            SortBy.preferredOrder(uniqueHeadings, this._options.headingOrder);
+            SortBy.preferredOrder_CaseInsensitive(uniqueHeadings, this._options.headingOrder);
 
         const outputChunks: TextChunk[] = uniqueHeadings.map(heading => ({ heading, content: [] }));
         inputChunks.forEach(inputChunk => this.addContentToMatchingOutputChunk(inputChunk, outputChunks));
