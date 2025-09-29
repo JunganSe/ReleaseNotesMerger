@@ -1,24 +1,36 @@
 import { Options } from "./options";
+import { OptionsValidator } from "./optionsValidator";
 
 export class StorageHandler {
     private static readonly _storageKey = 'options';
 
     static save(options: Options): void {
-        const jsonOptions = JSON.stringify(options);
-        localStorage.setItem(this._storageKey, jsonOptions);
+        try {
+            const jsonOptions = JSON.stringify(options);
+            localStorage.setItem(this._storageKey, jsonOptions);
+        }
+        catch (e) {
+            console.error('Failed to save options to localStorage:', e);
+        }
     }
 
     static load(): Options | null {
-        const jsonOptions = localStorage.getItem(this._storageKey);
-        if (!jsonOptions)
-            return null;
-
         try {
+            const jsonOptions = localStorage.getItem(this._storageKey);
+            if (!jsonOptions)
+                return null;
+
             const options: Options = JSON.parse(jsonOptions);
+
+            if (!OptionsValidator.isValidOptions(options)) {
+                console.error('Invalid options structure in localStorage');
+                return null;
+            }
+
             return options;
         }
         catch (e) {
-            console.error("Failed to parse options from localStorage:", e);
+            console.error('Failed to load options from localStorage:', e);
             return null;
         }
     }
