@@ -1,13 +1,25 @@
 import { Options } from "./options";
 
 export class StorageHandler {
+    private static readonly _storageKey = 'options';
+
     static save(options: Options): void {
-        // TODO: Implement saving to local storage.
-        throw new Error("Method not implemented.");
+        const jsonOptions = JSON.stringify(options);
+        localStorage.setItem(this._storageKey, jsonOptions);
     }
 
     static load(): Options | null {
-        // TODO: Implement loading from local storage.
-        throw new Error("Method not implemented.");
+        const jsonOptions = localStorage.getItem(this._storageKey);
+        if (!jsonOptions)
+            return null;
+
+        try {
+            const options: Options = JSON.parse(jsonOptions);
+            return options;
+        }
+        catch (e) {
+            console.error("Failed to parse options from localStorage:", e);
+            return null;
+        }
     }
 }
