@@ -6,6 +6,7 @@ import { Options } from "./options";
 
 export class HtmlReader {
     static getOptions(): Options {
+        // TODO: Refactor
         const options: Options = {
             datePrefix: this.readInput_String(HtmlElementId.DatePrefix),
             ignoreLinesPrefixes: this.getParserOptions().ignoreLinesPrefixes,

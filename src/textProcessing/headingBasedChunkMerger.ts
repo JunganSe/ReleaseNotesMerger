@@ -26,6 +26,8 @@ export class HeadingBasedChunkMerger {
         if (matchingChunks.length <= 1)
             return;
 
+        // BUG: preferredChunk can be lowercase the lowercase version
+        //      even if a capitalized version exists, and the string in preferredHeadings is capitalized.
         const preferredChunk = TextChunkHelper.getFirstChunkWithMatchingHeading_CaseInsensitive(matchingChunks, preferredHeadings);
         const firstChunkWithCapitalizedHeading = TextChunkHelper.getFirstChunkWithCapitalizedHeading(matchingChunks);
 
