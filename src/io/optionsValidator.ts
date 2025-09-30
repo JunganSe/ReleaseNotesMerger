@@ -15,6 +15,7 @@ export class OptionsValidator {
     }
 
     private static isStringArray(array: any): boolean {
-        return Array.isArray(array) && array.every(item => typeof item === 'string');
+        return Array.isArray(array)
+            && array.every(item => typeof item === 'string');
     }
 }
