@@ -9,6 +9,7 @@ export enum HtmlElementId {
     IgnoreHeadingCase = 'ignore-heading-case',
     AllowMisspelledHeadings = 'allow-misspelled-headings',
 
+    SaveOptionsButton = 'btn_save-options',
     MergeButton = 'btn_merge',
     CopyButton = 'btn_copy',
     CopyOkIcon = 'icon_copy-ok'

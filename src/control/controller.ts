@@ -33,6 +33,7 @@ export class Controller {
     }
 
     private setEvents(): void {
+        document.getElementById(HtmlElementId.SaveOptionsButton)?.addEventListener('click', this.onClick_SaveOptionsButton);
         document.getElementById(HtmlElementId.MergeButton)?.addEventListener('click', this.onClick_MergeButton);
         document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.onClick_CopyButton);
 
@@ -43,9 +44,11 @@ export class Controller {
         document.getElementById(HtmlElementId.OutputTextarea)?.addEventListener('change', this.onChange_OutputText);
     }
 
-    private onClick_MergeButton = (): void => {
+    private onClick_SaveOptionsButton = (): void => {
         this.saveOptionsToStorage();
+    }
 
+    private onClick_MergeButton = (): void => {
         // Initialize workers
         const parser = new Parser(HtmlReader.getParserOptions());
         const merger = new Merger(HtmlReader.getMergerOptions());
