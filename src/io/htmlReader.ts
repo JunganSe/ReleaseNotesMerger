@@ -2,8 +2,19 @@ import { MergerOptions } from "../textProcessing/mergerOptions";
 import { ParserOptions } from "../textProcessing/parserOptions";
 import { StringifierOptions } from "../textProcessing/stringifierOptions";
 import { HtmlElementId } from "./htmlElementSelectors";
+import { Options } from "./options";
 
 export class HtmlReader {
+    static getOptions(): Options {
+        const options: Options = {
+            datePrefix: this.readInput_String(HtmlElementId.DatePrefix),
+            ignoreLinesPrefixes: this.getParserOptions().ignoreLinesPrefixes,
+            headingOrder: this.getMergerOptions().headingOrder,
+            ignoreHeadingCase: this.getMergerOptions().ignoreHeadingCase,
+        };
+        return options;
+    }
+
     static getInputText(): string {
         const textarea = this.getTextarea(HtmlElementId.InputTextarea);
         return textarea?.value?.trim() ?? '';
