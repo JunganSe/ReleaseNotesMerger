@@ -2,6 +2,7 @@ import { ClipboardHandler } from "../io/clipboardHandler";
 import { HtmlElementClass, HtmlElementId } from "../io/htmlElementSelectors";
 import { HtmlReader } from "../io/htmlReader";
 import { HtmlWriter } from "../io/htmlWriter";
+import { StorageHandler } from "../io/storageHandler";
 import { Merger } from "../textProcessing/merger";
 import { Parser } from "../textProcessing/parser";
 import { Stringifier } from "../textProcessing/stringifier";
@@ -15,8 +16,20 @@ import { Stringifier } from "../textProcessing/stringifier";
 
 export class Controller {
     initialize(): void {
+        this.applyOptionsFromStorage();
         HtmlWriter.setDateInputToToday();
         this.setEvents();
+    }
+
+    private applyOptionsFromStorage(): void {
+        const options = StorageHandler.load();
+        if (options)
+            HtmlWriter.applyOptions(options);
+    }
+
+    private saveOptionsToStorage(): void {
+        const options = HtmlReader.getOptions();
+        StorageHandler.save(options);
     }
 
     private setEvents(): void {
@@ -31,6 +44,8 @@ export class Controller {
     }
 
     private onClick_MergeButton = (): void => {
+        this.saveOptionsToStorage();
+
         // Initialize workers
         const parser = new Parser(HtmlReader.getParserOptions());
         const merger = new Merger(HtmlReader.getMergerOptions());
