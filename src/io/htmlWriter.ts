@@ -1,6 +1,25 @@
 import { HtmlElementId } from "./htmlElementSelectors";
+import { Options } from "./options";
 
 export class HtmlWriter {
+    static applyOptions(options: Options): void {
+        const datePrefixInput = document.getElementById(HtmlElementId.DatePrefix) as HTMLInputElement;
+        if (datePrefixInput)
+            datePrefixInput.value = options.datePrefix ?? '';
+
+        const ignoreLinesInput = document.getElementById(HtmlElementId.IgnoreLinesPrefix) as HTMLInputElement;
+        if (ignoreLinesInput)
+            ignoreLinesInput.value = options.ignoreLinesPrefixes.join(', ');
+
+        const headingOrderInput = document.getElementById(HtmlElementId.OutputHeadingOrder) as HTMLInputElement;
+        if (headingOrderInput)
+            headingOrderInput.value = options.headingOrder.join(', ');
+
+        const ignoreHeadingCaseInput = document.getElementById(HtmlElementId.IgnoreHeadingCase) as HTMLInputElement;
+        if (ignoreHeadingCaseInput)
+            ignoreHeadingCaseInput.checked = options.ignoreHeadingCase;
+    }
+
     static setDateInputToToday(): void {
         const dateInput = document.getElementById(HtmlElementId.OutputDate) as HTMLInputElement;
         if (dateInput)
