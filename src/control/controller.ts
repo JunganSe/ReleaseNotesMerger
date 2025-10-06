@@ -7,11 +7,9 @@ import { Merger } from "../textProcessing/merger";
 import { Parser } from "../textProcessing/parser";
 import { Stringifier } from "../textProcessing/stringifier";
 
-// TODO: Save all options in localstorage and load them on startup.
 // TODO: Numeric input for indent multiplier. (Multiplies leading spaces by this number.)
 // TODO: Checkbox to enable/disable copy-to-clipboard on merge.
 // TODO: Checkbox to enable/disable auto-merge on input text change.
-// TODO: Checkbox to save options in localstorage.
 // TODO: Button to reset options to default values?
 
 export class Controller {
