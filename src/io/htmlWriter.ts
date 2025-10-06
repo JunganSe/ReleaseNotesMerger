@@ -11,7 +11,7 @@ export class HtmlWriter {
         if (ignoreLinesInput)
             ignoreLinesInput.value = options.ignoreLinesPrefixes.join(', ');
 
-        const headingOrderInput = document.getElementById(HtmlElementId.OutputHeadingOrder) as HTMLInputElement;
+        const headingOrderInput = document.getElementById(HtmlElementId.HeadingOrder) as HTMLInputElement;
         if (headingOrderInput)
             headingOrderInput.value = options.headingOrder.join(', ');
 

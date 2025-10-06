@@ -5,15 +5,73 @@ import { HtmlElementId } from "./htmlElementSelectors";
 import { Options } from "./options";
 
 export class HtmlReader {
+
+    // #region Option objects
     static getOptions(): Options {
-        // TODO: Refactor
         const options: Options = {
-            datePrefix: this.readInput_String(HtmlElementId.DatePrefix),
-            ignoreLinesPrefixes: this.getParserOptions().ignoreLinesPrefixes,
-            headingOrder: this.getMergerOptions().headingOrder,
-            ignoreHeadingCase: this.getMergerOptions().ignoreHeadingCase,
+            datePrefix: this.getDatePrefx(),
+            ignoreLinesPrefixes: this.getIgnoreLinesPrefixes(),
+            headingOrder: this.getHeadingOrder(),
+            ignoreHeadingCase: this.getIgnoreHeadingCase(),
         };
         return options;
+    }
+
+    static getParserOptions(): ParserOptions {
+        return {
+            ignoreLinesPrefixes: this.getIgnoreLinesPrefixes(),
+        };
+    }
+
+    static getMergerOptions(): MergerOptions {
+        return {
+            headingOrder: this.getHeadingOrder(),
+            ignoreHeadingCase: this.getIgnoreHeadingCase(),
+            allowMisspelledHeadings: this.getAllowMisspelledHeadings(),
+        };
+    }
+
+    static getStringifierOptions(): StringifierOptions {
+        return {
+            datePrefix: this.getDatePrefx(),
+            date: this.getOutputDate(),
+        };
+    }
+
+    // #endregion Option objects
+
+    // #region Specific elements
+
+    private static getDatePrefx(): string | null {
+        return this.readInput_String(HtmlElementId.DatePrefix);
+    }
+
+    private static getOutputDate(): Date | null {
+        return this.readInput_Date(HtmlElementId.OutputDate);
+    }
+
+    private static getIgnoreLinesPrefixes(): string[] {
+        return this.readInput_String(HtmlElementId.IgnoreLinesPrefix)
+            ?.split(',')
+            .map(str => str.trim())
+            .filter(str => str.length)
+            ?? [];
+    }
+
+    private static getHeadingOrder(): string[] {
+        return this.readInput_String(HtmlElementId.HeadingOrder)
+            ?.split(',')
+            .map(str => str.trim())
+            .filter(str => str.length)
+            ?? [];
+    }
+
+    private static getIgnoreHeadingCase(): boolean {
+        return this.readInput_Checkbox(HtmlElementId.IgnoreHeadingCase) ?? false;
+    }
+
+    private static getAllowMisspelledHeadings(): boolean {
+        return this.readInput_Checkbox(HtmlElementId.AllowMisspelledHeadings) ?? false;
     }
 
     static getInputText(): string {
@@ -26,30 +84,7 @@ export class HtmlReader {
         return textarea?.value?.trim() ?? null;
     }
 
-    static getParserOptions(): ParserOptions {
-        return {
-            ignoreLinesPrefixes: this.readInput_String(HtmlElementId.IgnoreLinesPrefix)
-                ?.split(',').map(str => str.trim()).filter(str => str.length) ?? [],
-        };
-    }
-
-    static getMergerOptions(): MergerOptions {
-        return {
-            headingOrder: this.readInput_String(HtmlElementId.OutputHeadingOrder)
-                ?.split(',').map(str => str.trim()).filter(str => str.length) ?? [],
-            ignoreHeadingCase: this.readInput_Checkbox(HtmlElementId.IgnoreHeadingCase) ?? false,
-            allowMisspelledHeadings: this.readInput_Checkbox(HtmlElementId.AllowMisspelledHeadings) ?? false,
-        };
-    }
-
-    static getStringifierOptions(): StringifierOptions {
-        return {
-            datePrefix: this.readInput_String(HtmlElementId.DatePrefix),
-            date: this.readInput_Date(HtmlElementId.OutputDate),
-        };
-    }
-
-
+    // #endregion Specific elements
 
     // #region Support methods
 
