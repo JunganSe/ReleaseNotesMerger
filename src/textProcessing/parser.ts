@@ -14,7 +14,7 @@ export class Parser {
         const paragraphs = filteredLines
             .map(line => line.trimEnd())
             .join('\n')
-            .split(/\n\n/) // Split on double line breaks. (Empty lines)
+            .split(/(\r?\n){2}/) // Split on double line breaks. (Empty lines)
             .map(paragraph => paragraph.replace(/^[\r\n]+/, '')); // Remove leading newlines. (Happens when there are multiple empty lines between paragraphs.)
         const chunks: TextChunk[] = paragraphs.map(this.parseTextChunk);
         const usableChunks = chunks.filter(chunk => chunk.content.length > 0);
