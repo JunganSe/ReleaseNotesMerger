@@ -60,6 +60,9 @@ export class Controller {
         HtmlWriter.writeOutputText(outputText);
 
         this.triggerEvent_OutputText_Changed();
+
+        if (HtmlReader.getCopyOnMerge())
+            this.onClick_CopyButton();
     }
 
     private onClick_CopyButton = (): void => {
