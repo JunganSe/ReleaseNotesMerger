@@ -43,15 +43,15 @@ export class HtmlReader {
 
     // #region Specific elements
 
-    private static getDatePrefx(): string | null {
+    static getDatePrefx(): string | null {
         return this.readInput_String(HtmlElementId.DatePrefix);
     }
 
-    private static getOutputDate(): Date | null {
+    static getOutputDate(): Date | null {
         return this.readInput_Date(HtmlElementId.OutputDate);
     }
 
-    private static getIgnoreLinesPrefixes(): string[] {
+    static getIgnoreLinesPrefixes(): string[] {
         return this.readInput_String(HtmlElementId.IgnoreLinesPrefix)
             ?.split(',')
             .map(str => str.trim())
@@ -59,7 +59,7 @@ export class HtmlReader {
             ?? [];
     }
 
-    private static getHeadingOrder(): string[] {
+    static getHeadingOrder(): string[] {
         return this.readInput_String(HtmlElementId.HeadingOrder)
             ?.split(',')
             .map(str => str.trim())
@@ -67,15 +67,15 @@ export class HtmlReader {
             ?? [];
     }
 
-    private static getIgnoreHeadingCase(): boolean {
+    static getIgnoreHeadingCase(): boolean {
         return this.readInput_Checkbox(HtmlElementId.IgnoreHeadingCase) ?? false;
     }
 
-    private static getCopyOnMerge(): boolean {
+    static getCopyOnMerge(): boolean {
         return this.readInput_Checkbox(HtmlElementId.CopyOnMerge) ?? false;
     }
 
-    private static getAllowMisspelledHeadings(): boolean {
+    static getAllowMisspelledHeadings(): boolean {
         return this.readInput_Checkbox(HtmlElementId.AllowMisspelledHeadings) ?? false;
     }
 
