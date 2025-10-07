@@ -5,4 +5,5 @@ export interface Options {
     ignoreLinesPrefixes: string[];
     headingOrder: string[];
     ignoreHeadingCase: boolean;
+    copyOnMerge: boolean;
 }
