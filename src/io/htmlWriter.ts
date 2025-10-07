@@ -18,6 +18,10 @@ export class HtmlWriter {
         const ignoreHeadingCaseInput = document.getElementById(HtmlElementId.IgnoreHeadingCase) as HTMLInputElement;
         if (ignoreHeadingCaseInput)
             ignoreHeadingCaseInput.checked = options.ignoreHeadingCase;
+
+        const copyOnMergeInput = document.getElementById(HtmlElementId.CopyOnMerge) as HTMLInputElement;
+        if (copyOnMergeInput)
+            copyOnMergeInput.checked = options.copyOnMerge;
     }
 
     static setDateInputToToday(): void {

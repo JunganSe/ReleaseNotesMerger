@@ -13,6 +13,7 @@ export class HtmlReader {
             ignoreLinesPrefixes: this.getIgnoreLinesPrefixes(),
             headingOrder: this.getHeadingOrder(),
             ignoreHeadingCase: this.getIgnoreHeadingCase(),
+            copyOnMerge: this.getCopyOnMerge(),
         };
         return options;
     }
@@ -68,6 +69,10 @@ export class HtmlReader {
 
     private static getIgnoreHeadingCase(): boolean {
         return this.readInput_Checkbox(HtmlElementId.IgnoreHeadingCase) ?? false;
+    }
+
+    private static getCopyOnMerge(): boolean {
+        return this.readInput_Checkbox(HtmlElementId.CopyOnMerge) ?? false;
     }
 
     private static getAllowMisspelledHeadings(): boolean {
