@@ -59,8 +59,7 @@ export class Controller {
         const outputText = stringifier.getStringifiedOutput(mergedChunks);
         HtmlWriter.writeOutputText(outputText);
 
-        this.triggerEvent_OutputText_Changed();
-
+        this.onChange_OutputText();
         if (HtmlReader.getCopyOnMerge())
             this.onClick_CopyButton();
     }
@@ -88,13 +87,5 @@ export class Controller {
 
     private onChange_OutputText = (): void => {
         HtmlWriter.setCopyOkIconVisibility(false);
-    }
-
-    private triggerEvent_OutputText_Changed(): void {
-        const element = document.getElementById(HtmlElementId.OutputTextarea);
-        if (element) {
-            const event = new Event('change', { bubbles: true });
-            element.dispatchEvent(event);
-        }
     }
 }
