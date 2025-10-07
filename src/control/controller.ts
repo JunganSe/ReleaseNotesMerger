@@ -8,7 +8,6 @@ import { Parser } from "../textProcessing/parser";
 import { Stringifier } from "../textProcessing/stringifier";
 
 // TODO: Numeric input for indent multiplier. (Multiplies leading spaces by this number.)
-// TODO: Checkbox to enable/disable copy-to-clipboard on merge.
 // TODO: Checkbox to enable/disable auto-merge on input text change.
 // TODO: Button to reset options to default values?
 
@@ -34,10 +33,8 @@ export class Controller {
         document.getElementById(HtmlElementId.SaveOptionsButton)?.addEventListener('click', this.onClick_SaveOptionsButton);
         document.getElementById(HtmlElementId.MergeButton)?.addEventListener('click', this.onClick_MergeButton);
         document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.onClick_CopyButton);
-
-        document.getElementById(HtmlElementId.InputTextarea)?.addEventListener('keydown', this.triggerMergeOnCtrlEnter);
-        document.querySelector(`.${HtmlElementClass.OptionsContainer}`)?.querySelectorAll('input').forEach(input =>
-            input.addEventListener('keydown', this.triggerMergeOnCtrlEnter));
+        document.querySelectorAll<HTMLElement>(`#${HtmlElementId.InputTextarea}, .${HtmlElementClass.OptionsContainer} input`)
+            .forEach(element => element.addEventListener('keydown', this.triggerMergeOnCtrlEnter));
 
         document.getElementById(HtmlElementId.OutputTextarea)?.addEventListener('change', this.onChange_OutputText);
     }
