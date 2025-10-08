@@ -1,11 +1,6 @@
 import { TextChunk } from "./textChunk";
 import { TextChunkHelper } from "./textChunkHelper";
 
-// TODO: Redo this implementation so that:
-//       - The first of the matching chunks is always the keeper.
-//       - The keeper has its heading updated to the preferred heading, if applicable.
-//       - The order of content lines is maintained, regardless of which chunk is picked as the keeper.
-
 export class HeadingBasedChunkMerger {
     /** Combines chunks with the same heading while ignoring casing.
      * Prefers versions found in headingOrder, then capitalized versions.
@@ -26,24 +21,14 @@ export class HeadingBasedChunkMerger {
         if (matchingChunks.length <= 1)
             return;
 
-        // BUG: preferredChunk can be lowercase the lowercase version
-        //      even if a capitalized version exists, and the string in preferredHeadings is capitalized.
-        const preferredChunk = TextChunkHelper.getFirstChunkWithMatchingHeading_CaseInsensitive(matchingChunks, preferredHeadings);
-        const firstChunkWithCapitalizedHeading = TextChunkHelper.getFirstChunkWithCapitalizedHeading(matchingChunks);
-
-        const keeper = preferredChunk ?? firstChunkWithCapitalizedHeading ?? chunk;
-        const goners = matchingChunks.filter(chunk => chunk !== keeper);
-
-        this.moveContentToKeeper(keeper, goners);
-    }
-
-    private static moveContentToKeeper(keeper: TextChunk, goners: TextChunk[]): void {
-        const gonersContent = goners.flatMap(goner => goner.content);
-        keeper.content.push(...gonersContent);
-        goners.forEach(goner => {
-            goner.heading = null;
-            goner.content = [];
-        });
+        const firstChunk = matchingChunks[0];
+        const otherChunks = matchingChunks.slice(1);
+        const preferredHeading = 'Temp preferred heading'; // TODO: Determine the preferred heading based on preferredHeadings.
+        const capitalizedHeading = 'Temp capitalized heading'; // TODO: Determine the first capitalized heading, if any.
+        const combinedContent = matchingChunks.flatMap(c => c.content);
+        firstChunk.heading = preferredHeading ?? capitalizedHeading;
+        firstChunk.content = combinedContent;
+        otherChunks.forEach(c => { c.heading = null; c.content = []; });
     }
 
     private static removeEmptyChunks(chunks: TextChunk[]): void {
