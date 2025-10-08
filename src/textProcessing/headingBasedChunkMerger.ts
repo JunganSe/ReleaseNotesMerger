@@ -23,12 +23,22 @@ export class HeadingBasedChunkMerger {
 
         const firstChunk = matchingChunks[0];
         const otherChunks = matchingChunks.slice(1);
-        const preferredHeading = 'Temp preferred heading'; // TODO: Determine the preferred heading based on preferredHeadings.
-        const capitalizedHeading = 'Temp capitalized heading'; // TODO: Determine the first capitalized heading, if any.
-        const combinedContent = matchingChunks.flatMap(c => c.content);
-        firstChunk.heading = preferredHeading ?? capitalizedHeading;
-        firstChunk.content = combinedContent;
+        firstChunk.heading = this.getPreferredHeading(matchingChunks, preferredHeadings) ?? firstChunk.heading;
+        firstChunk.content = matchingChunks.flatMap(c => c.content);
         otherChunks.forEach(c => { c.heading = null; c.content = []; });
+    }
+
+    private static getPreferredHeading(chunks: TextChunk[], preferredHeadings: string[]): string | null {
+        const chunkHeadings = chunks.map(c => c.heading).filter(h => h != null);
+        const preferredHeading = preferredHeadings.find(ph => chunkHeadings.some(ch => ch.toLowerCase() === ph.toLowerCase()));
+        if (preferredHeading)
+            return preferredHeading;
+
+        const firstCapitalizedHeading = chunkHeadings.find(ch => ch && ch[0] === ch[0].toUpperCase());
+        if (firstCapitalizedHeading)
+            return firstCapitalizedHeading;
+
+        return null;
     }
 
     private static removeEmptyChunks(chunks: TextChunk[]): void {

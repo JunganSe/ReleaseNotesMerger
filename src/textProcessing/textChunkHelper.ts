@@ -11,12 +11,4 @@ export class TextChunkHelper {
     static getChunksWithMatchingHeading_CaseInsensitive(chunks: TextChunk[], heading: string): TextChunk[] {
         return chunks.filter(c => c.heading?.toLowerCase() === heading.toLowerCase());
     }
-
-    static getFirstChunkWithMatchingHeading_CaseInsensitive(chunks: TextChunk[], headings: string[]): TextChunk | undefined {
-        return chunks.find(c => headings.some(h => h.toLowerCase() === c.heading?.toLowerCase()));
-    }
-
-    static getFirstChunkWithCapitalizedHeading(chunks: TextChunk[]): TextChunk | undefined {
-        return chunks.find(c => c.heading && c.heading[0] === c.heading[0].toUpperCase());
-    }
 }
