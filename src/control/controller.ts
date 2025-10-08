@@ -30,20 +30,16 @@ export class Controller {
     }
 
     private setEvents(): void {
-        document.getElementById(HtmlElementId.SaveOptionsButton)?.addEventListener('click', this.onClick_SaveOptionsButton);
-        document.getElementById(HtmlElementId.MergeButton)?.addEventListener('click', this.onClick_MergeButton);
-        document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.onClick_CopyButton);
+        document.getElementById(HtmlElementId.SaveOptionsButton)?.addEventListener('click', this.saveOptionsToStorage);
+        document.getElementById(HtmlElementId.MergeButton)?.addEventListener('click', this.mergeInput);
+        document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.copyOutputToClipboard);
         document.querySelectorAll<HTMLElement>(`#${HtmlElementId.InputTextarea}, .${HtmlElementClass.OptionsContainer} input`)
             .forEach(element => element.addEventListener('keydown', this.triggerMergeOnCtrlEnter));
 
-        document.getElementById(HtmlElementId.OutputTextarea)?.addEventListener('change', this.onChange_OutputText);
+        document.getElementById(HtmlElementId.OutputTextarea)?.addEventListener('change', this.hideCopyOkIcon);
     }
 
-    private onClick_SaveOptionsButton = (): void => {
-        this.saveOptionsToStorage();
-    }
-
-    private onClick_MergeButton = (): void => {
+    private mergeInput = (): void => {
         // Initialize workers
         const parser = new Parser(HtmlReader.getParserOptions());
         const merger = new Merger(HtmlReader.getMergerOptions());
@@ -56,12 +52,12 @@ export class Controller {
         const outputText = stringifier.getStringifiedOutput(mergedChunks);
         HtmlWriter.writeOutputText(outputText);
 
-        this.onChange_OutputText();
+        this.hideCopyOkIcon();
         if (HtmlReader.getCopyOnMerge())
-            this.onClick_CopyButton();
+            this.copyOutputToClipboard();
     }
 
-    private onClick_CopyButton = (): void => {
+    private copyOutputToClipboard = (): void => {
         const outputText = HtmlReader.getOutputText();
         if (!outputText)
             return;
@@ -78,11 +74,11 @@ export class Controller {
     private triggerMergeOnCtrlEnter = (event: KeyboardEvent): void => {
         if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
             event.preventDefault();
-            this.onClick_MergeButton();
+            this.mergeInput();
         }
     }
 
-    private onChange_OutputText = (): void => {
+    private hideCopyOkIcon = (): void => {
         HtmlWriter.setCopyOkIconVisibility(false);
     }
 }
