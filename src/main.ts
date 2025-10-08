@@ -1,4 +1,4 @@
-// TODO: Set tab ortder.
+// TODO: Set tab order.
 // TODO: Unit tests.
 // TODO: Help documentation with example. (In web.)
 // TODO: Styling. (Including setting the font)

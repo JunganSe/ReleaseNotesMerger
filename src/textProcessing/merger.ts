@@ -4,8 +4,6 @@ import { SortBy } from "./sorting";
 import { TextChunk } from "./textChunk";
 import { TextChunkHelper } from "./textChunkHelper";
 
-// TODO: Maintain the order of content lines when chunks are merged, regardless of which chunk is picked as the keeper.
-
 export class Merger {
     private _options: MergerOptions;
 
