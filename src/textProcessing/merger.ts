@@ -17,7 +17,7 @@ export class Merger {
             SortBy.preferredOrder_CaseInsensitive(uniqueHeadings, this._options.headingOrder);
 
         if (this._options.ignoreHeadingCase)
-            uniqueHeadings = this.getDeduplicatedHeadings(uniqueHeadings, this._options.headingOrder);
+            uniqueHeadings = this.getCasingDeduplicatedHeadings(uniqueHeadings, this._options.headingOrder);
 
         const outputChunks: TextChunk[] = uniqueHeadings.map(heading => ({ heading, content: [] }));
 
@@ -31,9 +31,9 @@ export class Merger {
         return outputChunks.filter(chunk => chunk.heading && chunk.content.length > 0);
     }
 
-    /** Removes headings that differ only in casing.
-     * Prefers versions found in the preferredHeadings parameter, then capitalized versions. */
-    private getDeduplicatedHeadings(headings: string[], preferredHeadings: string[]): string[] {
+    /** Returns an array of strings where versions that only differ by casing has been removed.
+     *  Prefers versions found in the preferredHeadings parameter, then capitalized versions. */
+    private getCasingDeduplicatedHeadings(headings: string[], preferredHeadings: string[]): string[] {
         const chosenHeadings = headings.map(heading => {
             const matchingHeadings = headings.filter(h => h.toLowerCase() === heading.toLowerCase());
             const preferredHeading = preferredHeadings.find(ph => matchingHeadings.some(h => h.toLowerCase() === ph.toLowerCase()));
