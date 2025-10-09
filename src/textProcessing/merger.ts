@@ -22,10 +22,8 @@ export class Merger {
 
         const outputChunks: TextChunk[] = uniqueHeadings.map(heading => ({ heading, content: [] }));
 
-        if (this._options.ignoreHeadingCase)
-            inputChunks.forEach(inputChunk => this.addContentToMatchingOutputChunk_CaseInsensitive(inputChunk, outputChunks));
-        else
-            inputChunks.forEach(inputChunk => this.addContentToMatchingOutputChunk(inputChunk, outputChunks));
+        const isCaseSensitive = !this._options.ignoreHeadingCase;
+        inputChunks.forEach(inputChunk => this.addContentToMatchingOutputChunk(inputChunk, outputChunks, isCaseSensitive));
 
         // TODO: If options.allowMisspelledHeadings is true, group similar headings together.
         //       (e.g. "Feature", "Features", "Feautres" -> "Features")
@@ -47,13 +45,10 @@ export class Merger {
         return [...deduplicatedHeadings];
     }
 
-    private addContentToMatchingOutputChunk(inputChunk: TextChunk, outputChunks: TextChunk[]): void {
-        const outputChunk = outputChunks.find(chunk => chunk.heading === inputChunk.heading);
-        outputChunk?.content.push(...inputChunk.content);
-    }
-
-    private addContentToMatchingOutputChunk_CaseInsensitive(inputChunk: TextChunk, outputChunks: TextChunk[]): void {
-        const outputChunk = outputChunks.find(chunk => chunk.heading?.toLowerCase() === inputChunk.heading?.toLowerCase());
+    private addContentToMatchingOutputChunk(inputChunk: TextChunk, outputChunks: TextChunk[], isCaseSensitive: boolean): void {
+        const outputChunk = outputChunks.find(chunk => (isCaseSensitive)
+            ? chunk.heading === inputChunk.heading
+            : chunk.heading?.toLowerCase() === inputChunk.heading?.toLowerCase());
         outputChunk?.content.push(...inputChunk.content);
     }
 }
