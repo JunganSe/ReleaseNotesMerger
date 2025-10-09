@@ -19,16 +19,16 @@ export class Merger {
         if (this._options.ignoreHeadingCase)
             uniqueHeadings = this.getCasingDeduplicatedHeadings(uniqueHeadings, this._options.headingOrder);
 
+        // TODO: If options.allowMisspelledHeadings is true, group similar headings together.
+        //       (e.g. "Feature", "Features", "Feautres" -> "Features")
+        //       If options.headingOrder contains a similar heading, use that.
+
         const outputChunks: TextChunk[] = uniqueHeadings.map(heading => ({ heading, content: [] }));
 
         const isCaseSensitive = !this._options.ignoreHeadingCase;
         inputChunks.forEach(inputChunk => TextChunkHelper.addContentToMatchingOutputChunk(inputChunk, outputChunks, isCaseSensitive));
 
-        // TODO: If options.allowMisspelledHeadings is true, group similar headings together.
-        //       (e.g. "Feature", "Features", "Feautres" -> "Features")
-        //       If options.headingOrder contains a similar heading, use that.
-
-        return outputChunks.filter(chunk => chunk.heading && chunk.content.length > 0);
+        return outputChunks;
     }
 
     /** Returns an array of strings where versions that only differ by casing has been removed.
