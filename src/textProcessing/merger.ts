@@ -12,16 +12,20 @@ export class Merger {
     }
 
     mergeChunks(inputChunks: TextChunk[]): TextChunk[] {
-        const uniqueHeadings = TextChunkHelper.getUniqueHeadings(inputChunks);
+        let uniqueHeadings = TextChunkHelper.getUniqueHeadings(inputChunks);
 
         if (this._options.headingOrder.length)
             SortBy.preferredOrder_CaseInsensitive(uniqueHeadings, this._options.headingOrder);
 
+        if (this._options.ignoreHeadingCase)
+            uniqueHeadings = this.getDeduplicatedHeadings(uniqueHeadings, this._options.headingOrder);
+
         const outputChunks: TextChunk[] = uniqueHeadings.map(heading => ({ heading, content: [] }));
-        inputChunks.forEach(inputChunk => this.addContentToMatchingOutputChunk(inputChunk, outputChunks));
 
         if (this._options.ignoreHeadingCase)
-            HeadingBasedChunkMerger.mergeAllChunksWithSameHeading_CaseInsensitive(outputChunks, this._options.headingOrder);
+            inputChunks.forEach(inputChunk => this.addContentToMatchingOutputChunk_CaseInsensitive(inputChunk, outputChunks));
+        else
+            inputChunks.forEach(inputChunk => this.addContentToMatchingOutputChunk(inputChunk, outputChunks));
 
         // TODO: If options.allowMisspelledHeadings is true, group similar headings together.
         //       (e.g. "Feature", "Features", "Feautres" -> "Features")
@@ -30,8 +34,26 @@ export class Merger {
         return outputChunks.filter(chunk => chunk.heading && chunk.content.length > 0);
     }
 
+    /** Removes headings that differ only in casing.
+     * Prefers versions found in the preferredHeadings parameter, then capitalized versions. */
+    private getDeduplicatedHeadings(headings: string[], preferredHeadings: string[]): string[] {
+        const chosenHeadings = headings.map(heading => {
+            const matchingHeadings = headings.filter(h => h.toLowerCase() === heading.toLowerCase());
+            const preferredHeading = preferredHeadings.find(ph => matchingHeadings.some(h => h.toLowerCase() === ph.toLowerCase()));
+            const firstCapitalizedHeading = matchingHeadings.find(h => h && h[0] === h[0].toUpperCase());
+            return preferredHeading ?? firstCapitalizedHeading ?? heading;
+        });
+        const deduplicatedHeadings = new Set(chosenHeadings);
+        return [...deduplicatedHeadings];
+    }
+
     private addContentToMatchingOutputChunk(inputChunk: TextChunk, outputChunks: TextChunk[]): void {
         const outputChunk = outputChunks.find(chunk => chunk.heading === inputChunk.heading);
+        outputChunk?.content.push(...inputChunk.content);
+    }
+
+    private addContentToMatchingOutputChunk_CaseInsensitive(inputChunk: TextChunk, outputChunks: TextChunk[]): void {
+        const outputChunk = outputChunks.find(chunk => chunk.heading?.toLowerCase() === inputChunk.heading?.toLowerCase());
         outputChunk?.content.push(...inputChunk.content);
     }
 }
