@@ -22,7 +22,7 @@ export class Merger {
         const outputChunks: TextChunk[] = uniqueHeadings.map(heading => ({ heading, content: [] }));
 
         const isCaseSensitive = !this._options.ignoreHeadingCase;
-        inputChunks.forEach(inputChunk => this.addContentToMatchingOutputChunk(inputChunk, outputChunks, isCaseSensitive));
+        inputChunks.forEach(inputChunk => TextChunkHelper.addContentToMatchingOutputChunk(inputChunk, outputChunks, isCaseSensitive));
 
         // TODO: If options.allowMisspelledHeadings is true, group similar headings together.
         //       (e.g. "Feature", "Features", "Feautres" -> "Features")
@@ -42,12 +42,5 @@ export class Merger {
         });
         const deduplicatedHeadings = new Set(chosenHeadings);
         return [...deduplicatedHeadings];
-    }
-
-    private addContentToMatchingOutputChunk(inputChunk: TextChunk, outputChunks: TextChunk[], isCaseSensitive: boolean): void {
-        const outputChunk = outputChunks.find(chunk => (isCaseSensitive)
-            ? chunk.heading === inputChunk.heading
-            : chunk.heading?.toLowerCase() === inputChunk.heading?.toLowerCase());
-        outputChunk?.content.push(...inputChunk.content);
     }
 }

@@ -7,4 +7,12 @@ export class TextChunkHelper {
             .filter(heading => heading != null);
         return [...new Set(headings)];
     }
+
+    /** Adds the content of the inputChunk to an outputChunk with matching heading. */
+    static addContentToMatchingOutputChunk(inputChunk: TextChunk, outputChunks: TextChunk[], isCaseSensitive: boolean): void {
+        const outputChunk = outputChunks.find(chunk => (isCaseSensitive)
+            ? chunk.heading === inputChunk.heading
+            : chunk.heading?.toLowerCase() === inputChunk.heading?.toLowerCase());
+        outputChunk?.content.push(...inputChunk.content);
+    }
 }
