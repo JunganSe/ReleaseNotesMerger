@@ -1,4 +1,3 @@
-import { HeadingBasedChunkMerger } from "./headingBasedChunkMerger";
 import { MergerOptions } from "./mergerOptions";
 import { SortBy } from "./sorting";
 import { TextChunk } from "./textChunk";

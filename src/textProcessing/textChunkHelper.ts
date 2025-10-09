@@ -7,8 +7,4 @@ export class TextChunkHelper {
             .filter(heading => heading != null);
         return [...new Set(headings)];
     }
-
-    static getChunksWithMatchingHeading_CaseInsensitive(chunks: TextChunk[], heading: string): TextChunk[] {
-        return chunks.filter(c => c.heading?.toLowerCase() === heading.toLowerCase());
-    }
 }
