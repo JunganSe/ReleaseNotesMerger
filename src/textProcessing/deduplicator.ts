@@ -1,5 +1,5 @@
 export class Deduplicator {
-    /** Returns an array of strings where versions that only differ by casing has been removed.
+    /** Returns an array of strings where versions that only differ by casing have been removed.
      *  Prefers versions found in the preferredStrings parameter, then capitalized versions. */
     static getCasingDeduplicatedStrings(inputStrings: string[], preferredStrings: string[]): string[] {
         const chosenStrings = inputStrings.map(inputString => {
@@ -10,5 +10,20 @@ export class Deduplicator {
         });
         const deduplicatedStrings = new Set(chosenStrings);
         return [...deduplicatedStrings];
+    }
+
+    /** Returns an array of strings where versions that only differ slightly in spelling have been removed.
+     *  Prefers versions found in the preferredStrings parameter, otherwise the first version. */
+    static getSpellingDeduplicatedStrings(inputStrings: string[], preferredStrings: string[]): string[] {
+        // TODO: Implement spelling deduplication.
+        throw new Error("Not implemented");
+    }
+
+    /** Considers strings similar if:
+     *  - They have 90% or more characters in the same order (case insensitive).
+     *  - They differ in lengt by at most 10%. */
+    private static areStringsSimilar(str1: string, str2: string): boolean {
+        // TODO: Implement string similarity check.
+        throw new Error("Not implemented");
     }
 }

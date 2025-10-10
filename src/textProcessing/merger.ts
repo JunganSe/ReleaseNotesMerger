@@ -12,19 +12,19 @@ export class Merger {
     }
 
     mergeChunks(inputChunks: TextChunk[]): TextChunk[] {
-        let uniqueHeadings = TextChunkHelper.getUniqueHeadings(inputChunks);
+        let headings = TextChunkHelper.getUniqueHeadings(inputChunks);
 
         if (this._options.headingOrder.length)
-            SortBy.preferredOrder_CaseInsensitive(uniqueHeadings, this._options.headingOrder);
+            SortBy.preferredOrder_CaseInsensitive(headings, this._options.headingOrder);
 
         if (this._options.ignoreHeadingCase)
-            uniqueHeadings = Deduplicator.getCasingDeduplicatedStrings(uniqueHeadings, this._options.headingOrder);
+            headings = Deduplicator.getCasingDeduplicatedStrings(headings, this._options.headingOrder);
 
-        // TODO: If options.allowMisspelledHeadings is true, group similar headings together.
-        //       (e.g. "Feature", "Features", "Feautres" -> "Features")
-        //       If options.headingOrder contains a similar heading, use that.
+        // TODO: Uncomment when implemented.
+        // if (this._options.allowMisspelledHeadings)
+        //     headings = Deduplicator.getSpellingDeduplicatedStrings(headings, this._options.headingOrder);
 
-        const outputChunks: TextChunk[] = uniqueHeadings.map(heading => ({ heading, content: [] }));
+        const outputChunks: TextChunk[] = headings.map(heading => ({ heading, content: [] }));
 
         const isCaseSensitive = !this._options.ignoreHeadingCase;
         inputChunks.forEach(inputChunk => TextChunkHelper.addContentToMatchingOutputChunk(inputChunk, outputChunks, isCaseSensitive));
