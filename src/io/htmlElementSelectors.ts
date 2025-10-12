@@ -11,6 +11,7 @@ export enum HtmlElementId {
     CopyOnMerge = 'copy-on-merge',
 
     SaveOptionsButton = 'btn_save-options',
+    LoadOptionsButton = 'btn_load-options',
     MergeButton = 'btn_merge',
     CopyButton = 'btn_copy',
     CopyOkIcon = 'icon_copy-ok'

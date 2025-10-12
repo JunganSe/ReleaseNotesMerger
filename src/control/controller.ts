@@ -31,6 +31,7 @@ export class Controller {
 
     private setEvents(): void {
         document.getElementById(HtmlElementId.SaveOptionsButton)?.addEventListener('click', this.saveOptionsToStorage);
+        document.getElementById(HtmlElementId.LoadOptionsButton)?.addEventListener('click', this.applyOptionsFromStorage);
         document.getElementById(HtmlElementId.MergeButton)?.addEventListener('click', this.mergeInput);
         document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.copyOutputToClipboard);
         document.querySelectorAll<HTMLElement>(`#${HtmlElementId.InputTextarea}, .${HtmlElementClass.OptionsContainer} input`)
