@@ -12,6 +12,7 @@ export enum HtmlElementId {
 
     SaveOptionsButton = 'btn_save-options',
     LoadOptionsButton = 'btn_load-options',
+    ClearOptionsButton = 'btn_clear-options',
     MergeButton = 'btn_merge',
     CopyButton = 'btn_copy',
     CopyOkIcon = 'icon_copy-ok'
