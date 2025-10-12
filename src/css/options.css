@@ -31,3 +31,7 @@
 .options-table #ignore-heading-case {
     
 }
+
+.options-table .options-buttons {
+    text-align: center;
+}
