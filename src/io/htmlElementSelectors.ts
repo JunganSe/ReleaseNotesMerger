@@ -20,4 +20,9 @@ export enum HtmlElementId {
 
 export enum HtmlElementClass {
     OptionsContainer = 'container_options',
+    IoContainer = 'container_io',
+    InputHeaderContainer = 'container_header-input',
+    InputContainer = 'container_input',
+    OutputHeaderContainer = 'container_header-output',
+    OutputContainer = 'container_output',
 }
