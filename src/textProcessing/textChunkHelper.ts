@@ -15,4 +15,9 @@ export class TextChunkHelper {
             : chunk.heading?.toLowerCase() === inputChunk.heading?.toLowerCase());
         outputChunk?.content.push(...inputChunk.content);
     }
+
+    static applyIndentMultiplier(chunks: TextChunk[], indentMultiplier: number): void {
+        // TODO: Implement indent multiplier application.
+        throw new Error("Not implemented");
+    }
 }

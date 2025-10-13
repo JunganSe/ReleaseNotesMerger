@@ -7,9 +7,6 @@ import { Merger } from "../textProcessing/merger";
 import { Parser } from "../textProcessing/parser";
 import { Stringifier } from "../textProcessing/stringifier";
 
-// TODO: Numeric input for indent multiplier. (Multiplies leading spaces by this number.)
-// TODO: Checkbox to enable/disable auto-merge on input text change?
-
 export class Controller {
     initialize(): void {
         this.applyOptionsFromStorage();
