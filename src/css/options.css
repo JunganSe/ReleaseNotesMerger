@@ -32,6 +32,14 @@
     
 }
 
+.options-table #copy-on-merge {
+    
+}
+
 .options-table .options-buttons-container {
     text-align: center;
+}
+
+.options-table .options-buttons-container button {
+
 }
