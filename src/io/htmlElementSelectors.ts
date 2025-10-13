@@ -19,5 +19,5 @@ export enum HtmlElementId {
 }
 
 export enum HtmlElementClass {
-    OptionsContainer = 'container-options'
+    OptionsContainer = 'container_options',
 }

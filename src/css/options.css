@@ -1,4 +1,4 @@
-.container-options {
+.container_options {
     display: flex;
     justify-content: center;
     margin-bottom: 1rem;
@@ -36,10 +36,10 @@
     
 }
 
-.options-table .options-buttons-container {
+.options-table .container_options-buttons {
     text-align: center;
 }
 
-.options-table .options-buttons-container button {
+.options-table .container_options-buttons button {
 
 }
