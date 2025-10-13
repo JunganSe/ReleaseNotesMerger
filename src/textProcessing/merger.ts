@@ -31,6 +31,8 @@ export class Merger {
         const isCaseSensitive = !this._options.ignoreHeadingCase;
         inputChunks.forEach(inputChunk => TextChunkHelper.addContentToMatchingOutputChunk(inputChunk, outputChunks, isCaseSensitive));
 
+        // TODO: Apply indent multiplier to content lines.
+
         return outputChunks;
     }
 }

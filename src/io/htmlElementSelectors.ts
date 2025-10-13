@@ -6,6 +6,7 @@ export enum HtmlElementId {
     OutputDate = 'output-date',
     IgnoreLinesPrefix = 'ignore-lines-prefixes',
     HeadingOrder = 'heading-order',
+    IndentMultiplier = 'indent-multiplier',
     IgnoreHeadingCase = 'ignore-heading-case',
     AllowMisspelledHeadings = 'allow-misspelled-headings',
     CopyOnMerge = 'copy-on-merge',
