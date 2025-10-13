@@ -27,6 +27,7 @@ export class HtmlReader {
     static getMergerOptions(): MergerOptions {
         return {
             headingOrder: this.getHeadingOrder(),
+            indentMultiplier: this.getIndentMultiplier(),
             ignoreHeadingCase: this.getIgnoreHeadingCase(),
             allowMisspelledHeadings: this.getAllowMisspelledHeadings(),
         };
@@ -65,6 +66,10 @@ export class HtmlReader {
             .map(str => str.trim())
             .filter(str => str.length)
             ?? [];
+    }
+
+    static getIndentMultiplier(): number {
+        return this.readInput_Number(HtmlElementId.IndentMultiplier) ?? 1;
     }
 
     static getIgnoreHeadingCase(): boolean {
