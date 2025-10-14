@@ -15,6 +15,10 @@ export class HtmlWriter {
         if (headingOrderInput)
             headingOrderInput.value = options.headingOrder.join(', ');
 
+        const indentMultiplierInput = document.getElementById(HtmlElementId.IndentMultiplier) as HTMLInputElement;
+        if (indentMultiplierInput)
+            indentMultiplierInput.value = options.indentMultiplier?.toString();
+
         const ignoreHeadingCaseInput = document.getElementById(HtmlElementId.IgnoreHeadingCase) as HTMLInputElement;
         if (ignoreHeadingCaseInput)
             ignoreHeadingCaseInput.checked = options.ignoreHeadingCase;

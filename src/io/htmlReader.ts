@@ -12,6 +12,7 @@ export class HtmlReader {
             datePrefix: this.getDatePrefx(),
             ignoreLinesPrefixes: this.getIgnoreLinesPrefixes(),
             headingOrder: this.getHeadingOrder(),
+            indentMultiplier: this.getIndentMultiplier(),
             ignoreHeadingCase: this.getIgnoreHeadingCase(),
             copyOnMerge: this.getCopyOnMerge(),
         };
