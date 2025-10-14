@@ -31,7 +31,8 @@ export class Merger {
         const isCaseSensitive = !this._options.ignoreHeadingCase;
         inputChunks.forEach(inputChunk => TextChunkHelper.addContentToMatchingOutputChunk(inputChunk, outputChunks, isCaseSensitive));
 
-        TextChunkHelper.applyIndentMultiplier(outputChunks, this._options.indentMultiplier);
+        if (this._options.indentMultiplier >= 0)
+            TextChunkHelper.applyIndentMultiplier(outputChunks, this._options.indentMultiplier);
 
         return outputChunks;
     }
