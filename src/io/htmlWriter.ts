@@ -9,23 +9,23 @@ export class HtmlWriter {
 
         const ignoreLinesInput = document.getElementById(HtmlElementId.IgnoreLinesPrefix) as HTMLInputElement;
         if (ignoreLinesInput)
-            ignoreLinesInput.value = options.ignoreLinesPrefixes.join(', ');
+            ignoreLinesInput.value = options.ignoreLinesPrefixes?.join(', ') ?? '';
 
         const headingOrderInput = document.getElementById(HtmlElementId.HeadingOrder) as HTMLInputElement;
         if (headingOrderInput)
-            headingOrderInput.value = options.headingOrder.join(', ');
+            headingOrderInput.value = options.headingOrder?.join(', ') ?? '';
 
         const indentMultiplierInput = document.getElementById(HtmlElementId.IndentMultiplier) as HTMLInputElement;
         if (indentMultiplierInput)
-            indentMultiplierInput.value = options.indentMultiplier?.toString();
+            indentMultiplierInput.value = options.indentMultiplier?.toString() ?? '';
 
         const ignoreHeadingCaseInput = document.getElementById(HtmlElementId.IgnoreHeadingCase) as HTMLInputElement;
         if (ignoreHeadingCaseInput)
-            ignoreHeadingCaseInput.checked = options.ignoreHeadingCase;
+            ignoreHeadingCaseInput.checked = options.ignoreHeadingCase ?? false;
 
         const copyOnMergeInput = document.getElementById(HtmlElementId.CopyOnMerge) as HTMLInputElement;
         if (copyOnMergeInput)
-            copyOnMergeInput.checked = options.copyOnMerge;
+            copyOnMergeInput.checked = options.copyOnMerge ?? false;
     }
 
     static setDateInputToToday(): void {
