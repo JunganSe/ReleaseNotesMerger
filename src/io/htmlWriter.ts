@@ -3,30 +3,26 @@ import { Options } from "./options";
 
 export class HtmlWriter {
     static applyOptions(options: Options): void {
-        const datePrefixInput = document.getElementById(HtmlElementId.DatePrefix) as HTMLInputElement;
-        if (datePrefixInput)
-            datePrefixInput.value = options.datePrefix ?? '';
-
-        const ignoreLinesInput = document.getElementById(HtmlElementId.IgnoreLinesPrefix) as HTMLInputElement;
-        if (ignoreLinesInput)
-            ignoreLinesInput.value = options.ignoreLinesPrefixes?.join(', ') ?? '';
-
-        const headingOrderInput = document.getElementById(HtmlElementId.HeadingOrder) as HTMLInputElement;
-        if (headingOrderInput)
-            headingOrderInput.value = options.headingOrder?.join(', ') ?? '';
-
-        const indentMultiplierInput = document.getElementById(HtmlElementId.IndentMultiplier) as HTMLInputElement;
-        if (indentMultiplierInput)
-            indentMultiplierInput.value = options.indentMultiplier?.toString() ?? '';
-
-        const ignoreHeadingCaseInput = document.getElementById(HtmlElementId.IgnoreHeadingCase) as HTMLInputElement;
-        if (ignoreHeadingCaseInput)
-            ignoreHeadingCaseInput.checked = options.ignoreHeadingCase ?? false;
-
-        const copyOnMergeInput = document.getElementById(HtmlElementId.CopyOnMerge) as HTMLInputElement;
-        if (copyOnMergeInput)
-            copyOnMergeInput.checked = options.copyOnMerge ?? false;
+        this.setInputValue(HtmlElementId.DatePrefix, options.datePrefix ?? '');
+        this.setInputValue(HtmlElementId.IgnoreLinesPrefix, options.ignoreLinesPrefixes?.join(', ') ?? '');
+        this.setInputValue(HtmlElementId.HeadingOrder, options.headingOrder?.join(', ') ?? '');
+        this.setInputValue(HtmlElementId.IndentMultiplier, options.indentMultiplier?.toString() ?? '');
+        this.setCheckbox(HtmlElementId.IgnoreHeadingCase, options.ignoreHeadingCase ?? false);
+        this.setCheckbox(HtmlElementId.CopyOnMerge, options.copyOnMerge ?? false);
     }
+
+    private static setInputValue(id: string, value: string): void {
+        const element = document.getElementById(id);
+        const validTypes = new Set(['text', 'number', 'textarea']);
+        if (element instanceof HTMLInputElement && validTypes.has(element.type))
+            element.value = value;
+    };
+
+    private static setCheckbox(id: string, checked: boolean): void {
+        const element = document.getElementById(id);
+        if ((element instanceof HTMLInputElement) && (element.type === 'checkbox'))
+            element.checked = checked;
+    };
 
     static setDateInputToToday(): void {
         const dateInput = document.getElementById(HtmlElementId.OutputDate) as HTMLInputElement;
