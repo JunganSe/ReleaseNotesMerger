@@ -15,7 +15,7 @@
 <body>
     <h1>Release notes merger</h1>
 
-    <div class="container-options">
+    <div class="container_options">
         <table class="options-table">
             <tr>
                 <th>Output date</th>
@@ -33,6 +33,10 @@
                 <td><input type="text" id="heading-order"></td>
             </tr>
             <tr>
+                <th>Indent multiplier</th>
+                <td><input type="number" id="indent-multiplier" min="1" step="1" placeholder="1"></td>
+            </tr>
+            <tr>
                 <th>Ignore heading case</th>
                 <td><input type="checkbox" id="ignore-heading-case"></td>
             </tr>
@@ -41,23 +45,26 @@
                 <td><input type="checkbox" id="copy-on-merge"></td>
             </tr>
             <tr>
-                <td></td>
-                <td><button id="btn_save-options">Save</button></td>
+                <td colspan="2" class="container_options-buttons">
+                    <button id="btn_save-options">Save</button>
+                    <button id="btn_load-options">Load</button>
+                    <button id="btn_clear-options">Clear</button>
+                </td>
             </tr>
         </table>
     </div>
 
-    <div class="container-io">
-        <div class="container-input">
-            <div class="container-header-input">
+    <div class="container_io">
+        <div class="container_input">
+            <div class="container_header-input">
                 <label for="input-text">Input</label>
                 <button id="btn_merge">Merge --&gt;</button>
             </div>
             <textarea class="input" id="input-text"></textarea>
         </div>
 
-        <div class="container-output">
-            <div class="container-header-output">
+        <div class="container_output">
+            <div class="container_header-output">
                 <label for="output-text">Output</label>
                 <div>
                     <button id="btn_copy">Copy</button>

@@ -15,4 +15,15 @@ export class TextChunkHelper {
             : chunk.heading?.toLowerCase() === inputChunk.heading?.toLowerCase());
         outputChunk?.content.push(...inputChunk.content);
     }
+
+    static applyIndentMultiplier(chunks: TextChunk[], indentMultiplier: number): void {
+        for (const chunk of chunks) {
+            for (let i = 0; i < chunk.content.length; i++) {
+                const line = chunk.content[i];
+                const leadingSpacesCount = line.match(/^ */)?.[0].length ?? 0;
+                const newLeadingSpacesCount = Math.floor(leadingSpacesCount * indentMultiplier);
+                chunk.content[i] = ' '.repeat(newLeadingSpacesCount) + line.trimStart();
+            }
+        }
+    }
 }

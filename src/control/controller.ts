@@ -7,10 +7,6 @@ import { Merger } from "../textProcessing/merger";
 import { Parser } from "../textProcessing/parser";
 import { Stringifier } from "../textProcessing/stringifier";
 
-// TODO: Numeric input for indent multiplier. (Multiplies leading spaces by this number.)
-// TODO: Checkbox to enable/disable auto-merge on input text change.
-// TODO: Button to reset options to default values?
-
 export class Controller {
     initialize(): void {
         this.applyOptionsFromStorage();
@@ -29,8 +25,15 @@ export class Controller {
         StorageHandler.save(options);
     }
 
+    private clearOptionsInStorage(): void {
+        StorageHandler.clear();
+    }
+
     private setEvents(): void {
         document.getElementById(HtmlElementId.SaveOptionsButton)?.addEventListener('click', this.saveOptionsToStorage);
+        document.getElementById(HtmlElementId.LoadOptionsButton)?.addEventListener('click', this.applyOptionsFromStorage);
+        document.getElementById(HtmlElementId.ClearOptionsButton)?.addEventListener('click', this.clearOptionsInStorage);
+
         document.getElementById(HtmlElementId.MergeButton)?.addEventListener('click', this.mergeInput);
         document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.copyOutputToClipboard);
         document.querySelectorAll<HTMLElement>(`#${HtmlElementId.InputTextarea}, .${HtmlElementClass.OptionsContainer} input`)

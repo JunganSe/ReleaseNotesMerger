@@ -1,4 +1,4 @@
-.container-io {
+.container_io {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -6,15 +6,15 @@
     gap: 2rem;
 }
 
-.container-input,
-.container-output {
+.container_input,
+.container_output {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-.container-header-input,
-.container-header-output {
+.container_header-input,
+.container_header-output {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;

@@ -1,4 +1,4 @@
-.container-options {
+.container_options {
     display: flex;
     justify-content: center;
     margin-bottom: 1rem;
@@ -30,4 +30,16 @@
 
 .options-table #ignore-heading-case {
     
+}
+
+.options-table #copy-on-merge {
+    
+}
+
+.options-table .container_options-buttons {
+    text-align: center;
+}
+
+.options-table .container_options-buttons button {
+
 }

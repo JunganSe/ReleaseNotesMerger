@@ -34,4 +34,13 @@ export class StorageHandler {
             return null;
         }
     }
+
+    static clear(): void {
+        try {
+            localStorage.removeItem(this._storageKey);
+        }
+        catch (e) {
+            console.error('Failed to clear options from localStorage:', e);
+        }
+    }
 }

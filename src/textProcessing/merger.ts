@@ -4,6 +4,8 @@ import { SortBy } from "./sorting";
 import { TextChunk } from "./textChunk";
 import { TextChunkHelper } from "./textChunkHelper";
 
+// TODO: Option to remove (whole) duplicate lines within each chunk.
+
 export class Merger {
     private _options: MergerOptions;
 
@@ -28,6 +30,9 @@ export class Merger {
 
         const isCaseSensitive = !this._options.ignoreHeadingCase;
         inputChunks.forEach(inputChunk => TextChunkHelper.addContentToMatchingOutputChunk(inputChunk, outputChunks, isCaseSensitive));
+
+        if (this._options.indentMultiplier >= 0)
+            TextChunkHelper.applyIndentMultiplier(outputChunks, this._options.indentMultiplier);
 
         return outputChunks;
     }
