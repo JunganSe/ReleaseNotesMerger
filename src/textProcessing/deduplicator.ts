@@ -50,24 +50,26 @@ export class Deduplicator {
     /** Calculates the length of the Longest Common Subsequence (LCS) between two strings.
      *  LCS is the longest sequence that appears in both strings in the same order, but not necessarily consecutively.
      *  Courtesy of Claude. See https://en.wikipedia.org/wiki/Longest_common_subsequence_problem */
-    private static getLcsLength(s1: string, s2: string): number {
-        const m = s1.length;
-        const n = s2.length;
+    private static getLcsLength(stringA: string, stringB: string): number {
+        const lengthA = stringA.length;
+        const lengthB = stringB.length;
 
-        // Create DP table
-        const dp: number[][] = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
+        // Create DP (dynamic programming) table.
+        const dp: number[][] =
+            Array(lengthA + 1)
+                .fill(null)
+                .map(() => Array(lengthB + 1).fill(0));
 
-        // Fill DP table
-        for (let i = 1; i <= m; i++) {
-            for (let j = 1; j <= n; j++) {
-                if (s1[i - 1] === s2[j - 1]) {
-                    dp[i][j] = dp[i - 1][j - 1] + 1;
-                } else {
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
-                }
+        // Fill DP table.
+        for (let iA = 1; iA <= lengthA; iA++) {
+            for (let iB = 1; iB <= lengthB; iB++) {
+                if (stringA[iA - 1] === stringB[iB - 1])
+                    dp[iA][iB] = dp[iA - 1][iB - 1] + 1;
+                else
+                    dp[iA][iB] = Math.max(dp[iA - 1][iB], dp[iA][iB - 1]);
             }
         }
 
-        return dp[m][n];
+        return dp[lengthA][lengthB];
     }
 }
