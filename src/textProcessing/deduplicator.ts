@@ -20,31 +20,31 @@ export class Deduplicator {
     }
 
     /** Considers strings similar if:
-     *  - They have x% or more characters in the same order, but not necessarily consecutively. Case insensitive.
      *  - Their lengths are within x% of each other.
+     *  - They have x% or more characters in the same order, but not necessarily consecutively. Case insensitive.
      */
-    private static areStringsSimilar(string1: string, string2: string, percentThreshold: number): boolean {
+    private static areStringsSimilar(stringA: string, stringB: string, percentThreshold: number): boolean {
+        if (stringA.length === 0 && stringB.length === 0)
+            return true; // Both strings are empty.
+
         const threshold = Math.min(Math.max(percentThreshold, 0), 100); // Clamp to [0, 100].
         if (threshold === 0)
-            return true;
+            return true; // Threshold is 0, there are no restrictions.
 
-        const str1 = string1.toLowerCase();
-        const str2 = string2.toLowerCase();
+        const strA = stringA.toLowerCase();
+        const strB = stringB.toLowerCase();
 
-        const minLength = Math.min(str1.length, str2.length);
-        const maxLength = Math.max(str1.length, str2.length);
-
-        if (maxLength === 0)
-            return true; // Both strings are empty.
+        const minLength = Math.min(strA.length, strB.length);
+        const maxLength = Math.max(strA.length, strB.length);
 
         const lengthDiffPercent = ((maxLength - minLength) / maxLength) * 100;
         if (lengthDiffPercent > 100 - threshold)
-            return false; // Length difference exceeds 10%.
+            return false; // Length difference is more than allowed.
 
-        const lcsLength = this.getLcsLength(str1, str2); // Calculate Longest Common Subsequence (LCS) length.
+        const lcsLength = this.getLcsLength(strA, strB); // Calculate Longest Common Subsequence (LCS) length.
         const matchPercent = (lcsLength / maxLength) * 100; // Get percentage of matching characters in same order.
 
-        return matchPercent >= threshold;
+        return (matchPercent >= threshold);
     }
 
     /** Calculates the length of the Longest Common Subsequence (LCS) between two strings.
