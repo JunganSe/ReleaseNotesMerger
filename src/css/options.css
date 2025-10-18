@@ -4,6 +4,27 @@
     margin-bottom: 1rem;
 }
 
+
+
+/* Accordion */
+
+.options-accordion-summary {
+    border: 1px solid #aaaaaa;
+    background-color: #eeeeee;
+    border-radius: 0.3rem;
+    padding: 0.1rem 0.5rem;
+    margin-bottom: 0.2rem;
+    text-align: center;
+    cursor: pointer;
+}
+.options-accordion-summary:hover {
+    background-color: #e0e0e0;
+}
+
+
+
+/* Options table */
+
 .options-table {
     border: 1px solid silver;
 }

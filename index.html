@@ -16,42 +16,46 @@
     <h1>Release notes merger</h1>
 
     <div class="container_options">
-        <table class="options-table">
-            <tr>
-                <th>Output date</th>
-                <td>
-                    <input type="text" id="output-date-prefix" placeholder="Prefix">
-                    <input type="date" id="output-date">
-                </td>
-            </tr>
-            <tr>
-                <th>Ignore lines starting with</th>
-                <td><input type="text" id="ignore-lines-prefixes"></td>
-            </tr>
-            <tr>
-                <th>Heading order</th>
-                <td><input type="text" id="heading-order"></td>
-            </tr>
-            <tr>
-                <th>Indent multiplier</th>
-                <td><input type="number" id="indent-multiplier" min="1" step="1" placeholder="1"></td>
-            </tr>
-            <tr>
-                <th>Ignore heading case</th>
-                <td><input type="checkbox" id="ignore-heading-case"></td>
-            </tr>
-            <tr>
-                <th>Copy on merge</th>
-                <td><input type="checkbox" id="copy-on-merge"></td>
-            </tr>
-            <tr>
-                <td colspan="2" class="container_options-buttons">
-                    <button id="btn_save-options">Save</button>
-                    <button id="btn_load-options">Load</button>
-                    <button id="btn_clear-options">Clear</button>
-                </td>
-            </tr>
-        </table>
+        <details>
+            <summary class="options-accordion-summary">Options</summary>
+
+            <table class="options-table">
+                <tr>
+                    <th>Output date</th>
+                    <td>
+                        <input type="text" id="output-date-prefix" placeholder="Prefix">
+                        <input type="date" id="output-date">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Ignore lines starting with</th>
+                    <td><input type="text" id="ignore-lines-prefixes"></td>
+                </tr>
+                <tr>
+                    <th>Heading order</th>
+                    <td><input type="text" id="heading-order"></td>
+                </tr>
+                <tr>
+                    <th>Indent multiplier</th>
+                    <td><input type="number" id="indent-multiplier" min="1" step="1" placeholder="1"></td>
+                </tr>
+                <tr>
+                    <th>Ignore heading case</th>
+                    <td><input type="checkbox" id="ignore-heading-case"></td>
+                </tr>
+                <tr>
+                    <th>Copy on merge</th>
+                    <td><input type="checkbox" id="copy-on-merge"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="container_options-buttons">
+                        <button id="btn_save-options">Save</button>
+                        <button id="btn_load-options">Load</button>
+                        <button id="btn_clear-options">Clear</button>
+                    </td>
+                </tr>
+            </table>
+        </details>
     </div>
 
     <div class="container_io">
