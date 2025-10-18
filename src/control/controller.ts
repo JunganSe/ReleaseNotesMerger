@@ -40,6 +40,31 @@ export class Controller {
             .forEach(element => element.addEventListener('keydown', this.triggerMergeOnCtrlEnter));
 
         document.getElementById(HtmlElementId.OutputTextarea)?.addEventListener('change', this.hideCopyOkIcon);
+
+        this.rememberOptionsAccordionState();
+    }
+
+    private rememberOptionsAccordionState(): void {
+        // TODO: Refactor.
+
+        const accordion = document.querySelector('.options-accordion');
+        if (!(accordion instanceof HTMLDetailsElement))
+            return;
+
+        // Restore saved state on page load
+        const savedState = localStorage.getItem('optionsAccordionState');
+        if (savedState === 'open') {
+            accordion.setAttribute('open', '');
+        }
+
+        // Save state when toggled
+        accordion.addEventListener('toggle', () => {
+            if (accordion.open) {
+                localStorage.setItem('optionsAccordionState', 'open');
+            } else {
+                localStorage.removeItem('optionsAccordionState');
+            }
+        });
     }
 
     private mergeInput = (): void => {
