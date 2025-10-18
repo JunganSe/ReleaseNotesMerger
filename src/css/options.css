@@ -10,15 +10,34 @@
 
 .options-accordion-summary {
     border: 1px solid #aaaaaa;
-    background-color: #eeeeee;
     border-radius: 0.3rem;
-    padding: 0.1rem 0.5rem;
-    margin-bottom: 0.2rem;
+    background-color: #eeeeee;
     text-align: center;
+    padding: 0.1rem 0.5rem;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 0.2rem;
+    user-select: none;
     cursor: pointer;
 }
+
 .options-accordion-summary:hover {
     background-color: #e0e0e0;
+}
+
+summary::marker {
+    content: '';
+}
+
+summary::before {
+    content: '>';
+    display: inline-block;
+    margin-right: 0.3rem;
+    /* transition: transform 0.2s; */
+}
+
+details[open] summary::before {
+    transform: rotate(90deg);
 }
 
 
@@ -37,9 +56,7 @@
     width: 2.2rem;
 }
 
-.options-table #output-date {
-    
-}
+.options-table #output-date {}
 
 .options-table #ignore-lines-prefixes {
     width: 15rem;
@@ -49,18 +66,12 @@
     width: 15rem;
 }
 
-.options-table #ignore-heading-case {
-    
-}
+.options-table #ignore-heading-case {}
 
-.options-table #copy-on-merge {
-    
-}
+.options-table #copy-on-merge {}
 
 .options-table .container_options-buttons {
     text-align: center;
 }
 
-.options-table .container_options-buttons button {
-
-}
+.options-table .container_options-buttons button {}
