@@ -8,7 +8,7 @@
 
 /* Accordion */
 
-.options-accordion-summary {
+.options-accordion summary {
     border: 1px solid #aaaaaa;
     border-radius: 0.3rem;
     background-color: #eeeeee;
