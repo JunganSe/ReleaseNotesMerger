@@ -49,11 +49,15 @@ export class StorageHandler {
 
     // #region Clear
     static clearOptions(): void {
+        this.clear(StorageKey.Options);
+    }
+
+    private static clear(key: string): void {
         try {
-            localStorage.removeItem(StorageKey.Options);
+            localStorage.removeItem(key);
         }
         catch (e) {
-            console.error('Failed to clear options from localStorage:', e);
+            console.error(`Failed to clear item with key "${key}" from localStorage:`, e);
         }
     }
     // #endregion Clear
