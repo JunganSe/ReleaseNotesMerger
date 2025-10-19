@@ -52,17 +52,17 @@ export class Controller {
             return;
 
         // Restore saved state on page load
-        const savedState = localStorage.getItem('optionsAccordionState');
-        if (savedState === 'open') {
+        const savedState = localStorage.getItem('optionsAccordionOpen');
+        if (savedState === 'true') {
             accordion.setAttribute('open', '');
         }
 
         // Save state when toggled
         accordion.addEventListener('toggle', () => {
             if (accordion.open) {
-                localStorage.setItem('optionsAccordionState', 'open');
+                localStorage.setItem('optionsAccordionOpen', 'true');
             } else {
-                localStorage.removeItem('optionsAccordionState');
+                localStorage.removeItem('optionsAccordionOpen');
             }
         });
     }

@@ -1,13 +1,13 @@
 import { Options } from "./options";
 import { OptionsValidator } from "./optionsValidator";
+import { StorageKey } from "./storageKeys";
 
 export class StorageHandler {
-    private static readonly _storageKey = 'options';
 
     static save(options: Options): void {
         try {
             const jsonOptions = JSON.stringify(options);
-            localStorage.setItem(this._storageKey, jsonOptions);
+            localStorage.setItem(StorageKey.Options, jsonOptions);
         }
         catch (e) {
             console.error('Failed to save options to localStorage:', e);
@@ -16,7 +16,7 @@ export class StorageHandler {
 
     static load(): Options | null {
         try {
-            const jsonOptions = localStorage.getItem(this._storageKey);
+            const jsonOptions = localStorage.getItem(StorageKey.Options);
             if (!jsonOptions)
                 return null;
 
@@ -37,7 +37,7 @@ export class StorageHandler {
 
     static clear(): void {
         try {
-            localStorage.removeItem(this._storageKey);
+            localStorage.removeItem(StorageKey.Options);
         }
         catch (e) {
             console.error('Failed to clear options from localStorage:', e);
