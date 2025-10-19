@@ -15,18 +15,18 @@ export class Controller {
     }
 
     private applyOptionsFromStorage(): void {
-        const options = StorageHandler.load();
+        const options = StorageHandler.loadOptions();
         if (options)
             HtmlWriter.applyOptions(options);
     }
 
     private saveOptionsToStorage(): void {
         const options = HtmlReader.getOptions();
-        StorageHandler.save(options);
+        StorageHandler.saveOptions(options);
     }
 
     private clearOptionsInStorage(): void {
-        StorageHandler.clear();
+        StorageHandler.clearOptions();
     }
 
     private setEvents(): void {

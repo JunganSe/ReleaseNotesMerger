@@ -4,7 +4,7 @@ import { StorageKey } from "./storageKeys";
 
 export class StorageHandler {
 
-    static save(options: Options): void {
+    static saveOptions(options: Options): void {
         try {
             const jsonOptions = JSON.stringify(options);
             localStorage.setItem(StorageKey.Options, jsonOptions);
@@ -14,7 +14,7 @@ export class StorageHandler {
         }
     }
 
-    static load(): Options | null {
+    static loadOptions(): Options | null {
         try {
             const jsonOptions = localStorage.getItem(StorageKey.Options);
             if (!jsonOptions)
@@ -35,7 +35,7 @@ export class StorageHandler {
         }
     }
 
-    static clear(): void {
+    static clearOptions(): void {
         try {
             localStorage.removeItem(StorageKey.Options);
         }
