@@ -3,7 +3,7 @@ import { OptionsValidator } from "./optionsValidator";
 import { StorageKey } from "./storageKeys";
 
 export class StorageHandler {
-
+    // #region Save
     static saveOptions(options: Options): void {
         this.save(StorageKey.Options, options);
     }
@@ -17,28 +17,37 @@ export class StorageHandler {
             console.error(`Failed to save item with key "${key}" to localStorage.`, e);
         }
     }
+    // #endregion Save
 
+    // Region Load
     static loadOptions(): Options | null {
+        const options = this.load<Options>(StorageKey.Options);
+
+        if (!OptionsValidator.isValidOptions(options)) {
+            console.error('Invalid or missing options item in localStorage');
+            return null;
+        }
+        
+        return options;
+    }
+
+    private static load<T>(key: string): T | null {
         try {
-            const jsonOptions = localStorage.getItem(StorageKey.Options);
-            if (!jsonOptions)
+            const jsonItem = localStorage.getItem(key);
+            if (!jsonItem)
                 return null;
 
-            const options: Options = JSON.parse(jsonOptions);
-
-            if (!OptionsValidator.isValidOptions(options)) {
-                console.error('Invalid options structure in localStorage');
-                return null;
-            }
-
-            return options;
+            const item: T = JSON.parse(jsonItem);
+            return item;
         }
         catch (e) {
-            console.error('Failed to load options from localStorage:', e);
+            console.error(`Failed to load item with key "${key}" from localStorage.`, e);
             return null;
         }
     }
+    // #endregion Load
 
+    // #region Clear
     static clearOptions(): void {
         try {
             localStorage.removeItem(StorageKey.Options);
@@ -47,4 +56,5 @@ export class StorageHandler {
             console.error('Failed to clear options from localStorage:', e);
         }
     }
+    // #endregion Clear
 }
