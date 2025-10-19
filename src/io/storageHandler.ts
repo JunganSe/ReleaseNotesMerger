@@ -5,12 +5,16 @@ import { StorageKey } from "./storageKeys";
 export class StorageHandler {
 
     static saveOptions(options: Options): void {
+        this.save(StorageKey.Options, options);
+    }
+
+    private static save<T>(key: string, item: T): void {
         try {
-            const jsonOptions = JSON.stringify(options);
-            localStorage.setItem(StorageKey.Options, jsonOptions);
+            const jsonItem = JSON.stringify(item);
+            localStorage.setItem(key, jsonItem);
         }
         catch (e) {
-            console.error('Failed to save options to localStorage:', e);
+            console.error(`Failed to save item with key "${key}" to localStorage.`, e);
         }
     }
 
