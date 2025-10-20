@@ -36,8 +36,7 @@ export class StorageHandler {
     }
 
     static loadOptionsAccordionState(): boolean | null {
-        const isOpen = this.load<boolean>(StorageKey.OptionsAccordionOpen);
-        return isOpen;
+        return this.load<boolean>(StorageKey.OptionsAccordionOpen);
     }
 
     private static load<T>(key: string): T | null {

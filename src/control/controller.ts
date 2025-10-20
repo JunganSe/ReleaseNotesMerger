@@ -45,33 +45,34 @@ export class Controller {
     }
 
     private rememberOptionsAccordionState(): void {
-        const accordion = document.querySelector('.options-accordion');
+        const accordion = document.getElementsByClassName(HtmlElementClass.OptionsAccordion).item(0);
         if (!(accordion instanceof HTMLDetailsElement))
             return;
 
-        // Restore saved state on page load
-        const isOpen = StorageHandler.loadOptionsAccordionState();
-        accordion.toggleAttribute('open', isOpen ?? false);
+        // Apply saved state.
+        const isOpen = StorageHandler.loadOptionsAccordionState() ?? false;
+        accordion.toggleAttribute('open', isOpen);
 
-        // Save state when toggled
+        // Save state when toggled.
         accordion.addEventListener('toggle', () => {
             StorageHandler.saveOptionsAccordionState(accordion.open);
         });
     }
 
     private mergeInput = (): void => {
-        // Initialize workers
+        // Initialize workers.
         const parser = new Parser(HtmlReader.getParserOptions());
         const merger = new Merger(HtmlReader.getMergerOptions());
         const stringifier = new Stringifier(HtmlReader.getStringifierOptions());
 
-        // Process text
+        // Process text.
         const inputText = HtmlReader.getInputText();
         const inputChunks = parser.parseTextChunks(inputText);
         const mergedChunks = merger.mergeChunks(inputChunks);
         const outputText = stringifier.getStringifiedOutput(mergedChunks);
         HtmlWriter.writeOutputText(outputText);
 
+        // Handle text copying.
         this.hideCopyOkIcon();
         if (HtmlReader.getCopyOnMerge())
             this.copyOutputToClipboard();
