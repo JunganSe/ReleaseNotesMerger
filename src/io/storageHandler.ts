@@ -8,6 +8,10 @@ export class StorageHandler {
         this.save(StorageKey.Options, options);
     }
 
+    static saveOptionsAccordionState(isOpen: boolean): void {
+        this.save(StorageKey.OptionsAccordionOpen, isOpen);
+    }
+
     private static save<T>(key: string, item: T): void {
         try {
             const jsonItem = JSON.stringify(item);

@@ -59,11 +59,7 @@ export class Controller {
 
         // Save state when toggled
         accordion.addEventListener('toggle', () => {
-            if (accordion.open) {
-                localStorage.setItem('optionsAccordionOpen', 'true');
-            } else {
-                localStorage.removeItem('optionsAccordionOpen');
-            }
+            StorageHandler.saveOptionsAccordionState(accordion.open);
         });
     }
 

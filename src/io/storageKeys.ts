@@ -1,3 +1,4 @@
 export enum StorageKey {
-    Options = 'options'
+    Options = 'options',
+    OptionsAccordionOpen = 'optionsAccordionOpen',
 }
