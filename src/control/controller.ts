@@ -45,17 +45,13 @@ export class Controller {
     }
 
     private rememberOptionsAccordionState(): void {
-        // TODO: Refactor.
-
         const accordion = document.querySelector('.options-accordion');
         if (!(accordion instanceof HTMLDetailsElement))
             return;
 
         // Restore saved state on page load
-        const savedState = localStorage.getItem('optionsAccordionOpen');
-        if (savedState === 'true') {
-            accordion.setAttribute('open', '');
-        }
+        const isOpen = StorageHandler.loadOptionsAccordionState();
+        accordion.toggleAttribute('open', isOpen ?? false);
 
         // Save state when toggled
         accordion.addEventListener('toggle', () => {

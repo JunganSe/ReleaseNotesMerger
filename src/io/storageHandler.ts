@@ -35,6 +35,11 @@ export class StorageHandler {
         return options;
     }
 
+    static loadOptionsAccordionState(): boolean | null {
+        const isOpen = this.load<boolean>(StorageKey.OptionsAccordionOpen);
+        return isOpen;
+    }
+
     private static load<T>(key: string): T | null {
         try {
             const jsonItem = localStorage.getItem(key);
