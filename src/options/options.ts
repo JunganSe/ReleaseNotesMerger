@@ -4,7 +4,7 @@ export interface Options {
     useDate: boolean;
     ignoreLinesPrefixes: string[];
     headingOrder: string[];
-    indentMultiplier: number;
+    indentMultiplier: number | null;
     ignoreHeadingCase: boolean;
     copyOnMerge: boolean;
 }

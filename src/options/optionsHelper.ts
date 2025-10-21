@@ -7,7 +7,7 @@ export class OptionsHelper {
             useDate: false,
             ignoreLinesPrefixes: [],
             headingOrder: [],
-            indentMultiplier: 0,
+            indentMultiplier: null,
             ignoreHeadingCase: false,
             copyOnMerge: false
         };
