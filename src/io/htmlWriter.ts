@@ -40,7 +40,7 @@ export class HtmlWriter {
             dateInput.value = '';
     }
 
-    static writeOutputText(text: string): void {
+    static setOutputText(text: string): void {
         const textarea = document.getElementById(HtmlElementId.OutputTextarea) as HTMLTextAreaElement;
         if (textarea)
             textarea.value = text;

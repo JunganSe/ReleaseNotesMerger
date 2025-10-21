@@ -71,7 +71,7 @@ export class Controller {
         const inputChunks = parser.parseTextChunks(inputText);
         const mergedChunks = merger.mergeChunks(inputChunks);
         const outputText = stringifier.getStringifiedOutput(mergedChunks);
-        HtmlWriter.writeOutputText(outputText);
+        HtmlWriter.setOutputText(outputText);
 
         // Handle text copying.
         this.hideCopyOkIcon();
