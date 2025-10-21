@@ -1,8 +1,8 @@
+import { Options } from "../options/options";
 import { MergerOptions } from "../textProcessing/mergerOptions";
 import { ParserOptions } from "../textProcessing/parserOptions";
 import { StringifierOptions } from "../textProcessing/stringifierOptions";
 import { HtmlElementId } from "./htmlElementSelectors";
-import { Options } from "./options";
 
 export class HtmlReader {
 

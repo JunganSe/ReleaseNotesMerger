@@ -1,5 +1,5 @@
-import { Options } from "./options";
-import { OptionsValidator } from "./optionsValidator";
+import { Options } from "../options/options";
+import { OptionsValidator } from "../options/optionsValidator";
 import { StorageKey } from "./storageKeys";
 
 export class StorageHandler {

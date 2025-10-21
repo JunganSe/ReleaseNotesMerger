@@ -1,5 +1,5 @@
+import { Options } from "../options/options";
 import { HtmlElementId } from "./htmlElementSelectors";
-import { Options } from "./options";
 
 export class HtmlWriter {
     static applyOptions(options: Options): void {
