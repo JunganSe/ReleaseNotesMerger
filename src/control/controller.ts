@@ -2,6 +2,8 @@ import { ClipboardHandler } from "../io/clipboardHandler";
 import { HtmlElementClass, HtmlElementId } from "../io/htmlElementSelectors";
 import { HtmlReader } from "../io/htmlReader";
 import { HtmlWriter } from "../io/htmlWriter";
+import { Options } from "../io/options";
+import { OptionsHelper } from "../io/optionsHelper";
 import { StorageHandler } from "../io/storageHandler";
 import { Merger } from "../textProcessing/merger";
 import { Parser } from "../textProcessing/parser";
@@ -25,14 +27,15 @@ export class Controller {
         StorageHandler.saveOptions(options);
     }
 
-    private clearOptionsInStorage(): void {
-        StorageHandler.clearOptions();
+    private clearOptions(): void {
+        const options = OptionsHelper.getDefaultOptions();
+        HtmlWriter.applyOptions(options);
     }
 
     private setEvents(): void {
         document.getElementById(HtmlElementId.SaveOptionsButton)?.addEventListener('click', this.saveOptionsToStorage);
         document.getElementById(HtmlElementId.LoadOptionsButton)?.addEventListener('click', this.applyOptionsFromStorage);
-        document.getElementById(HtmlElementId.ClearOptionsButton)?.addEventListener('click', this.clearOptionsInStorage);
+        document.getElementById(HtmlElementId.ClearOptionsButton)?.addEventListener('click', this.clearOptions);
 
         document.getElementById(HtmlElementId.MergeButton)?.addEventListener('click', this.mergeInput);
         document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.copyOutputToClipboard);
