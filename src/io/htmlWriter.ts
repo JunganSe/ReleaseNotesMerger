@@ -4,6 +4,8 @@ import { Options } from "./options";
 export class HtmlWriter {
     static applyOptions(options: Options): void {
         this.setInputValue(HtmlElementId.DatePrefix, options.datePrefix ?? '');
+        if (options.useDate)
+            this.setDateInputToToday();
         this.setInputValue(HtmlElementId.IgnoreLinesPrefix, options.ignoreLinesPrefixes?.join(', ') ?? '');
         this.setInputValue(HtmlElementId.HeadingOrder, options.headingOrder?.join(', ') ?? '');
         this.setInputValue(HtmlElementId.IndentMultiplier, options.indentMultiplier?.toString() ?? '');

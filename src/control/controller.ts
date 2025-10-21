@@ -2,7 +2,6 @@ import { ClipboardHandler } from "../io/clipboardHandler";
 import { HtmlElementClass, HtmlElementId } from "../io/htmlElementSelectors";
 import { HtmlReader } from "../io/htmlReader";
 import { HtmlWriter } from "../io/htmlWriter";
-import { Options } from "../io/options";
 import { OptionsHelper } from "../io/optionsHelper";
 import { StorageHandler } from "../io/storageHandler";
 import { Merger } from "../textProcessing/merger";
@@ -12,7 +11,6 @@ import { Stringifier } from "../textProcessing/stringifier";
 export class Controller {
     initialize(): void {
         this.applyOptionsFromStorage();
-        HtmlWriter.setDateInputToToday();
         this.setEvents();
     }
 

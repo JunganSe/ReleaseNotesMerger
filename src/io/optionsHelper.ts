@@ -4,6 +4,7 @@ export class OptionsHelper {
     static getDefaultOptions(): Options {
         return {
             datePrefix: null,
+            useDate: false,
             ignoreLinesPrefixes: [],
             headingOrder: [],
             indentMultiplier: 0,

@@ -10,6 +10,7 @@ export class HtmlReader {
     static getOptions(): Options {
         const options: Options = {
             datePrefix: this.getDatePrefx(),
+            useDate: (this.getOutputDate() != null),
             ignoreLinesPrefixes: this.getIgnoreLinesPrefixes(),
             headingOrder: this.getHeadingOrder(),
             indentMultiplier: this.getIndentMultiplier(),
