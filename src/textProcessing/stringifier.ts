@@ -1,4 +1,4 @@
-import { StringifierOptions } from "./stringifierOptions";
+import { StringifierOptions } from "../options/stringifierOptions";
 import { TextChunk } from "./textChunk";
 
 export class Stringifier {

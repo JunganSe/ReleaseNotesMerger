@@ -1,7 +1,7 @@
 import { Options } from "../options/options";
-import { MergerOptions } from "../textProcessing/mergerOptions";
-import { ParserOptions } from "../textProcessing/parserOptions";
-import { StringifierOptions } from "../textProcessing/stringifierOptions";
+import { MergerOptions } from "../options/mergerOptions";
+import { ParserOptions } from "../options/parserOptions";
+import { StringifierOptions } from "../options/stringifierOptions";
 import { HtmlElementId } from "./htmlElementSelectors";
 
 export class HtmlReader {

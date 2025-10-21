@@ -1,4 +1,4 @@
-import { ParserOptions } from "./parserOptions";
+import { ParserOptions } from "../options/parserOptions";
 import { Regex } from "./regex";
 import { TextChunk } from "./textChunk";
 

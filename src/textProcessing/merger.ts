@@ -1,5 +1,5 @@
+import { MergerOptions } from "../options/mergerOptions";
 import { Deduplicator } from "./deduplicator";
-import { MergerOptions } from "./mergerOptions";
 import { SortBy } from "./sorting";
 import { TextChunk } from "./textChunk";
 import { TextChunkHelper } from "./textChunkHelper";
