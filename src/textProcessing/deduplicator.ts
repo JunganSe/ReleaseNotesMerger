@@ -15,8 +15,55 @@ export class Deduplicator {
     /** Returns an array of strings where versions that only differ slightly in spelling have been removed.
      *  Prefers versions found in the preferredStrings parameter, otherwise the first version. */
     static getSpellingDeduplicatedStrings(inputStrings: string[], preferredStrings: string[]): string[] {
-        // TODO: Implement spelling deduplication.
-        throw new Error("Not implemented");
+        if (inputStrings.length === 0) {
+            return [];
+        }
+
+        const percentThreshold = 80; // TODO: Make configurable.
+
+        const output: string[] = [];
+        const usedIndices = new Set<number>();
+
+        // First pass: Add preferred strings that exist in input and mark similar ones as used
+        for (const preferred of preferredStrings) {
+            const preferredIndex = inputStrings.indexOf(preferred);
+            if (preferredIndex !== -1 && !usedIndices.has(preferredIndex)) {
+                output.push(preferred);
+                usedIndices.add(preferredIndex);
+
+                // Mark all similar strings as used
+                for (let i = 0; i < inputStrings.length; i++) {
+                    if (!usedIndices.has(i) && this.areStringsSimilar(preferred, inputStrings[i], percentThreshold)) {
+                        usedIndices.add(i);
+                    }
+                }
+            }
+        }
+
+        // Second pass: Add remaining strings that aren't similar to any already added
+        for (let i = 0; i < inputStrings.length; i++) {
+            if (usedIndices.has(i)) {
+                continue;
+            }
+
+            const current = inputStrings[i];
+            let isSimilarToExisting = false;
+
+            // Check if current string is similar to any already in result
+            for (const existing of output) {
+                if (this.areStringsSimilar(current, existing, percentThreshold)) {
+                    isSimilarToExisting = true;
+                    break;
+                }
+            }
+
+            if (!isSimilarToExisting) {
+                output.push(current);
+                usedIndices.add(i);
+            }
+        }
+
+        return output;
     }
 
     /** Considers strings similar if:
