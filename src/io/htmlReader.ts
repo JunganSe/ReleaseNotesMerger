@@ -1,8 +1,8 @@
-import { MergerOptions } from "../textProcessing/mergerOptions";
-import { ParserOptions } from "../textProcessing/parserOptions";
-import { StringifierOptions } from "../textProcessing/stringifierOptions";
+import { Options } from "../options/options";
+import { MergerOptions } from "../options/mergerOptions";
+import { ParserOptions } from "../options/parserOptions";
+import { StringifierOptions } from "../options/stringifierOptions";
 import { HtmlElementId } from "./htmlElementSelectors";
-import { Options } from "./options";
 
 export class HtmlReader {
 
@@ -10,6 +10,7 @@ export class HtmlReader {
     static getOptions(): Options {
         const options: Options = {
             datePrefix: this.getDatePrefx(),
+            useDate: (this.getOutputDate() != null),
             ignoreLinesPrefixes: this.getIgnoreLinesPrefixes(),
             headingOrder: this.getHeadingOrder(),
             indentMultiplier: this.getIndentMultiplier(),

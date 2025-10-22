@@ -1,4 +1,4 @@
-import { StringifierOptions } from "./stringifierOptions";
+import { StringifierOptions } from "../options/stringifierOptions";
 import { TextChunk } from "./textChunk";
 
 export class Stringifier {
@@ -17,7 +17,10 @@ export class Stringifier {
     private getDateString(): string | null {
         const prefix = this._options.datePrefix;
         const date = this._options.date?.toISOString().split('T')[0];
-        return [prefix, date].join(' ').trim() || null;
+
+        return (date)
+            ? [prefix ?? '', date].join(' ').trim()
+            : null;
     }
 
     private stringifyChunks(chunks: TextChunk[]): string {

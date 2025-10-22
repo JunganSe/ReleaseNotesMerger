@@ -21,6 +21,7 @@ export enum HtmlElementId {
 
 export enum HtmlElementClass {
     OptionsContainer = 'container_options',
+    OptionsAccordion = 'options-accordion',
     IoContainer = 'container_io',
     InputHeaderContainer = 'container_header-input',
     InputContainer = 'container_input',

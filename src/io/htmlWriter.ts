@@ -1,9 +1,13 @@
+import { Options } from "../options/options";
 import { HtmlElementId } from "./htmlElementSelectors";
-import { Options } from "./options";
 
 export class HtmlWriter {
     static applyOptions(options: Options): void {
         this.setInputValue(HtmlElementId.DatePrefix, options.datePrefix ?? '');
+        if (options.useDate)
+            this.setDateInputToToday();
+        else
+            this.clearDateInput();
         this.setInputValue(HtmlElementId.IgnoreLinesPrefix, options.ignoreLinesPrefixes?.join(', ') ?? '');
         this.setInputValue(HtmlElementId.HeadingOrder, options.headingOrder?.join(', ') ?? '');
         this.setInputValue(HtmlElementId.IndentMultiplier, options.indentMultiplier?.toString() ?? '');
@@ -30,7 +34,13 @@ export class HtmlWriter {
             dateInput.value = new Date().toISOString().split('T')[0];
     }
 
-    static writeOutputText(text: string): void {
+    static clearDateInput(): void {
+        const dateInput = document.getElementById(HtmlElementId.OutputDate) as HTMLInputElement;
+        if (dateInput)
+            dateInput.value = '';
+    }
+
+    static setOutputText(text: string): void {
         const textarea = document.getElementById(HtmlElementId.OutputTextarea) as HTMLTextAreaElement;
         if (textarea)
             textarea.value = text;

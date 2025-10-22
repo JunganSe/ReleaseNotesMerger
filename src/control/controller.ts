@@ -3,6 +3,7 @@ import { HtmlElementClass, HtmlElementId } from "../io/htmlElementSelectors";
 import { HtmlReader } from "../io/htmlReader";
 import { HtmlWriter } from "../io/htmlWriter";
 import { StorageHandler } from "../io/storageHandler";
+import { OptionsHelper } from "../options/optionsHelper";
 import { Merger } from "../textProcessing/merger";
 import { Parser } from "../textProcessing/parser";
 import { Stringifier } from "../textProcessing/stringifier";
@@ -10,29 +11,29 @@ import { Stringifier } from "../textProcessing/stringifier";
 export class Controller {
     initialize(): void {
         this.applyOptionsFromStorage();
-        HtmlWriter.setDateInputToToday();
         this.setEvents();
     }
 
     private applyOptionsFromStorage(): void {
-        const options = StorageHandler.load();
+        const options = StorageHandler.loadOptions();
         if (options)
             HtmlWriter.applyOptions(options);
     }
 
     private saveOptionsToStorage(): void {
         const options = HtmlReader.getOptions();
-        StorageHandler.save(options);
+        StorageHandler.saveOptions(options);
     }
 
-    private clearOptionsInStorage(): void {
-        StorageHandler.clear();
+    private clearOptions(): void {
+        const options = OptionsHelper.getDefaultOptions();
+        HtmlWriter.applyOptions(options);
     }
 
     private setEvents(): void {
         document.getElementById(HtmlElementId.SaveOptionsButton)?.addEventListener('click', this.saveOptionsToStorage);
         document.getElementById(HtmlElementId.LoadOptionsButton)?.addEventListener('click', this.applyOptionsFromStorage);
-        document.getElementById(HtmlElementId.ClearOptionsButton)?.addEventListener('click', this.clearOptionsInStorage);
+        document.getElementById(HtmlElementId.ClearOptionsButton)?.addEventListener('click', this.clearOptions);
 
         document.getElementById(HtmlElementId.MergeButton)?.addEventListener('click', this.mergeInput);
         document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.copyOutputToClipboard);
@@ -40,21 +41,39 @@ export class Controller {
             .forEach(element => element.addEventListener('keydown', this.triggerMergeOnCtrlEnter));
 
         document.getElementById(HtmlElementId.OutputTextarea)?.addEventListener('change', this.hideCopyOkIcon);
+
+        this.rememberOptionsAccordionState();
+    }
+
+    private rememberOptionsAccordionState(): void {
+        const accordion = document.getElementsByClassName(HtmlElementClass.OptionsAccordion).item(0);
+        if (!(accordion instanceof HTMLDetailsElement))
+            return;
+
+        // Apply saved state.
+        const isOpen = StorageHandler.loadOptionsAccordionState() ?? false;
+        accordion.toggleAttribute('open', isOpen);
+
+        // Save state when toggled.
+        accordion.addEventListener('toggle', () => {
+            StorageHandler.saveOptionsAccordionState(accordion.open);
+        });
     }
 
     private mergeInput = (): void => {
-        // Initialize workers
+        // Initialize workers.
         const parser = new Parser(HtmlReader.getParserOptions());
         const merger = new Merger(HtmlReader.getMergerOptions());
         const stringifier = new Stringifier(HtmlReader.getStringifierOptions());
 
-        // Process text
+        // Process text.
         const inputText = HtmlReader.getInputText();
         const inputChunks = parser.parseTextChunks(inputText);
         const mergedChunks = merger.mergeChunks(inputChunks);
         const outputText = stringifier.getStringifiedOutput(mergedChunks);
-        HtmlWriter.writeOutputText(outputText);
+        HtmlWriter.setOutputText(outputText);
 
+        // Handle text copying.
         this.hideCopyOkIcon();
         if (HtmlReader.getCopyOnMerge())
             this.copyOutputToClipboard();
