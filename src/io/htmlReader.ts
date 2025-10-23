@@ -31,7 +31,6 @@ export class HtmlReader {
             headingOrder: this.getHeadingOrder(),
             indentMultiplier: this.getIndentMultiplier(),
             ignoreHeadingCase: this.getIgnoreHeadingCase(),
-            allowMisspelledHeadings: this.getAllowMisspelledHeadings(),
         };
     }
 
@@ -80,10 +79,6 @@ export class HtmlReader {
 
     static getCopyOnMerge(): boolean {
         return this.readInput_Checkbox(HtmlElementId.CopyOnMerge) ?? false;
-    }
-
-    static getAllowMisspelledHeadings(): boolean {
-        return this.readInput_Checkbox(HtmlElementId.AllowMisspelledHeadings) ?? false;
     }
 
     static getInputText(): string {

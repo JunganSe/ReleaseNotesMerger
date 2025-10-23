@@ -22,10 +22,6 @@ export class Merger {
         if (this._options.ignoreHeadingCase)
             headings = Deduplicator.getCasingDeduplicatedStrings(headings, this._options.headingOrder);
 
-        // TODO: Uncomment when implemented.
-        // if (this._options.allowMisspelledHeadings)
-        //     headings = Deduplicator.getSpellingDeduplicatedStrings(headings, this._options.headingOrder);
-
         const outputChunks: TextChunk[] = headings.map(heading => ({ heading, content: [] }));
 
         const isCaseSensitive = !this._options.ignoreHeadingCase;
