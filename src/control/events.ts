@@ -21,4 +21,11 @@ export class Events {
         HtmlWriter.applyOptions(options);
     }
     // #endregion Storage
+
+    static triggerCallbackOnCtrlEnter = (event: KeyboardEvent, callback: () => void): void => {
+        if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
+            event.preventDefault();
+            callback();
+        }
+    }
 }

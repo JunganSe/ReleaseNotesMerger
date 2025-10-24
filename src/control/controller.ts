@@ -22,7 +22,7 @@ export class Controller {
         document.getElementById(HtmlElementId.MergeButton)?.addEventListener('click', this.mergeInput);
         document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.copyOutputToClipboard);
         document.querySelectorAll<HTMLElement>(`#${HtmlElementId.InputTextarea}, .${HtmlElementClass.OptionsContainer} input`)
-            .forEach(element => element.addEventListener('keydown', this.triggerMergeOnCtrlEnter));
+            .forEach(element => element.addEventListener('keydown', (event) => Events.triggerCallbackOnCtrlEnter(event, this.mergeInput)));
 
         this.rememberOptionsAccordionState();
     }
@@ -73,12 +73,5 @@ export class Controller {
                     console.log('Copied output text to clipboard.');
                 }
             });
-    }
-
-    private triggerMergeOnCtrlEnter = (event: KeyboardEvent): void => {
-        if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
-            event.preventDefault();
-            this.mergeInput();
-        }
     }
 }
