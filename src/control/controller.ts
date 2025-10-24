@@ -24,8 +24,6 @@ export class Controller {
         document.querySelectorAll<HTMLElement>(`#${HtmlElementId.InputTextarea}, .${HtmlElementClass.OptionsContainer} input`)
             .forEach(element => element.addEventListener('keydown', this.triggerMergeOnCtrlEnter));
 
-        document.getElementById(HtmlElementId.OutputTextarea)?.addEventListener('change', Events.hideCopyOkIcon);
-
         this.rememberOptionsAccordionState();
     }
 
@@ -58,7 +56,7 @@ export class Controller {
         HtmlWriter.setOutputText(outputText);
 
         // Handle text copying.
-        Events.hideCopyOkIcon();
+        HtmlWriter.setCopyOkIconVisibility(false);
         if (HtmlReader.getCopyOnMerge())
             this.copyOutputToClipboard();
     }

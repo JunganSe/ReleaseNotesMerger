@@ -21,9 +21,4 @@ export class Events {
         HtmlWriter.applyOptions(options);
     }
     // #endregion Storage
-
-
-    static hideCopyOkIcon = (): void => {
-        HtmlWriter.setCopyOkIconVisibility(false);
-    }
 }
