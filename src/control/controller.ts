@@ -12,6 +12,7 @@ export class Controller {
     initialize(): void {
         Events.applyOptionsFromStorage();
         this.setEvents();
+        this.rememberOptionsAccordionState();
     }
 
     private setEvents(): void {
@@ -23,8 +24,6 @@ export class Controller {
         document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.copyOutputToClipboard);
         document.querySelectorAll<HTMLElement>(`#${HtmlElementId.InputTextarea}, .${HtmlElementClass.OptionsContainer} input`)
             .forEach(element => element.addEventListener('keydown', (event) => Events.triggerCallbackOnCtrlEnter(event, this.mergeInput)));
-
-        this.rememberOptionsAccordionState();
     }
 
     private rememberOptionsAccordionState(): void {
