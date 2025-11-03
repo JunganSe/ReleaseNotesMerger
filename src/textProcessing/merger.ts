@@ -4,8 +4,6 @@ import { SortBy } from "./sorting";
 import { TextChunk } from "./textChunk";
 import { TextChunkHelper } from "./textChunkHelper";
 
-// TODO: Option to remove (whole) duplicate lines within each chunk.
-
 export class Merger {
     private _options: MergerOptions;
 
