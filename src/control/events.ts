@@ -8,24 +8,28 @@ export class Events {
     static saveOptionsToStorage = (): void => {
         const options = HtmlReader.getOptions();
         StorageHandler.saveOptions(options);
-    }
+    };
 
     static applyOptionsFromStorage = (): void => {
         const options = StorageHandler.loadOptions();
         if (options)
             HtmlWriter.applyOptions(options);
-    }
+    };
 
     static clearOptions = (): void => {
         const options = OptionsHelper.getDefaultOptions();
         HtmlWriter.applyOptions(options);
-    }
+    };
     // #endregion Storage
+
+    static toggleIoLayout = (): void => {
+        // TODO: Implement layout toggling.
+    };
 
     static triggerCallbackOnCtrlEnter = (event: KeyboardEvent, callback: () => void): void => {
         if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
             event.preventDefault();
             callback();
         }
-    }
+    };
 }

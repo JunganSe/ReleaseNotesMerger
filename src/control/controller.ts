@@ -19,7 +19,8 @@ export class Controller {
         document.getElementById(HtmlElementId.SaveOptionsButton)?.addEventListener('click', Events.saveOptionsToStorage);
         document.getElementById(HtmlElementId.LoadOptionsButton)?.addEventListener('click', Events.applyOptionsFromStorage);
         document.getElementById(HtmlElementId.ClearOptionsButton)?.addEventListener('click', Events.clearOptions);
-
+        
+        document.getElementById(HtmlElementId.ToggleLayoutButton)?.addEventListener('click', Events.toggleIoLayout);
         document.getElementById(HtmlElementId.MergeButton)?.addEventListener('click', this.mergeInput);
         document.getElementById(HtmlElementId.CopyButton)?.addEventListener('click', this.copyOutputToClipboard);
         document.querySelectorAll<HTMLElement>(`#${HtmlElementId.InputTextarea}, .${HtmlElementClass.OptionsContainer} input`)

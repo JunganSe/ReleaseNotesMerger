@@ -10,6 +10,7 @@ export enum HtmlElementId {
     IgnoreHeadingCase = 'ignore-heading-case',
     CopyOnMerge = 'copy-on-merge',
 
+    ToggleLayoutButton = 'btn_toggle-layout',
     SaveOptionsButton = 'btn_save-options',
     LoadOptionsButton = 'btn_load-options',
     ClearOptionsButton = 'btn_clear-options',
