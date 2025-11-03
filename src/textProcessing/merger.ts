@@ -4,8 +4,6 @@ import { SortBy } from "./sorting";
 import { TextChunk } from "./textChunk";
 import { TextChunkHelper } from "./textChunkHelper";
 
-// TODO: Option to remove (whole) duplicate lines within each chunk.
-
 export class Merger {
     private _options: MergerOptions;
 
@@ -21,10 +19,6 @@ export class Merger {
 
         if (this._options.ignoreHeadingCase)
             headings = Deduplicator.getCasingDeduplicatedStrings(headings, this._options.headingOrder);
-
-        // TODO: Uncomment when implemented.
-        // if (this._options.allowMisspelledHeadings)
-        //     headings = Deduplicator.getSpellingDeduplicatedStrings(headings, this._options.headingOrder);
 
         const outputChunks: TextChunk[] = headings.map(heading => ({ heading, content: [] }));
 
