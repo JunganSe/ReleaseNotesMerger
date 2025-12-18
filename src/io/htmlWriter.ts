@@ -13,7 +13,7 @@ export class HtmlWriter {
         this.setInputValue(HtmlElementId.IndentMultiplier, options.indentMultiplier?.toString() ?? '');
         this.setCheckbox(HtmlElementId.IgnoreHeadingCase, options.ignoreHeadingCase ?? false);
         this.setCheckbox(HtmlElementId.CopyOnMerge, options.copyOnMerge ?? false);
-        this.setLayoutMode(options.layoutMode ?? '');
+        this.setLayoutMode(options.layoutMode ?? 'auto');
     }
 
     private static setInputValue(id: string, value: string): void {
