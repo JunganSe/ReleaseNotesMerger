@@ -24,15 +24,10 @@ export class Events {
     // #endregion Storage
 
     static toggleIoLayout = (): void => {
-        const container = document.getElementById(HtmlElementId.IoContainer);;
-        if (!container)
-            return;
-
         const layoutModes = ['auto', 'row', 'column'];
         const currentMode = HtmlReader.getLayoutMode();
         const currentModeIndex = layoutModes.indexOf(currentMode);
         const newMode = layoutModes[(currentModeIndex + 1) % layoutModes.length];
-
         HtmlWriter.setLayoutMode(newMode);
     };
 
