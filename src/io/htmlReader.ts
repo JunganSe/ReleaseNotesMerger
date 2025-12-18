@@ -2,7 +2,7 @@ import { Options } from "../options/options";
 import { MergerOptions } from "../options/mergerOptions";
 import { ParserOptions } from "../options/parserOptions";
 import { StringifierOptions } from "../options/stringifierOptions";
-import { HtmlElementId } from "./htmlElementSelectors";
+import { HtmlElementClass, HtmlElementId } from "./htmlElementSelectors";
 
 export class HtmlReader {
 
@@ -16,6 +16,7 @@ export class HtmlReader {
             indentMultiplier: this.getIndentMultiplier(),
             ignoreHeadingCase: this.getIgnoreHeadingCase(),
             copyOnMerge: this.getCopyOnMerge(),
+            layoutMode: this.getLayoutMode(),
         };
         return options;
     }
@@ -79,6 +80,11 @@ export class HtmlReader {
 
     static getCopyOnMerge(): boolean {
         return this.readInput_Checkbox(HtmlElementId.CopyOnMerge) ?? false;
+    }
+
+    static getLayoutMode(): string {
+        const container = document.getElementsByClassName(HtmlElementClass.IoContainer).item(0);
+        return container?.attributes.getNamedItem('data-layout')?.value ?? 'auto';
     }
 
     static getInputText(): string {
