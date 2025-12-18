@@ -83,7 +83,7 @@ export class HtmlReader {
     }
 
     static getLayoutMode(): string {
-        const container = document.getElementsByClassName(HtmlElementClass.IoContainer).item(0);
+        const container = document.getElementById(HtmlElementId.IoContainer);
         return container?.attributes.getNamedItem('data-layout')?.value ?? 'auto';
     }
 

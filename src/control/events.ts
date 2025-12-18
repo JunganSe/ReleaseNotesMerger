@@ -25,7 +25,7 @@ export class Events {
 
     static toggleIoLayout = (): void => {
         const button = document.getElementById(HtmlElementId.ToggleLayoutButton);
-        const container = document.getElementsByClassName(HtmlElementClass.IoContainer).item(0);
+        const container = document.getElementById(HtmlElementId.IoContainer);;
         if (!button || !container)
             return;
 

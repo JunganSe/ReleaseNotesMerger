@@ -13,6 +13,7 @@ export class HtmlWriter {
         this.setInputValue(HtmlElementId.IndentMultiplier, options.indentMultiplier?.toString() ?? '');
         this.setCheckbox(HtmlElementId.IgnoreHeadingCase, options.ignoreHeadingCase ?? false);
         this.setCheckbox(HtmlElementId.CopyOnMerge, options.copyOnMerge ?? false);
+        this.setLayoutMode(options.layoutMode ?? '');
     }
 
     private static setInputValue(id: string, value: string): void {
@@ -26,6 +27,14 @@ export class HtmlWriter {
         const element = document.getElementById(id);
         if ((element instanceof HTMLInputElement) && (element.type === 'checkbox'))
             element.checked = checked;
+    };
+
+    private static setLayoutMode(value: string): void {
+        document.getElementById(HtmlElementId.IoContainer)?.setAttribute('data-layout', value);
+        
+        const button = document.getElementById(HtmlElementId.ToggleLayoutButton);
+        if (button)
+            button.textContent = `${value.charAt(0).toUpperCase() + value.slice(1)}`;
     };
 
     static setDateInputToToday(): void {
