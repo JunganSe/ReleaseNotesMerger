@@ -7,4 +7,5 @@ export interface Options {
     indentMultiplier: number | null;
     ignoreHeadingCase: boolean;
     copyOnMerge: boolean;
+    layoutMode: string;
 }

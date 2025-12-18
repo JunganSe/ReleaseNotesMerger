@@ -9,6 +9,18 @@
     margin: auto;
 }
 
+.container_io[data-layout="auto"] {
+    flex-direction: row;
+}
+
+.container_io[data-layout="row"] {
+    flex-direction: row;
+}
+
+.container_io[data-layout="column"] {
+    flex-direction: column;
+}
+
 .container_input,
 .container_output {
     display: flex;
@@ -32,15 +44,20 @@ textarea.output {
     resize: none;
 }
 
+
+
+.container_io[data-layout="column"] textarea.input,
+.container_io[data-layout="column"] textarea.output {
+    height: 40rem;
+}
+
 @media (max-width: 1200px) {
-    .container_io {
+    .container_io[data-layout="auto"] {
         flex-direction: column;
     }
 
-    textarea.input,
-    textarea.output {
-        width: 100%;
-        max-width: 100%;
+    .container_io[data-layout="auto"] textarea.input,
+    .container_io[data-layout="auto"] textarea.output {
         height: 40rem;
     }
 }

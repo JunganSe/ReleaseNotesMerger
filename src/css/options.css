@@ -66,6 +66,10 @@ details[open] summary::before {
     width: 15rem;
 }
 
+.options-table #indent-multiplier {
+    width: 2.2rem;
+}
+
 .options-table #ignore-heading-case {}
 
 .options-table #copy-on-merge {}
