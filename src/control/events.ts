@@ -24,20 +24,16 @@ export class Events {
     // #endregion Storage
 
     static toggleIoLayout = (): void => {
-        const button = document.getElementById(HtmlElementId.ToggleLayoutButton);
         const container = document.getElementById(HtmlElementId.IoContainer);;
-        if (!button || !container)
+        if (!container)
             return;
 
-        const attributeName = 'data-layout';
         const layoutModes = ['auto', 'row', 'column'];
-
-        const currentMode = container.attributes.getNamedItem(attributeName)?.value ?? layoutModes[0];
+        const currentMode = HtmlReader.getLayoutMode();
         const currentModeIndex = layoutModes.indexOf(currentMode);
         const newMode = layoutModes[(currentModeIndex + 1) % layoutModes.length];
 
-        container.setAttribute(attributeName, newMode);
-        button.textContent = `${newMode.charAt(0).toUpperCase() + newMode.slice(1)}`;
+        HtmlWriter.setLayoutMode(newMode);
     };
 
     static triggerCallbackOnCtrlEnter = (event: KeyboardEvent, callback: () => void): void => {

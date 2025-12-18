@@ -29,7 +29,7 @@ export class HtmlWriter {
             element.checked = checked;
     };
 
-    private static setLayoutMode(value: string): void {
+    static setLayoutMode(value: string): void {
         document.getElementById(HtmlElementId.IoContainer)?.setAttribute('data-layout', value);
         
         const button = document.getElementById(HtmlElementId.ToggleLayoutButton);
