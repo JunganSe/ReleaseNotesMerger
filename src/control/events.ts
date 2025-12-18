@@ -1,4 +1,3 @@
-import { HtmlElementClass, HtmlElementId } from "../io/htmlElementSelectors";
 import { HtmlReader } from "../io/htmlReader";
 import { HtmlWriter } from "../io/htmlWriter";
 import { StorageHandler } from "../io/storageHandler";
