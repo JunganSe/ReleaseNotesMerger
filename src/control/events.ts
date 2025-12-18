@@ -1,3 +1,4 @@
+import { HtmlElementClass, HtmlElementId } from "../io/htmlElementSelectors";
 import { HtmlReader } from "../io/htmlReader";
 import { HtmlWriter } from "../io/htmlWriter";
 import { StorageHandler } from "../io/storageHandler";
@@ -23,7 +24,20 @@ export class Events {
     // #endregion Storage
 
     static toggleIoLayout = (): void => {
-        // TODO: Implement layout toggling.
+        const button = document.getElementById(HtmlElementId.ToggleLayoutButton);
+        const container = document.getElementsByClassName(HtmlElementClass.IoContainer).item(0);
+        if (!button || !container)
+            return;
+
+        const attributeName = 'data-layout';
+        const layoutModes = ['auto', 'row', 'column'];
+
+        const currentMode = container.attributes.getNamedItem(attributeName)?.value ?? layoutModes[0];
+        const currentModeIndex = layoutModes.indexOf(currentMode);
+        const newMode = layoutModes[(currentModeIndex + 1) % layoutModes.length];
+
+        container.setAttribute(attributeName, newMode);
+        button.textContent = `${newMode.charAt(0).toUpperCase() + newMode.slice(1)}`;
     };
 
     static triggerCallbackOnCtrlEnter = (event: KeyboardEvent, callback: () => void): void => {
