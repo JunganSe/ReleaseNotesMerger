@@ -1,5 +1,8 @@
 # Release notes merger
-A tool used to combine release notes that are formatted in a specific format.
+A tool used to combine release notes that are formatted in a specific format.\
+Primarily used to consolidate release notes from a staging environment into a production release.
+
+Available on [Github pages](https://junganse.github.io/ReleaseNotesMerger/).
 
 # Features
 - Combines content of paragraphs into groups by treating the first line of each paragraph as a heading.
