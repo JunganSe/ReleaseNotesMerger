@@ -9,3 +9,7 @@ label {
 .hidden {
     visibility: hidden;
 }
+
+footer {
+    text-align: center;
+}
