@@ -9,6 +9,7 @@ Available on [Github pages](https://junganse.github.io/ReleaseNotesMerger/).
   - Each empty or whitespace-only line denotes a new paragraph.
   - Single-line paragraphs are ignores, as they would be a heading with no content.
 - Optionally:
+  - Inserts a line containing a date and prefix. Defaults to using the current date.
   - Ignores lines starting with a specified string.
   - Orders the combined paragraphs by heading.
   - Adjusts indentation of indented lines by a multiplier.
