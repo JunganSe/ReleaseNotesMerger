@@ -14,6 +14,7 @@ footer {
     text-align: center;
 }
 
-button {
+button,
+summary {
     cursor: pointer;
 }
