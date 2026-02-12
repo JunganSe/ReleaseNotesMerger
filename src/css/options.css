@@ -35,6 +35,8 @@
 
 .options-table {
     border: 1px solid silver;
+    border-radius: 5px;
+    padding: 0.5rem;
 
     th {
         text-align: right;
