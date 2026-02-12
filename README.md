@@ -22,4 +22,4 @@ Please note that the UI is a WIP, but the core functionality is complete.
 
 # Example
 Usage and text format example:
-<img alt="image" src="https://github.com/user-attachments/assets/ef836dbd-2eaf-4e9a-b845-dc0563add5a7" />
+<img width="1187" height="1018" alt="image" src="https://github.com/user-attachments/assets/f5a6db3f-6ff7-4ef7-9645-15adee6c7d1a" />
