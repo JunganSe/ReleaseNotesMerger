@@ -36,10 +36,17 @@
 
 .container_header-input,
 .container_header-output {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 2rem;
+}
+
+#icon_copy-ok {
+    position: absolute;
+    top: -0.1rem;
+    margin-left: 0.5rem;
 }
 
 textarea.input,
