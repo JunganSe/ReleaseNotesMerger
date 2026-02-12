@@ -6,8 +6,6 @@
 
 
 
-/* Options accordion */
-
 .options-accordion summary {
     border-radius: 0.3rem;
     text-align: center;
@@ -16,59 +14,49 @@
     margin: auto;
     margin-bottom: 0.2rem;
     user-select: none;
+
+    &::marker {
+        content: '';
+    }
+
+    &::before {
+        content: '>';
+        display: inline-block;
+        margin-right: 0.3rem;
+        /* transition: transform 0.2s; */
+    }
 }
 
-summary::marker {
-    content: '';
-}
-
-summary::before {
-    content: '>';
-    display: inline-block;
-    margin-right: 0.3rem;
-    /* transition: transform 0.2s; */
-}
-
-details[open] summary::before {
+.options-accordion[open] summary::before {
     transform: rotate(90deg);
 }
 
 
 
-/* Options table */
-
 .options-table {
     border: 1px solid silver;
+
+    th {
+        text-align: right;
+    }
+
+    #output-date-prefix {
+        width: 2.2rem;
+    }
+
+    #ignore-lines-prefixes {
+        width: 15rem;
+    }
+
+    #heading-order {
+        width: 15rem;
+    }
+
+    #indent-multiplier {
+        width: 2.2rem;
+    }
+
+    .container_options-buttons {
+        text-align: center;
+    }
 }
-
-.options-table th {
-    text-align: right;
-}
-
-.options-table #output-date-prefix {
-    width: 2.2rem;
-}
-
-.options-table #output-date {}
-
-.options-table #ignore-lines-prefixes {
-    width: 15rem;
-}
-
-.options-table #heading-order {
-    width: 15rem;
-}
-
-.options-table #indent-multiplier {
-    width: 2.2rem;
-}
-
-.options-table #ignore-heading-case {}
-
-.options-table #copy-on-merge {}
-
-.options-table .container_options-buttons {
-    text-align: center;
-}
-
-.options-table .container_options-buttons button {}
