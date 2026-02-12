@@ -13,3 +13,7 @@ label {
 footer {
     text-align: center;
 }
+
+button {
+    cursor: pointer;
+}
