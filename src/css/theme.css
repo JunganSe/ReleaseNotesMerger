@@ -1,0 +1,38 @@
+:root {
+    --color-text: #d8d8d8;
+    --color-background: #252525;
+    --color-border: #555555;
+
+    --color-button-text: #d8d8d8;
+    --color-button-bg: #3d3d3d;
+    --color-button-bg-hover: #4d4d4d;
+
+    --color-input-text: #d8d8d8;
+    --color-input-bg: #2d2d2d;
+    --color-input-border: #555555;
+}
+
+* {
+    color: var(--color-text);
+    background-color: var(--color-background);
+    border-color: var(--color-border);
+}
+
+button,
+summary {
+    color: var(--color-button-text);
+    background-color: var(--color-button-bg);
+    border: 1px solid var(--color-border);
+
+    &:hover {
+        background-color: var(--color-button-bg-hover);
+    }
+}
+
+input,
+select,
+textarea {
+    color: var(--color-input-text);
+    background-color: var(--color-input-bg);
+    border: 1px solid var(--color-input-border);
+}

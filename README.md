@@ -18,6 +18,8 @@ Available on [Github pages](https://junganse.github.io/ReleaseNotesMerger/).
 - Save and load settings.
 - Horizontal/vertical layout, or automatic.
 
+Please note that the UI is a WIP, but the core functionality is complete.
+
 # Example
 Usage and text format example:
-<img alt="image" src="https://github.com/user-attachments/assets/ef836dbd-2eaf-4e9a-b845-dc0563add5a7" />
+<img width="1192" height="1033" alt="image" src="https://github.com/user-attachments/assets/10e81ddc-6a7a-4847-8ac6-88021c4ca4aa" />
