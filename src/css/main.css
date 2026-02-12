@@ -18,3 +18,9 @@ button,
 summary {
     cursor: pointer;
 }
+
+button,
+input,
+textarea {
+    border-radius: 5px;
+}
