@@ -61,7 +61,6 @@
 
 textarea.input,
 textarea.output {
-    width: 100%;
     height: 47rem;
     resize: none;
     padding: 0.5rem;
