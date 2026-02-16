@@ -26,6 +26,16 @@
     }
 }
 
+.container_io {
+    label {
+        padding: 0.25rem 0;
+    }
+
+    button {
+        padding: 0.25rem 0.75rem;
+    }
+}
+
 .container_input,
 .container_output {
     display: flex;
