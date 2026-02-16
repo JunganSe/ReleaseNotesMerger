@@ -20,7 +20,8 @@
     }
 
     &::before {
-        content: '>';
+        font-size: 0.8rem;
+        content: '▷';
         display: inline-block;
         margin-right: 0.3rem;
         /* transition: transform 0.2s; */
@@ -46,8 +47,12 @@
         width: 2.2rem;
     }
 
+    #output-date {
+        width: 6.5rem;
+    }
+
     #ignore-lines-prefixes {
-        width: 15rem;
+        width: 9.2rem;
     }
 
     #heading-order {
